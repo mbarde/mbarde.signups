@@ -1,4 +1,4 @@
-# unikold.timeslots
+# mbarde.signups
 
 Dexterity based re-implementation of https://github.com/collective/uwosh.timeslot with extended functionalities.
 
@@ -82,7 +82,7 @@ venv/bin/runwsgi instance/etc/zope.ini
 ```
 
 Then open http://localhost:8080 and use "Create a new Plone site" (log in as
-`admin`), adding `unikold.timeslots` (and `collective.easyform`) as add-ons
+`admin`), adding `mbarde.signups` (and `collective.easyform`) as add-ons
 during site creation, or afterwards via *Site Setup > Add-ons*.
 
 Set `debug-mode on` in `instance/etc/zope.conf` for template auto-reload

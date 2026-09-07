@@ -1,0 +1,94 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="mbarde.signups">
+
+    <!-- Publish static files -->
+    <plone:static
+        name="mbarde.signups"
+        type="plone"
+        directory="static"
+    />
+
+    <browser:page
+        name="view"
+        for="mbarde.signups.content.ut_signup_sheet.IUTSignupSheet"
+        class=".views.UTSignupSheetView"
+        template="templates/ut_signup_sheet_view.pt"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        name="view"
+        for="mbarde.signups.content.ut_day.IUTDay"
+        class=".views.UTDayView"
+        template="templates/ut_day_view.pt"
+        permission="cmf.ManagePortal"
+    />
+
+    <browser:page
+        name="view"
+        for="mbarde.signups.content.ut_timeslot.IUTTimeslot"
+        class=".views.UTTimeslotView"
+        template="templates/ut_timeslot_view.pt"
+        permission="cmf.ManagePortal"
+    />
+
+    <browser:page
+        name="view"
+        for="mbarde.signups.content.ut_person.IUTPerson"
+        class=".views.UTPersonView"
+        template="templates/ut_person_view.pt"
+        permission="cmf.ManagePortal"
+    />
+
+    <browser:page
+        name="submit-user-selection"
+        for="mbarde.signups.content.ut_signup_sheet.IUTSignupSheet"
+        class=".view_submitselection.SubmitSelection"
+        attribute="submitUserSelection"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        name="verify-signup-otp"
+        for="mbarde.signups.content.ut_signup_sheet.IUTSignupSheet"
+        class=".view_verifysignupotp.VerifySignupOTP"
+        attribute="verifyOtp"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        name="show-reservations"
+        for="mbarde.signups.content.ut_signup_sheet.IUTSignupSheet"
+        template="templates/view_showreservations.pt"
+        class=".views.ShowReservationsView"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        name="cancel-reservation"
+        for="mbarde.signups.content.ut_signup_sheet.IUTSignupSheet"
+        class=".view_cancelreservation.CancelReservation"
+        attribute="cancelReservation"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        name="manager-summary"
+        for="mbarde.signups.content.ut_signup_sheet.IUTSignupSheet"
+        template="templates/view_summary.pt"
+        class=".views.ManagerSummaryView"
+        permission="cmf.ManagePortal"
+    />
+
+    <browser:page
+        name="remove-all-persons"
+        for="mbarde.signups.content.ut_signup_sheet.IUTSignupSheet"
+        class=".views.ManagerSummaryView"
+        attribute="removeAllPersons"
+        permission="cmf.ManagePortal"
+    />
+
+</configure>

@@ -1,0 +1,39 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="plone">
+
+    <configure zcml:condition="installed AccessControl.security">
+        <!-- -*- extra stuff goes here -*- -->
+
+        <permission
+            id="mbarde.signups.AddUTPerson"
+            title="mbarde.signups: Add UTPerson"
+        />
+
+
+        <permission
+            id="mbarde.signups.AddUTTimeslot"
+            title="mbarde.signups: Add UTTimeslot"
+        />
+
+
+        <permission
+            id="mbarde.signups.AddUTDay"
+            title="mbarde.signups: Add UTDay"
+        />
+
+
+        <permission
+            id="mbarde.signups.AddUTSignupSheet"
+            title="mbarde.signups: Add UTSignupSheet"
+        />
+
+        <permission
+            id="mbarde.signups.ManageSchedule"
+            title="mbarde.signups: Manage Schedule"
+        />
+
+    </configure>
+
+</configure>

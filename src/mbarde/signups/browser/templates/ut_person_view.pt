@@ -1,0 +1,54 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="mbarde.signups"
+>
+  <body>
+    <metal:main fill-slot="main">
+      <tal:main-macro metal:define-macro="main">
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading" tal:content="context/title" />
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p class="documentDescription" tal:content="context/description" />
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <table class="listing table table-striped table-hover">
+          <tbody>
+            <tr tal:define="(stateTitle, stateClass) view/getCurrentState">
+              <td tal:attributes="class stateClass" i18n:translate="">State</td>
+              <td tal:attributes="class stateClass">
+                <b tal:content="stateTitle" />
+              </td>
+            </tr>
+            <tal:widgets tal:define="widgets view/widgets">
+              <tr tal:repeat="widgetTuple widgets/items">
+                <tal:item tal:define="widget python: widgetTuple[1]">
+                  <td i18n:translate="" tal:content="widget/label" />
+                  <td tal:content="structure widget/render" />
+                </tal:item>
+              </tr>
+            </tal:widgets>
+
+            <tal:dynamicFields tal:define="fields here/getExtraInfo">
+              <tr tal:repeat="field fields">
+                <td i18n:translate="" tal:content="python: field[0]" />
+                <td tal:content="python: field[1]" />
+              </tr>
+            </tal:dynamicFields>
+          </tbody>
+        </table>
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+      </tal:main-macro>
+    </metal:main>
+  </body>
+</html>

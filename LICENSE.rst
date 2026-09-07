@@ -1,4 +1,4 @@
-unikold.timeslots Copyright 2019, Matthias Barde
+mbarde.signups Copyright 2019, Matthias Barde
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License version 2

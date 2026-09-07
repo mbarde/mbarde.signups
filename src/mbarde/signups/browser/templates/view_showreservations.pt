@@ -1,0 +1,127 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  lang="en"
+  metal:use-macro="here/main_template/macros/master"
+  i18n:domain="mbarde.signups"
+>
+  <body>
+    <div metal:fill-slot="main">
+      <tal:main-macro
+        metal:define-macro="main"
+        tal:define="icons python: context.restrictedTraverse('@@iconresolver')"
+      >
+        <h2 tal:content="context/Title" />
+
+        <div style="border: 1px solid #cccccc; padding: 10px">
+          <p i18n:translate="">
+            To cancel, select one or more of your reserved slots and click the
+            "Cancel Selected Slots" button.
+          </p>
+          <form
+            id="formCancelTimeslots"
+            method="post"
+            tal:attributes="action string:${context/absolute_url}/@@cancel-reservation;"
+          >
+            <table class="listing">
+              <tal:block
+                tal:define="slots python: context.getSlotsOfCurrentUser(['signedup', 'unconfirmed', 'signedoff'])"
+              >
+                <tr>
+                  <th colspan="2" i18n:translate="">
+                    You signed up for the following slots:
+                  </th>
+                </tr>
+                <tr tal:repeat="slot slots">
+                  <tal:block
+                    tal:define="label slot/getLabel;
+                                 state slot/getCurrentUserSignUpState"
+                  >
+                    <td>
+                      <span tal:content="label" />
+                      <span tal:condition="python: state == 'unconfirmed'">
+                        (<span i18n:translate="unconfirmed" />)
+                      </span>
+                      <span
+                        tal:condition="python: state == 'signedoff'"
+                        i18n:attributes="title"
+                        title="Your registration has been canceled"
+                      >
+                        (
+                        <tal:icon
+                          replace="structure python: icons.tag('plone-error')"
+                        />
+                        <span i18n:translate="signedoff" /> )
+                      </span>
+                    </td>
+                    <td
+                      tal:condition="python: state in ['signedup', 'unconfirmed']"
+                    >
+                      <input
+                        type="checkbox"
+                        name="selectedSlot"
+                        tal:attributes="value slot/getIDLabel"
+                      />
+                    </td>
+                  </tal:block>
+                </tr>
+                <tr tal:condition="python: len(slots) == 0">
+                  <td colspan="2" i18n:translate="">None</td>
+                </tr>
+              </tal:block>
+
+              <tal:block
+                tal:define="slots python: context.getSlotsOfCurrentUser('waiting')"
+              >
+                <tr>
+                  <th colspan="2" i18n:translate="">
+                    You are on a waiting list for the following slots:
+                  </th>
+                </tr>
+                <tr tal:repeat="slot slots">
+                  <tal:block tal:define="label slot/getLabel">
+                    <td style="border-right: none" tal:content="label" />
+                    <td style="border-left: none">
+                      <input
+                        type="checkbox"
+                        name="selectedSlot"
+                        tal:attributes="value slot/getIDLabel"
+                      />
+                    </td>
+                  </tal:block>
+                </tr>
+                <tr tal:condition="python: len(slots) == 0">
+                  <td colspan="2" i18n:translate="">None</td>
+                </tr>
+              </tal:block>
+            </table>
+            <br />
+
+            <button
+              class="btn btn-danger float-right"
+              type="submit"
+              name="cancelSlots"
+              id="btnCancelReservations"
+              style="display: none"
+            >
+              <tal:icon
+                replace="structure python: icons.tag('plone-delete', tag_alt='Cancel Selected Slots')"
+              />
+              <span i18n:translate="">Cancel Selected Slots</span>
+            </button>
+          </form>
+
+          <a
+            tal:attributes="href string:${context/absolute_url};"
+            class="btn btn-secondary"
+          >
+            <tal:icon
+              replace="structure python: icons.tag('arrow-left-circle', tag_class='me-1')"
+            />
+            <span i18n:translate="">Return to the signup sheet</span>
+          </a>
+        </div>
+      </tal:main-macro>
+    </div>
+  </body>
+</html>

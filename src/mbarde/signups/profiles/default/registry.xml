@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<registry>
+  <records interface="plone.base.interfaces.IBundleRegistry"
+    prefix="plone.bundles/mbarde.signups">
+    <value key="enabled">True</value>
+    <value key="jscompilation">++plone++mbarde.signups/timeslots.js</value>
+    <value key="csscompilation" />
+    <value key="load_async">False</value>
+    <value key="load_defer">False</value>
+  </records>
+</registry>

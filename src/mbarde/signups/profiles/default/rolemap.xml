@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+
+    <permission name="mbarde.signups: Add UTPerson" acquire="True">
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
+    </permission>
+
+    <permission name="mbarde.signups: Add UTTimeslot" acquire="True">
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
+    </permission>
+
+    <permission name="mbarde.signups: Add UTDay" acquire="True">
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
+    </permission>
+
+    <permission name="mbarde.signups: Add UTSignupSheet" acquire="True">
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
+    </permission>
+
+    <permission name="mbarde.signups: Manage Schedule" acquire="True">
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Owner" />
+      <role name="Contributor" />
+    </permission>
+
+  </permissions>
+</rolemap>

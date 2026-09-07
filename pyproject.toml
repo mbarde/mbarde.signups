@@ -1,5 +1,5 @@
 [project]
-name = "unikold.timeslots"
+name = "mbarde.signups"
 version = "1.0.0"
 description = "Dexterity based re-implementation of uwosh.timeslot"
 authors = [{ name = "Matthias Barde" }]
@@ -35,10 +35,10 @@ include-package-data = true
 [tool.setuptools.packages.find]
 where = ["src"]
 namespaces = true
-include = ["unikold.timeslots*"]
+include = ["mbarde.signups*"]
 
 [tool.setuptools.package-data]
-"unikold.timeslot" = ["**/*"]
+"mbarde.signups" = ["**/*"]
 
 [tool.black]
 line-length = 100

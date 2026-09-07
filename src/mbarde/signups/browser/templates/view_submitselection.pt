@@ -1,0 +1,168 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  lang="en"
+  metal:use-macro="here/main_template/macros/master"
+  i18n:domain="mbarde.signups"
+>
+  <body>
+    <div metal:fill-slot="main">
+      <tal:main-macro
+        metal:define-macro="main"
+        tal:define="icons python: context.restrictedTraverse('@@iconresolver')"
+      >
+        <h2>
+          <span tal:content="string:${context/Title}"></span> -
+          <span i18n:translate="">Sign Up Results</span>
+        </h2>
+
+        <div
+          tal:condition="python: view.areAnyRequiredFieldsEmpty() or not view.isAtLeastOneSlotSelected()"
+          class="portalMessage statusmessage-error alert alert-danger"
+          role="alert"
+        >
+          <tal:icon
+            replace="structure python: icons.tag('plone-statusmessage-error', tag_alt='Failure', tag_class='statusmessage-icon mb-1 me-2')"
+          />
+          <strong i18n:translate="">Failure</strong>
+          <div class="content">
+            <span tal:condition="not:view/isAtLeastOneSlotSelected">
+              <p i18n:translate="">You need to select at least one slot.</p>
+            </span>
+            <div tal:condition="view/areAnyRequiredFieldsEmpty">
+              <p i18n:translate="">
+                You did not complete the following fields:
+              </p>
+              <ul>
+                <li tal:repeat="field view/getListOfEmptyRequiredFields">
+                  <strong tal:content="field" />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div tal:repeat="result view/results">
+          <tal:block tal:condition="python: result['status'] == 'signedup'">
+            <div
+              class="portalMessage statusmessage-info alert alert-info"
+              role="alert"
+            >
+              <tal:icon
+                replace="structure python: icons.tag('plone-statusmessage-info', tag_alt='Success', tag_class='statusmessage-icon mb-1 me-2')"
+              />
+              <strong i18n:translate="">Success</strong>
+              <div class="content pt-3">
+                <p>
+                  <span i18n:translate=""
+                    >You have been successfully signed up for:</span
+                  ><br /> <b tal:content="result/slotLabel" />
+                </p>
+                <p tal:condition="view/isEmailValid">
+                  <span i18n:translate=""
+                    >A confirmation email has been sent to you</span
+                  >
+                  (<b tal:content="view/email"></b>).
+                </p>
+              </div>
+            </div>
+          </tal:block>
+
+          <tal:block tal:condition="python: result['status'] == 'unconfirmed'">
+            <div
+              class="portalMessage statusmessage-info alert alert-info"
+              role="alert"
+            >
+              <tal:icon
+                replace="structure python: icons.tag('plone-statusmessage-info', tag_alt='Success', tag_class='statusmessage-icon mb-1 me-2')"
+              />
+              <strong i18n:translate="">Success</strong>
+              <div class="content">
+                <p>
+                  <span i18n:translate=""
+                    >Your preliminary signup has been received:</span
+                  ><br /> <span tal:content="result/slotLabel" />
+                </p>
+                <p tal:condition="view/isEmailValid" i18n:translate="">
+                  You will receive a confirmation email now and a second one
+                  when your signup has been confirmed (or rejected).
+                </p>
+              </div>
+            </div>
+          </tal:block>
+
+          <tal:block tal:condition="python: result['status'] == 'waiting'">
+            <div
+              class="portalMessage statusmessage-info alert alert-info"
+              role="alert"
+            >
+              <tal:icon
+                replace="structure python: icons.tag('plone-statusmessage-info', tag_alt='Success', tag_class='statusmessage-icon mb-1 me-2')"
+              />
+              <strong i18n:translate="">Success</strong>
+              <div class="content">
+                <p>
+                  <span i18n:translate=""
+                    >You have been successfully added to the waiting list
+                    for:</span
+                  ><br /> <span tal:content="result/slotLabel" />
+                </p>
+                <p tal:condition="view/isEmailValid" i18n:translate="">
+                  You will receive a confirmation email now and second one when
+                  a spot opens up.
+                </p>
+              </div>
+            </div>
+          </tal:block>
+
+          <tal:block tal:condition="python: result['status'] == 'error'">
+            <div
+              class="portalMessage statusmessage-error alert alert-danger"
+              role="alert"
+            >
+              <tal:icon
+                replace="structure python: icons.tag('plone-statusmessage-error', tag_alt='Failure', tag_class='statusmessage-icon mb-1 me-2')"
+              />
+              <strong i18n:translate="">Failure</strong>
+              <div class="content">
+                <p i18n:translate="">The system was unable to register you.</p>
+                <p tal:content="result/error" />
+              </div>
+            </div>
+          </tal:block>
+        </div>
+
+        <button
+          tal:condition="view/hasAtLeastOneError"
+          onclick="window.history.back()"
+          class="btn btn-secondary"
+        >
+          <tal:icon
+            replace="structure python: icons.tag('arrow-left-circle', tag_class='me-1')"
+          />
+          <span i18n:translate="">Return to the signup sheet</span>
+        </button>
+        <a
+          tal:condition="not: view/hasAtLeastOneError"
+          tal:attributes="href string:${context/absolute_url};"
+          class="btn btn-secondary"
+        >
+          <tal:icon
+            replace="structure python: icons.tag('arrow-left-circle', tag_class='me-1')"
+          />
+          <span i18n:translate="">Return to the signup sheet</span>
+        </a>
+        <a
+          tal:condition="context/isCurrentUserLoggedIn"
+          tal:attributes="href string:${context/absolute_url}/@@show-reservations"
+          class="btn btn-secondary"
+        >
+          <tal:icon
+            replace="structure python: icons.tag('plone-calendar', tag_class='me-1')"
+          />
+          <span i18n:translate="">View My Reservations</span>
+        </a>
+      </tal:main-macro>
+    </div>
+  </body>
+</html>

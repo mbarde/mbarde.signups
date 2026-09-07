@@ -1,0 +1,47 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="mbarde.signups"
+>
+  <body>
+    <metal:main fill-slot="main">
+      <tal:main-macro metal:define-macro="main">
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading" tal:content="context/title" />
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p class="documentDescription" tal:content="context/description" />
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <label i18n:translate="" tal:content="view/w/date/label" />
+        <div tal:content="structure view/w/date/render" />
+        <br />
+
+        <tal:timeslots
+          tal:define="timeslots context/getTimeSlots"
+          tal:condition="timeslots"
+        >
+          <h3 i18n:translate="">Timeslots</h3>
+          <ul>
+            <li tal:repeat="timeslot context/getTimeSlots">
+              <a
+                tal:attributes="href timeslot/absolute_url"
+                tal:content="timeslot/Title"
+              />
+            </li>
+          </ul>
+        </tal:timeslots>
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+      </tal:main-macro>
+    </metal:main>
+  </body>
+</html>
