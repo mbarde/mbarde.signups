@@ -1,11 +1,11 @@
 # mbarde.signups
 
-Dexterity based re-implementation of https://github.com/collective/uwosh.timeslot with extended functionalities.
+Plone-Addon to provide dynamic sign-up forms for events with single or multiple dates / timeslots available.
+
+Originally inspired by https://github.com/collective/uwosh.timeslot (content-type prefixes still come from there):
 
 > uwosh.timeslot offers a simple way to allow users of a Plone site to
 > register for events (for example: training sessions or office hours).
-
-Originally this was an extension of `uwosh.timeslot` for usage in the CMS of the [University of Koblenz -Landau](<[http://uni-koblenz-landau.de](http://uni-koblenz-landau.de/)>).
 
 ## Features
 
@@ -14,6 +14,7 @@ Originally this was an extension of `uwosh.timeslot` for usage in the CMS of the
 - Timeslots can have capacities (waiting list and automatically moving up included)
 - Customizable notification emails
 - Dynamically extend signup form with EasyForm ([https://github.com/collective/collective.easyform](https://github.com/collective/collective.easyform))
+- External mail validation via OTP
 
 User states:
 
@@ -83,7 +84,7 @@ venv/bin/runwsgi instance/etc/zope.ini
 
 Then open http://localhost:8080 and use "Create a new Plone site" (log in as
 `admin`), adding `mbarde.signups` (and `collective.easyform`) as add-ons
-during site creation, or afterwards via *Site Setup > Add-ons*.
+during site creation, or afterwards via _Site Setup > Add-ons_.
 
 Set `debug-mode on` in `instance/etc/zope.conf` for template auto-reload
 during development (Python changes still need a restart).

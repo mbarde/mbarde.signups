@@ -1,7 +1,7 @@
 [project]
 name = "mbarde.signups"
 version = "1.0.0"
-description = "Dexterity based re-implementation of uwosh.timeslot"
+description = "Plone-Addon for dynamic event sign-ups"
 authors = [{ name = "Matthias Barde" }]
 readme = "README.md"
 license = "GPL-2.0-only"
