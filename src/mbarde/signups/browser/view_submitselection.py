@@ -83,39 +83,57 @@ class SubmitSelection(BrowserView):
         lang = self.currentLanguage or "en"
         signupSheet = self.context
         contactInfo = signupSheet.contactInfo
+        url = signupSheet.absolute_url()
+        personName = "{0} {1}".format(self.prename, self.surname)
+        slotLabel = ", ".join(self.selectedSlots)
 
-        subject = "{0} - {1}".format(
-            signupSheet.Title(), translate(_("Your verification code"), target_language=lang)
-        )
-
-        message = (
-            translate(_("Hello"), target_language=lang)
-            + " "
-            + self.prename
-            + " "
-            + self.surname
-            + ",\n\n"
-        )
-        message += (
-            translate(
-                _(
-                    "Please use the following code to verify your email address and "
-                    "complete your signup:"
-                ),
-                target_language=lang,
+        subject = signupSheet.emailOtpSubject
+        if subject is None or len(subject) == 0:
+            subject = "{0} - {1}".format(
+                signupSheet.Title(), translate(_("Your verification code"), target_language=lang)
             )
-            + "\n\n"
-        )
-        message += self.otpCode + "\n\n"
-        message += translate(_("This code is valid for 15 minutes."), target_language=lang) + "\n\n"
+        else:
+            subject = replaceCustomMailPlaceholders(
+                subject, personName, signupSheet.Title(), url, slotLabel, ""
+            ).replace("$$code$$", self.otpCode)
 
-        if len(contactInfo) > 0:
-            message += (
-                translate(_("If you have any questions please contact:"), target_language=lang)
+        content = signupSheet.emailOtpContent
+        if content is not None and len(content) > 0:
+            message = replaceCustomMailPlaceholders(
+                content, personName, signupSheet.Title(), url, slotLabel, ""
+            ).replace("$$code$$", self.otpCode)
+        else:
+            # default message if no content has been specified
+            message = (
+                translate(_("Hello"), target_language=lang)
                 + " "
-                + contactInfo
+                + self.prename
+                + " "
+                + self.surname
+                + ",\n\n"
+            )
+            message += (
+                translate(
+                    _(
+                        "Please use the following code to verify your email address and "
+                        "complete your signup:"
+                    ),
+                    target_language=lang,
+                )
                 + "\n\n"
             )
+            message += self.otpCode + "\n\n"
+            message += (
+                translate(_("This code is valid for 15 minutes."), target_language=lang) + "\n\n"
+            )
+
+            if len(contactInfo) > 0:
+                message += (
+                    translate(_("If you have any questions please contact:"), target_language=lang)
+                    + " "
+                    + contactInfo
+                    + "\n\n"
+                )
 
         api.portal.send_email(
             recipient=self.email, sender=contactInfo, subject=subject, body=message

@@ -108,9 +108,11 @@ class IUTSignupSheet(model.Schema):
         "mailsettings",
         label=_("Mail settings"),
         description=_(
-            "Following placeholders can be used:<br/>$$name$$ -> Full name of user<br/>$$title$$ -> Title of the signup sheet<br/>$$url$$ -> URL of the signup sheet<br/>$$slot$$ -> Date and time of slot (name of slot if date and time hid)<br/>$$data$$ -> Additional data (see 'additional form')"  # noqa: E501
+            "Following placeholders can be used:<br/>$$name$$ -> Full name of user<br/>$$title$$ -> Title of the signup sheet<br/>$$url$$ -> URL of the signup sheet<br/>$$slot$$ -> Date and time of slot (name of slot if date and time hid)<br/>$$data$$ -> Additional data (see 'additional form')<br/>$$code$$ -> One-time verification code (only available for the email verification email)"  # noqa: E501
         ),
         fields=[
+            "emailOtpSubject",
+            "emailOtpContent",
             "emailConfirmationSubject",
             "emailConfirmationContent",
             "emailWaitForConfirmationSubject",
@@ -121,6 +123,18 @@ class IUTSignupSheet(model.Schema):
             "emailCancelContent",
         ],
     )
+
+    # email verification (OTP) email
+    emailOtpSubject = schema.TextLine(
+        title=_("Email Verification Email Subject"),
+        description=_(
+            "This email will be send to verify the email address of a user who is not "
+            "logged in (if field 'Email verification for external users' is set)."
+        ),
+        required=False,
+    )
+
+    emailOtpContent = schema.Text(title=_("Email Verification Email Content"), required=False)
 
     # confirmation email
     emailConfirmationSubject = schema.TextLine(
