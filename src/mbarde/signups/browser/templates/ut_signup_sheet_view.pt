@@ -291,7 +291,9 @@
                                   >
                                     Available
                                   </th>
-                                  <th i18n:translate="">Select</th>
+                                  <th i18n:translate="" class="text-center">
+                                    Select
+                                  </th>
                                 </tr>
                               </thead>
 
