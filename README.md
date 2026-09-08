@@ -105,6 +105,19 @@ cd src/mbarde/signups/locales
 ./update.sh
 ```
 
+Zope only ever loads compiled `.mo` catalogs at startup, never the `.po`
+source files directly (and `.mo` files are gitignored, since they're a build
+artifact). Add this to the `<environment>` section of
+`instance/etc/zope.conf` so a fresh `.po` is automatically compiled to `.mo`
+on every restart - otherwise translations silently keep showing the English
+text no matter which language is negotiated:
+
+```
+<environment>
+  zope_i18n_compile_mo_files true
+</environment>
+```
+
 ### VS Code setup
 
 Plugins:

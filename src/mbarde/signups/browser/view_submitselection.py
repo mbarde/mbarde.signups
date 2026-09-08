@@ -175,9 +175,7 @@ class SubmitSelection(BrowserView):
 
         for field in requiredExtraFields:
             if len(getattr(self, field["name"], "")) < 1:
-                emptyRequiredFields.append(
-                    translate(_(field["label"]), target_language=self.currentLanguage)
-                )
+                emptyRequiredFields.append(field["label"])
 
         if getattr(self.context, "dataUsageDeclaration", False) and getattr(
             self.context, "dataUsageDeclarationConsentRequired", True

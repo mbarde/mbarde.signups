@@ -236,7 +236,7 @@ class UTSignupSheet(Container):
     def getDay(self, dayId):
         brains = api.content.find(context=self, portal_type="UTDay", id=dayId)
         if len(brains) == 0:
-            raise ValueError(_("The date {0} was not found.".format(dayId)))
+            raise ValueError("The date {0} was not found.".format(dayId))
         return brains[0].getObject()
 
     def getDays(self, onlyIncludeUpcomingDays=True):
@@ -256,7 +256,10 @@ class UTSignupSheet(Container):
     # Returns tuple with three elements:
     # [0] -> dictionary where key is month and value is list of days in this month
     # [1] -> sorted list of keys (to make sure that March is displayed before April etc.)
-    # [2] -> dictionary containing the translation objects of the month
+    # [2] -> dictionary containing the (untranslated) abbreviated month name, e.g. 'Mar'
+    #        (wrapping this in `_()` cannot be picked up by i18ndude, since it can only
+    #        extract literal strings passed to `_()`, not the runtime result of
+    #        strftime() - so it would never actually be translatable)
     def getDaysGroupedByMonth(self):
         days = self.getDays()
         result = dict()
@@ -275,8 +278,8 @@ class UTSignupSheet(Container):
                 result[key].append(day)
             else:
                 result[key] = [day]
-                # but for translation use month code (like 'Mar')
-                mTrans[key] = _(day.date.strftime("%b"))
+                # abbreviated month name, e.g. 'Mar' (see note above)
+                mTrans[key] = day.date.strftime("%b")
 
         keys = sorted(result.keys())
 

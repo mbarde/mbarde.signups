@@ -33,7 +33,7 @@ class UTPerson(Item):
         fields = getAllExtraFields(self)
         for field in fields:
             value = getattr(self, field["name"], "")
-            extraInfo.append((_(field["label"]), value))
+            extraInfo.append((field["label"], value))
         return extraInfo
 
     def getExtraInfoAsString(self):
@@ -42,7 +42,7 @@ class UTPerson(Item):
         for field in fields:
             value = getattr(self, field["name"], False)
             if value:
-                extraInfo.append(_(field["label"]) + ": " + value)
+                extraInfo.append(field["label"] + ": " + value)
         return "\n".join(extraInfo)
 
 

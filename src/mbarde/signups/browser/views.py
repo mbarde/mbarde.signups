@@ -92,7 +92,7 @@ class ManagerSummaryView(BrowserView):
     def removeAllPersons(self):
         count = self.context.removeAllPersons()
         api.portal.show_message(
-            message=_("Successfully removed {0} persons.".format(str(count))),
+            message=_("Successfully removed ${count} persons.", mapping={"count": count}),
             request=self.request,
             type="info",
         )
@@ -131,7 +131,10 @@ class CreateSequentialTimeslotsView(BrowserView):
             return request.response.redirect(redirectUrl)
 
         api.portal.show_message(
-            message=_("Successfully created {0} timeslots.".format(len(createdTimeSlots))),
+            message=_(
+                "Successfully created ${count} timeslots.",
+                mapping={"count": len(createdTimeSlots)},
+            ),
             request=request,
             type="info",
         )

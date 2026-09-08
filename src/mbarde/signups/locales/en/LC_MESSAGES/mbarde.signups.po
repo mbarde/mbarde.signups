@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-08 13:17+0000\n"
+"POT-Creation-Date: 2026-09-08 13:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,10 +13,6 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
-
-#: ../content/ut_signup_sheet.py:279
-msgid "%b"
-msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:117
 msgid "(expired)"
@@ -30,7 +26,7 @@ msgstr ""
 msgid "A new signup has been added to the waiting list for:"
 msgstr ""
 
-#: ../browser/view_submitselection.py:367
+#: ../browser/view_submitselection.py:369
 msgid "A new signup is waiting for confirmation"
 msgstr ""
 
@@ -47,7 +43,7 @@ msgid "Additional form to be filled in for registration."
 msgstr ""
 
 #: ../browser/view_cancelreservation.py:64
-#: ../browser/view_submitselection.py:339
+#: ../browser/view_submitselection.py:341
 #: ../subscribers.py:63
 msgid "Additional information"
 msgstr ""
@@ -142,7 +138,7 @@ msgid "Day for mbarde.signups"
 msgstr ""
 
 #: ../browser/view_cancelreservation.py:61
-#: ../browser/view_submitselection.py:374
+#: ../browser/view_submitselection.py:376
 #: ../content/ut_person.py:17
 msgid "E-Mail"
 msgstr ""
@@ -278,7 +274,7 @@ msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:281
 #: ../browser/view_cancelreservation.py:60
-#: ../browser/view_submitselection.py:373
+#: ../browser/view_submitselection.py:375
 msgid "Name"
 msgstr ""
 
@@ -298,7 +294,7 @@ msgstr ""
 msgid "Number of timeslots"
 msgstr ""
 
-#: ../content/ut_day.py:68
+#: ../content/ut_day.py:74
 msgid "Number of timeslots must be at least 1."
 msgstr ""
 
@@ -391,13 +387,13 @@ msgid "Signed Off"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:73
-#: ../browser/views.py:150
+#: ../browser/views.py:153
 #: ../utils.py:93
 msgid "Signed Up"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:24
-#: ../browser/views.py:154
+#: ../browser/views.py:157
 msgid "Signed off"
 msgstr ""
 
@@ -438,11 +434,11 @@ msgid "Success"
 msgstr ""
 
 #: ../browser/views.py:134
-msgid "Successfully created {0} timeslots."
+msgid "Successfully created ${count} timeslots."
 msgstr ""
 
 #: ../browser/views.py:95
-msgid "Successfully removed {0} persons."
+msgid "Successfully removed ${count} persons."
 msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:407
@@ -454,19 +450,11 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
-#: ../content/ut_day.py:41
-msgid "The TimeSlot {0} was not found."
-msgstr ""
-
-#: ../content/ut_signup_sheet.py:239
-msgid "The date {0} was not found."
-msgstr ""
-
 #: ../content/ut_timeslot.py:26
 msgid "The max number of people"
 msgstr ""
 
-#: ../browser/view_submitselection.py:241
+#: ../browser/view_submitselection.py:243
 msgid "The slot you selected is already full. Please select a different one."
 msgstr ""
 
@@ -530,7 +518,7 @@ msgstr ""
 msgid "Timeslot duration (minutes)"
 msgstr ""
 
-#: ../content/ut_day.py:66
+#: ../content/ut_day.py:72
 msgid "Timeslot duration must be at least 1 minute."
 msgstr ""
 
@@ -605,7 +593,7 @@ msgstr ""
 msgid "View timeslot"
 msgstr ""
 
-#: ../browser/view_submitselection.py:308
+#: ../browser/view_submitselection.py:310
 msgid "Wait For Confirmation"
 msgstr ""
 
@@ -619,7 +607,7 @@ msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:48
 #: ../browser/templates/view_summary.pt:83
-#: ../browser/views.py:156
+#: ../browser/views.py:159
 msgid "Waiting List"
 msgstr ""
 
@@ -632,7 +620,7 @@ msgid "Waiting List Notification"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:78
-#: ../browser/views.py:152
+#: ../browser/views.py:155
 #: ../utils.py:95
 msgid "Waiting for confirmation"
 msgstr ""
@@ -669,11 +657,11 @@ msgstr ""
 msgid "You are already signed up for a slot in this signup sheet and multiple signups are not allowed."
 msgstr ""
 
-#: ../browser/view_submitselection.py:216
+#: ../browser/view_submitselection.py:218
 msgid "You are already signed up for a slot in this signup sheet."
 msgstr ""
 
-#: ../browser/view_submitselection.py:219
+#: ../browser/view_submitselection.py:221
 msgid "You are already signed up for this slot."
 msgstr ""
 
@@ -697,7 +685,7 @@ msgstr ""
 msgid "You need to select at least one slot."
 msgstr ""
 
-#: ../browser/view_submitselection.py:324
+#: ../browser/view_submitselection.py:326
 msgid "You signed up for following slot:"
 msgstr ""
 
@@ -713,7 +701,7 @@ msgstr ""
 msgid "You will receive a confirmation email now and second one when a spot opens up."
 msgstr ""
 
-#: ../browser/view_submitselection.py:329
+#: ../browser/view_submitselection.py:331
 msgid "You will receive another email as soon as your registration has been confirmed (or rejected)."
 msgstr ""
 
@@ -749,13 +737,8 @@ msgstr ""
 msgid "Your verification code"
 msgstr ""
 
-#: ../browser/view_submitselection.py:188
+#: ../browser/view_submitselection.py:190
 msgid "fieldName_agreeDataUsageDeclaration"
-msgstr ""
-
-#: ../browser/view_submitselection.py:179
-#: ../content/ut_person.py:36
-msgid "label"
 msgstr ""
 
 #: ../configure.zcml:30
