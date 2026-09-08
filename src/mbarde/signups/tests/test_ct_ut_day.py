@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import date
+from datetime import time
 from mbarde.signups.content.ut_day import IUTDay  # NOQA E501
 from mbarde.signups.testing import MBARDE_SIGNUPS_INTEGRATION_TESTING  # noqa
 from plone import api
@@ -80,6 +81,56 @@ class UTDayIntegrationTest(unittest.TestCase):
         )
 
         self.assertEqual(obj.getTimeSlots(), [])
+
+    def test_create_sequential_time_slots(self):
+        setRoles(self.portal, TEST_USER_ID, ["Contributor"])
+        today = date.today()
+        obj = createContentInContainer(
+            self.parent,
+            "UTDay",
+            id="ut_day",
+            date=today,
+        )
+
+        createdTimeSlots = obj.createSequentialTimeSlots(time(9, 0), 15, 4)
+
+        self.assertEqual(len(createdTimeSlots), 4)
+        self.assertEqual(obj.getTimeSlots(), createdTimeSlots)
+
+        expectedRanges = [
+            (time(9, 0), time(9, 15)),
+            (time(9, 15), time(9, 30)),
+            (time(9, 30), time(9, 45)),
+            (time(9, 45), time(10, 0)),
+        ]
+        actualRanges = [(slot.startTime, slot.endTime) for slot in createdTimeSlots]
+        self.assertEqual(actualRanges, expectedRanges)
+
+    def test_create_sequential_time_slots_invalid_duration(self):
+        setRoles(self.portal, TEST_USER_ID, ["Contributor"])
+        today = date.today()
+        obj = createContentInContainer(
+            self.parent,
+            "UTDay",
+            id="ut_day",
+            date=today,
+        )
+
+        with self.assertRaises(ValueError):
+            obj.createSequentialTimeSlots(time(9, 0), 0, 4)
+
+    def test_create_sequential_time_slots_invalid_count(self):
+        setRoles(self.portal, TEST_USER_ID, ["Contributor"])
+        today = date.today()
+        obj = createContentInContainer(
+            self.parent,
+            "UTDay",
+            id="ut_day",
+            date=today,
+        )
+
+        with self.assertRaises(ValueError):
+            obj.createSequentialTimeSlots(time(9, 0), 15, 0)
 
     def test_ct_ut_day_globally_not_addable(self):
         setRoles(self.portal, TEST_USER_ID, ["Contributor"])

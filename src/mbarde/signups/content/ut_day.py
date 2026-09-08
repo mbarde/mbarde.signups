@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+from datetime import date as dateClass
+from datetime import datetime
+from datetime import timedelta
 from DateTime import DateTime
 from mbarde.signups import _
 from mbarde.signups.utils import deferRename
 from plone import api
 from plone.dexterity.content import Container
+from plone.dexterity.utils import createContentInContainer
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.locking.interfaces import ILockable
 from plone.supermodel import model
@@ -43,6 +47,44 @@ class UTDay(Container):
 
         timeSlot = brains[0].getObject()
         return timeSlot
+
+    def createSequentialTimeSlots(self, startTime, duration, count):
+        """Create ``count`` timeslots of ``duration`` minutes each, one
+        right after the other, starting at ``startTime``.
+
+        This is meant to make it easy to fill a day with a series of
+        equally sized, back-to-back timeslots (e.g. 4 timeslots of 15
+        minutes each for consulting hours) instead of adding them one by
+        one.
+
+        :param startTime: datetime.time - start of the first timeslot
+        :param duration: int - length of each timeslot in minutes
+        :param count: int - number of timeslots to create
+        :returns: list of the created UTTimeslot objects
+        """
+        if duration < 1:
+            raise ValueError(_("Timeslot duration must be at least 1 minute."))
+        if count < 1:
+            raise ValueError(_("Number of timeslots must be at least 1."))
+
+        delta = timedelta(minutes=duration)
+        current = datetime.combine(dateClass.today(), startTime)
+
+        createdTimeSlots = []
+        for _i in range(count):
+            slotStartTime = current.time()
+            current += delta
+            slotEndTime = current.time()
+
+            timeSlot = createContentInContainer(
+                self,
+                "UTTimeslot",
+                startTime=slotStartTime,
+                endTime=slotEndTime,
+            )
+            createdTimeSlots.append(timeSlot)
+
+        return createdTimeSlots
 
 
 # set id & title on creation and modification

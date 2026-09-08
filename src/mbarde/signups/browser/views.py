@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 from io import StringIO
 from lxml import etree
 from mbarde.signups import _
@@ -100,6 +101,41 @@ class ManagerSummaryView(BrowserView):
 
 class UTDayView(DefaultView):
     pass
+
+
+class CreateSequentialTimeslotsView(BrowserView):
+
+    def __call__(self):
+        request = self.request
+        redirectUrl = self.context.absolute_url()
+
+        try:
+            startTime = datetime.strptime(request.form.get("startTime", ""), "%H:%M").time()
+            duration = int(request.form.get("timeslotDuration", ""))
+            count = int(request.form.get("numberOfTimeslots", ""))
+        except (TypeError, ValueError):
+            api.portal.show_message(
+                message=_(
+                    "Please provide a valid starting time, timeslot duration and number "
+                    "of timeslots."
+                ),
+                request=request,
+                type="error",
+            )
+            return request.response.redirect(redirectUrl)
+
+        try:
+            createdTimeSlots = self.context.createSequentialTimeSlots(startTime, duration, count)
+        except ValueError as error:
+            api.portal.show_message(message=str(error), request=request, type="error")
+            return request.response.redirect(redirectUrl)
+
+        api.portal.show_message(
+            message=_("Successfully created {0} timeslots.".format(len(createdTimeSlots))),
+            request=request,
+            type="info",
+        )
+        return request.response.redirect(redirectUrl)
 
 
 class UTTimeslotView(DefaultView):

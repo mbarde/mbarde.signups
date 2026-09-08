@@ -40,6 +40,77 @@
           </ul>
         </tal:timeslots>
 
+        <br />
+
+        <button
+          class="btn btn-secondary"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#createSequentialTimeslotsForm"
+          aria-expanded="false"
+          aria-controls="createSequentialTimeslotsForm"
+          i18n:translate=""
+        >
+          Create multiple timeslots
+        </button>
+
+        <div class="collapse mt-2" id="createSequentialTimeslotsForm">
+          <form
+            method="post"
+            class="card card-body"
+            tal:attributes="action string:${context/absolute_url}/create-sequential-timeslots"
+          >
+            <div class="mb-3">
+              <label
+                for="createSequentialTimeslotsStartTime"
+                i18n:translate=""
+              >Starting time</label>
+              <input
+                type="time"
+                class="form-control"
+                id="createSequentialTimeslotsStartTime"
+                name="startTime"
+                required="required"
+              />
+            </div>
+            <div class="mb-3">
+              <label
+                for="createSequentialTimeslotsDuration"
+                i18n:translate=""
+              >Timeslot duration (minutes)</label>
+              <input
+                type="number"
+                class="form-control"
+                id="createSequentialTimeslotsDuration"
+                name="timeslotDuration"
+                min="1"
+                value="15"
+                required="required"
+              />
+            </div>
+            <div class="mb-3">
+              <label
+                for="createSequentialTimeslotsCount"
+                i18n:translate=""
+              >Number of timeslots</label>
+              <input
+                type="number"
+                class="form-control"
+                id="createSequentialTimeslotsCount"
+                name="numberOfTimeslots"
+                min="1"
+                value="4"
+                required="required"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              i18n:translate=""
+            >Create timeslots</button>
+          </form>
+        </div>
+
         <div tal:replace="structure provider:plone.belowcontentbody" />
       </tal:main-macro>
     </metal:main>

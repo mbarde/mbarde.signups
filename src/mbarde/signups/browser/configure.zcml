@@ -28,6 +28,13 @@
     />
 
     <browser:page
+        name="create-sequential-timeslots"
+        for="mbarde.signups.content.ut_day.IUTDay"
+        class=".views.CreateSequentialTimeslotsView"
+        permission="cmf.ManagePortal"
+    />
+
+    <browser:page
         name="view"
         for="mbarde.signups.content.ut_timeslot.IUTTimeslot"
         class=".views.UTTimeslotView"
