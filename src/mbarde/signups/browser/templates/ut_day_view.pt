@@ -61,10 +61,9 @@
             tal:attributes="action string:${context/absolute_url}/create-sequential-timeslots"
           >
             <div class="mb-3">
-              <label
-                for="createSequentialTimeslotsStartTime"
-                i18n:translate=""
-              >Starting time</label>
+              <label for="createSequentialTimeslotsStartTime" i18n:translate=""
+                >Starting time</label
+              >
               <input
                 type="time"
                 class="form-control"
@@ -74,10 +73,9 @@
               />
             </div>
             <div class="mb-3">
-              <label
-                for="createSequentialTimeslotsDuration"
-                i18n:translate=""
-              >Timeslot duration (minutes)</label>
+              <label for="createSequentialTimeslotsDuration" i18n:translate=""
+                >Timeslot duration (minutes)</label
+              >
               <input
                 type="number"
                 class="form-control"
@@ -89,10 +87,9 @@
               />
             </div>
             <div class="mb-3">
-              <label
-                for="createSequentialTimeslotsCount"
-                i18n:translate=""
-              >Number of timeslots</label>
+              <label for="createSequentialTimeslotsCount" i18n:translate=""
+                >Number of timeslots</label
+              >
               <input
                 type="number"
                 class="form-control"
@@ -103,11 +100,9 @@
                 required="required"
               />
             </div>
-            <button
-              type="submit"
-              class="btn btn-primary"
-              i18n:translate=""
-            >Create timeslots</button>
+            <button type="submit" class="btn btn-primary" i18n:translate="">
+              Create timeslots
+            </button>
           </form>
         </div>
 

@@ -31,8 +31,8 @@
 
         <tal:block tal:condition="view/token">
           <p i18n:translate="">
-            We sent a verification code to the email address below. Please
-            enter it to complete your signup.
+            We sent a verification code to the email address below. Please enter
+            it to complete your signup.
           </p>
           <p tal:condition="view/email">
             <strong tal:content="view/email" />
@@ -43,7 +43,11 @@
             id="formVerifyOtp"
             tal:attributes="action string:${context/absolute_url}/@@verify-signup-otp;"
           >
-            <input type="hidden" name="token" tal:attributes="value view/token" />
+            <input
+              type="hidden"
+              name="token"
+              tal:attributes="value view/token"
+            />
             <div class="field mb-3">
               <label for="inputOtpCode" class="form-label" i18n:translate=""
                 >Verification code</label

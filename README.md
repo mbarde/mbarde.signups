@@ -96,6 +96,41 @@ without a configured SMTP server (`ConnectionRefusedError`). With
 (`instance/var/log/event.log`) instead of actually being sent - no local
 mail server needed.
 
+### VS Code setup
+
+Plugins:
+
+- `ms-python.black-formatter`: Python formatting
+- `ms-python.flake8`: Python linting
+- `ms-python.vscode-pylance`: Python language support
+- `ms-python.isort`: Python imports sorting
+- `esbenp.prettier-vscode`: .html/.pt/.md formatting
+- `redhat.vscode-xml`: .xml formatting
+
+Settings:
+
+```json
+{
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "*.pt": "html",
+    "*.zcml": "xml"
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  }
+}
+```
+
 ## License
 
 The project is licensed under the GPLv2, see [LICENSE.GPL](LICENSE.GPL).

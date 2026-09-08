@@ -8,119 +8,122 @@
     <div metal:fill-slot="main" tal:define="timeSlots python: []">
       <metal:block define-macro="macro-timeslots">
         <tal:block tal:repeat="timeSlot timeSlots">
-        <tr
-          tal:define="rowState timeSlot/getCurrentUserSignUpState;
+          <tr
+            tal:define="rowState timeSlot/getCurrentUserSignUpState;
                       rowFull timeSlot/isFull;
                       rowExpired timeSlot/isRegistrationExpired;
                       selectable python: not rowState and not rowExpired and not rowFull and isSignupAllowed"
-          tal:attributes="class python: 'slot-row' if selectable else None;
+            tal:attributes="class python: 'slot-row' if selectable else None;
                           style python: 'cursor: pointer' if selectable else None"
-        >
-          <td tal:condition="view/showEditLinks">
-            <a
-              tal:attributes="href string:${timeSlot/absolute_url}/edit"
-              i18n:attributes="title"
-              title="Edit timeslot"
-            >
-              <tal:icon
-                replace="structure python: icons.tag('plone-edit', tag_alt='Edit timeslot')"
-              />
-            </a>
-            <a
-              tal:attributes="href string:${timeSlot/absolute_url}/view"
-              i18n:attributes="title"
-              title="View timeslot"
-            >
-              <tal:icon
-                replace="structure python: icons.tag('plone-view', tag_alt='View timeslot')"
-              />
-            </a>
-          </td>
-          <td tal:condition="showSlotNames">
-            <strong><span tal:content="timeSlot/name" /></strong>
-          </td>
-          <td tal:condition="not: hideDateTime">
-            <span tal:content="timeSlot/getTimeRange" />
-          </td>
-          <td tal:condition="not: hideAvailability">
-            <span tal:content="timeSlot/getNumberOfAvailableSlots" />
-            <span tal:condition="timeSlot/allowWaitingList">
-              + <span i18n:translate="">Waiting List</span></span
-            >
-          </td>
-          <td
-            align="center"
-            tal:define="state timeSlot/getCurrentUserSignUpState; full timeSlot/isFull"
           >
-            <tal:block
-              tal:condition="python: state in ['unconfirmed', 'signedup', 'signedoff']"
-            >
-              <em
-                ><strong>
-                  &rarr;
-                  <span i18n:translate="">Your Slot</span>
-                  <span tal:condition="python: state == 'unconfirmed'">
-                    (<span i18n:translate="unconfirmed" />)
-                  </span>
-                  <span
-                    tal:condition="python: state == 'signedoff'"
-                    i18n:attributes="title"
-                    title="Your registration has been canceled"
-                  >
-                    (
-                    <tal:icon
-                      replace="structure python: icons.tag('plone-error')"
-                    />
-                    <span i18n:translate="signedoff" /> )
-                  </span>
-                  &larr;
-                </strong></em
-              >
-            </tal:block>
-            <tal:block tal:condition="python: state == 'waiting'">
-              <em
-                ><strong
-                  >&rarr;
-                  <span i18n:translate="on_waiting_list"></span> &larr;</strong
-                ></em
-              >
-            </tal:block>
-
-            <tal:block tal:condition="not:state">
-              <tal:block tal:condition="not:timeSlot/isRegistrationExpired">
-                <tal:block tal:condition="python: not full and isSignupAllowed">
-                  <input
-                    tal:condition="isSingleTimeSlot"
-                    type="radio"
-                    name="slotSelection"
-                    tal:attributes="value timeSlot/getIDLabel"
-                    checked
-                  />
-                  <input
-                    tal:condition="python: not isSingleTimeSlot and allowSignupForMultipleSlots"
-                    type="checkbox"
-                    name="slotSelection"
-                    tal:attributes="value timeSlot/getIDLabel"
-                  />
-                  <input
-                    tal:condition="python: not isSingleTimeSlot and not allowSignupForMultipleSlots"
-                    type="radio"
-                    name="slotSelection"
-                    tal:attributes="value timeSlot/getIDLabel"
-                  />
-                </tal:block>
-                <span tal:condition="full" i18n:translate="">Full</span>
-              </tal:block>
-              <span
-                tal:condition="timeSlot/isRegistrationExpired"
-                i18n:translate=""
+            <td tal:condition="view/showEditLinks">
+              <a
+                tal:attributes="href string:${timeSlot/absolute_url}/edit"
                 i18n:attributes="title"
-                title="Registration expired"
-                >(expired)</span
+                title="Edit timeslot"
               >
-            </tal:block>
-          </td>
-        </tr>
+                <tal:icon
+                  replace="structure python: icons.tag('plone-edit', tag_alt='Edit timeslot')"
+                />
+              </a>
+              <a
+                tal:attributes="href string:${timeSlot/absolute_url}/view"
+                i18n:attributes="title"
+                title="View timeslot"
+              >
+                <tal:icon
+                  replace="structure python: icons.tag('plone-view', tag_alt='View timeslot')"
+                />
+              </a>
+            </td>
+            <td tal:condition="showSlotNames">
+              <strong><span tal:content="timeSlot/name" /></strong>
+            </td>
+            <td tal:condition="not: hideDateTime">
+              <span tal:content="timeSlot/getTimeRange" />
+            </td>
+            <td tal:condition="not: hideAvailability">
+              <span tal:content="timeSlot/getNumberOfAvailableSlots" />
+              <span tal:condition="timeSlot/allowWaitingList">
+                + <span i18n:translate="">Waiting List</span></span
+              >
+            </td>
+            <td
+              align="center"
+              tal:define="state timeSlot/getCurrentUserSignUpState; full timeSlot/isFull"
+            >
+              <tal:block
+                tal:condition="python: state in ['unconfirmed', 'signedup', 'signedoff']"
+              >
+                <em
+                  ><strong>
+                    &rarr;
+                    <span i18n:translate="">Your Slot</span>
+                    <span tal:condition="python: state == 'unconfirmed'">
+                      (<span i18n:translate="unconfirmed" />)
+                    </span>
+                    <span
+                      tal:condition="python: state == 'signedoff'"
+                      i18n:attributes="title"
+                      title="Your registration has been canceled"
+                    >
+                      (
+                      <tal:icon
+                        replace="structure python: icons.tag('plone-error')"
+                      />
+                      <span i18n:translate="signedoff" /> )
+                    </span>
+                    &larr;
+                  </strong></em
+                >
+              </tal:block>
+              <tal:block tal:condition="python: state == 'waiting'">
+                <em
+                  ><strong
+                    >&rarr;
+                    <span i18n:translate="on_waiting_list"></span>
+                    &larr;</strong
+                  ></em
+                >
+              </tal:block>
+
+              <tal:block tal:condition="not:state">
+                <tal:block tal:condition="not:timeSlot/isRegistrationExpired">
+                  <tal:block
+                    tal:condition="python: not full and isSignupAllowed"
+                  >
+                    <input
+                      tal:condition="isSingleTimeSlot"
+                      type="radio"
+                      name="slotSelection"
+                      tal:attributes="value timeSlot/getIDLabel"
+                      checked
+                    />
+                    <input
+                      tal:condition="python: not isSingleTimeSlot and allowSignupForMultipleSlots"
+                      type="checkbox"
+                      name="slotSelection"
+                      tal:attributes="value timeSlot/getIDLabel"
+                    />
+                    <input
+                      tal:condition="python: not isSingleTimeSlot and not allowSignupForMultipleSlots"
+                      type="radio"
+                      name="slotSelection"
+                      tal:attributes="value timeSlot/getIDLabel"
+                    />
+                  </tal:block>
+                  <span tal:condition="full" i18n:translate="">Full</span>
+                </tal:block>
+                <span
+                  tal:condition="timeSlot/isRegistrationExpired"
+                  i18n:translate=""
+                  i18n:attributes="title"
+                  title="Registration expired"
+                  >(expired)</span
+                >
+              </tal:block>
+            </td>
+          </tr>
         </tal:block>
       </metal:block>
 
