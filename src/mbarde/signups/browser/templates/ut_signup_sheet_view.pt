@@ -374,11 +374,10 @@
                 <label
                   for="inputPrename"
                   class="form-label"
-                  i18n:translate="Prename"
+                  i18n:translate="Your prename"
                   >Your prename
                   <span
                     class="required"
-                    title="required"
                     i18n:attributes="title"
                     title="Required"
                     >&nbsp;</span
@@ -396,11 +395,10 @@
                 <label
                   for="inputSurname"
                   class="form-label"
-                  i18n:translate="Surname"
+                  i18n:translate="Your surname"
                   >Your surname
                   <span
                     class="required"
-                    title="required"
                     i18n:attributes="title"
                     title="Required"
                     >&nbsp;</span
@@ -419,7 +417,6 @@
                   >Your email address
                   <span
                     class="required"
-                    title="required"
                     i18n:attributes="title"
                     title="Required"
                     >&nbsp;</span

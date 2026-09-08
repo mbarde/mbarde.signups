@@ -96,6 +96,15 @@ without a configured SMTP server (`ConnectionRefusedError`). With
 (`instance/var/log/event.log`) instead of actually being sent - no local
 mail server needed.
 
+### Update translations
+
+```
+source venv/bin/activate
+uv pip install i18ndude
+cd src/mbarde/signups/locales
+./update.sh
+```
+
 ### VS Code setup
 
 Plugins:
