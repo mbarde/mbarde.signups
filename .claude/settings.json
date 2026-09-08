@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep *)",
+      "Bash(sed *)",
+      "Bash(source venv/bin/activate)",
+      "Bash(./venv/bin/python -m pytest *)",
+      "Bash(./venv/bin/python -m flake8 *)",
+      "Bash(./venv/bin/python -m black --check *)",
+      "Bash(venv/bin/pytest *)",
+      "Bash(venv/bin/flake8 *)",
+      "Bash(venv/bin/black --check *)",
+      "Bash(venv/bin/isort --check-only *)",
+      "Bash(venv/bin/pip list)",
+      "Bash(tree *)"
+    ]
+  }
+}

@@ -219,8 +219,6 @@
                     There are no upcoming days for this signup sheet.
                   </h3>
 
-                  <h3 i18n:translate="month"></h3>
-
                   <div class="accordion" id="slots-accordion">
                     <tal:block tal:repeat="day days">
                       <div
