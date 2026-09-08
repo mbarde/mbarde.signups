@@ -7,7 +7,15 @@
   <body>
     <div metal:fill-slot="main" tal:define="timeSlots python: []">
       <metal:block define-macro="macro-timeslots">
-        <tr tal:repeat="timeSlot timeSlots">
+        <tal:block tal:repeat="timeSlot timeSlots">
+        <tr
+          tal:define="rowState timeSlot/getCurrentUserSignUpState;
+                      rowFull timeSlot/isFull;
+                      rowExpired timeSlot/isRegistrationExpired;
+                      selectable python: not rowState and not rowExpired and not rowFull and isSignupAllowed"
+          tal:attributes="class python: 'slot-row' if selectable else None;
+                          style python: 'cursor: pointer' if selectable else None"
+        >
           <td tal:condition="view/showEditLinks">
             <a
               tal:attributes="href string:${timeSlot/absolute_url}/edit"
@@ -113,6 +121,7 @@
             </tal:block>
           </td>
         </tr>
+        </tal:block>
       </metal:block>
 
       <tal:main-macro

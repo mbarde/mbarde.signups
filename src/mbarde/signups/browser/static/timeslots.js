@@ -28,4 +28,22 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('input[name="slotSelection"]').forEach(function (input) {
     input.addEventListener('change', checkTimeslotSelection);
   });
+
+  // let a click anywhere in a timeslot's row select it, instead of forcing
+  // users to hit the small radio button/checkbox itself
+  document.querySelectorAll('tr.slot-row').forEach(function (row) {
+    row.addEventListener('click', function (event) {
+      // don't hijack clicks on links (e.g. edit/view icons) or on the
+      // input itself (which already toggles on its own)
+      if (event.target.closest('a, input')) {
+        return;
+      }
+      var input = row.querySelector('input[name="slotSelection"]');
+      if (!input) {
+        return;
+      }
+      input.checked = input.type === 'checkbox' ? !input.checked : true;
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+  });
 });
