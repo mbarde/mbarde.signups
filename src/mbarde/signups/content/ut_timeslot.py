@@ -27,9 +27,9 @@ class IUTTimeslot(model.Schema):
     )
 
     allowWaitingList = schema.Bool(
-        title=_("Allow Waiting List"),
+        title=_("Allow waiting list"),
         description=_(
-            "Check if you want to allow signups to waiting list once max capacity is reached"
+            "Check if you want to allow signups to waiting list once max capacity is reached."
         ),
         required=False,
     )

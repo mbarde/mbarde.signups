@@ -18,12 +18,12 @@ class IUTSignupSheet(model.Schema):
 
     text = RichText(
         title=_("Text"),
-        description=_("This (formatted) text will be displayed above the form"),
+        description=_("This (formatted) text will be displayed above the form."),
         required=False,
     )
 
     contactInfo = schema.TextLine(
-        title=_("Contact Information"),
+        title=_("Contact information"),
         description=_("Contact information for the manager of the signup sheet."),
         required=True,
     )
@@ -31,7 +31,7 @@ class IUTSignupSheet(model.Schema):
     notifyContactInfo = schema.Bool(
         title=_("Send notification mails to contact info"),
         description=_(
-            "Send notifications to the mail address provided in the contact info field on new signups or cancellations"  # noqa: E501
+            "Send notifications to the mail address provided in the contact info field on new signups or cancellations."  # noqa: E501
         ),
         default=True,
         required=False,
@@ -45,8 +45,8 @@ class IUTSignupSheet(model.Schema):
     )
 
     allowSignupForExternals = schema.Bool(
-        title=_("Allow Signup For External User"),
-        description=_("Allow signup for users which do not have an university account"),
+        title=_("Allow signup for external user"),
+        description=_("Allow signup for users which do not have an university account."),
         default=False,
         required=False,
     )
@@ -54,14 +54,14 @@ class IUTSignupSheet(model.Schema):
     enableEmailVerificationForExternals = schema.Bool(
         title=_("Email verification for external users"),
         description=_(
-            "Anyone who is not currently logged in has to verify their email address with a one-time code before their signup is completed",  # noqa: E501
+            "Anyone who is not currently logged in has to verify their email address with a one-time code before their signup is completed.",  # noqa: E501
         ),
         default=True,
         required=False,
     )
 
     allowSignupForMultipleSlots = schema.Bool(
-        title=_("Allow Signup For Multiple Slots"),
+        title=_("Allow signup for multiple slots"),
         description=_("Allow the user to signup for more than one slot."),
         default=False,
         required=False,
@@ -77,7 +77,7 @@ class IUTSignupSheet(model.Schema):
     )
 
     showSlotNames = schema.Bool(
-        title=_("Show Individual Time Slot Names"),
+        title=_("Show individual time slot names"),
         description=_("Whether or not to show individual slot names."),
         default=True,
         required=False,
@@ -85,14 +85,14 @@ class IUTSignupSheet(model.Schema):
 
     hideAvailability = schema.Bool(
         title=_("Hide availability"),
-        description=_("Hide how many persons can sign up for a slot"),
+        description=_("Hide how many persons can sign up for a slot."),
         default=False,
         required=False,
     )
 
     hideDateTime = schema.Bool(
         title=_("Hide date and time"),
-        description=_("For signups that are not bound to a certain time slot"),
+        description=_("For signups that are not bound to a certain time slot."),
         default=False,
         required=False,
     )
@@ -126,7 +126,7 @@ class IUTSignupSheet(model.Schema):
 
     # email verification (OTP) email
     emailOtpSubject = schema.TextLine(
-        title=_("Email Verification Email Subject"),
+        title=_("Email verification email subject"),
         description=_(
             "This email will be send to verify the email address of a user who is not "
             "logged in (if field 'Email verification for external users' is set)."
@@ -138,7 +138,7 @@ class IUTSignupSheet(model.Schema):
 
     # confirmation email
     emailConfirmationSubject = schema.TextLine(
-        title=_("Confirmation Email Subject"),
+        title=_("Confirmation email subject"),
         description=_("This email will be send on successful registration."),
         required=False,
     )
@@ -147,7 +147,7 @@ class IUTSignupSheet(model.Schema):
 
     # wait for confirmation email
     emailWaitForConfirmationSubject = schema.TextLine(
-        title=_("Wait For Confirmation Email Subject"),
+        title=_("Wait for confirmation email subject"),
         description=_(
             'This email will be send when user registered for a timeslot and a confirmation is required (if field "Manager has to confirm signups" is set).'  # noqa: E501
         ),
@@ -155,12 +155,12 @@ class IUTSignupSheet(model.Schema):
     )
 
     emailWaitForConfirmationContent = schema.Text(
-        title=_("Wait For Confirmation Email Content"), required=False
+        title=_("Wait for confirmation email content"), required=False
     )
 
     # waiting list email
     emailWaitinglistSubject = schema.TextLine(
-        title=_("Waitinglist Email Subject"),
+        title=_("Waitinglist email subject"),
         description=_("This email will be send on registration for the waitinglist."),
         required=False,
     )
@@ -169,12 +169,12 @@ class IUTSignupSheet(model.Schema):
 
     # cancellation email
     emailCancelSubject = schema.TextLine(
-        title=_("Cancellation Email Subject"),
+        title=_("Cancellation email subject"),
         description=_("This email will be send on a registration cancellation."),
         required=False,
     )
 
-    emailCancelContent = schema.Text(title=_("Cancellation Email Content"), required=False)
+    emailCancelContent = schema.Text(title=_("Cancellation email content"), required=False)
 
 
 @implementer(IUTSignupSheet)
