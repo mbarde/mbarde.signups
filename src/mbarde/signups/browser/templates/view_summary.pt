@@ -120,7 +120,7 @@
                  tal:attributes="id bodyId;
                                  class python: 'accordion-collapse collapse show' if isOpen else 'accordion-collapse collapse'">
               <div class="accordion-body">
-              <table class="listing table table-bordered" tal:define="dictReviewStateClass python: {'signedoff': 'danger', 'signedup': 'success', 'unconfirmed': 'warning', 'waiting': 'info'}">
+              <table class="listing table table-bordered" tal:define="dictReviewStateClass python: {'signedoff': 'table-danger', 'signedup': 'table-success', 'unconfirmed': 'table-warning', 'waiting': 'table-info'}">
               <tr tal:repeat="person python: timeSlot.getPeople(True)" tal:attributes="class python: dictReviewStateClass.get(view.getReviewState(person), '')" >
                   <td><a tal:content="person/Title" tal:attributes="href person/absolute_url" /></td>
                   <td tal:content="person/email" />
