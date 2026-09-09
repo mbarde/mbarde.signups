@@ -24,14 +24,14 @@
         for="mbarde.signups.content.ut_day.IUTDay"
         class=".views.UTDayView"
         template="templates/ut_day_view.pt"
-        permission="cmf.ManagePortal"
+        permission="mbarde.signups.ManageSchedule"
     />
 
     <browser:page
         name="create-sequential-timeslots"
         for="mbarde.signups.content.ut_day.IUTDay"
         class=".views.CreateSequentialTimeslotsView"
-        permission="cmf.ManagePortal"
+        permission="mbarde.signups.ManageSchedule"
     />
 
     <browser:page
@@ -39,7 +39,7 @@
         for="mbarde.signups.content.ut_timeslot.IUTTimeslot"
         class=".views.UTTimeslotView"
         template="templates/ut_timeslot_view.pt"
-        permission="cmf.ManagePortal"
+        permission="mbarde.signups.ManageSchedule"
     />
 
     <browser:page
@@ -47,7 +47,7 @@
         for="mbarde.signups.content.ut_person.IUTPerson"
         class=".views.UTPersonView"
         template="templates/ut_person_view.pt"
-        permission="cmf.ManagePortal"
+        permission="mbarde.signups.ManageSchedule"
     />
 
     <browser:page
@@ -87,7 +87,7 @@
         for="mbarde.signups.content.ut_signup_sheet.IUTSignupSheet"
         template="templates/view_summary.pt"
         class=".views.ManagerSummaryView"
-        permission="cmf.ManagePortal"
+        permission="mbarde.signups.ManageSchedule"
     />
 
     <browser:page
@@ -95,14 +95,14 @@
         for="mbarde.signups.content.ut_signup_sheet.IUTSignupSheet"
         class=".views.ManagerSummaryView"
         attribute="removeAllPersons"
-        permission="cmf.ManagePortal"
+        permission="mbarde.signups.ManageSchedule"
     />
 
     <browser:page
         name="export-to-csv"
         for="mbarde.signups.content.ut_signup_sheet.IUTSignupSheet"
         class=".views.ExportToCsvView"
-        permission="cmf.ManagePortal"
+        permission="mbarde.signups.ManageSchedule"
     />
 
 </configure>

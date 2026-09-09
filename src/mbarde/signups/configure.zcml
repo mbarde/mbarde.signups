@@ -14,9 +14,11 @@
   <!--<includeDependencies
   package="." />-->
 
-  <include package=".browser" />
-
+  <!-- must come before .browser: its pages reference this file's custom
+       permissions, which need to be registered first -->
   <include file="permissions.zcml" />
+
+  <include package=".browser" />
 
   <include file="upgrades.zcml" />
 
