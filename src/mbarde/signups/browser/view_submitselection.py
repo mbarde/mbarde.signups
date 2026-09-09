@@ -285,7 +285,7 @@ class SubmitSelection(BrowserView):
 
         lang = ILanguage(signupSheet).get_language()
         if len(lang) == 0:
-            lang = "de"
+            lang = "en"
 
         extraInfoStr = ""
         for fieldStr, fieldTrans in self.extra_fields():

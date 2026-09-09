@@ -17,7 +17,7 @@ def sendSignupNotificationEmail(person):
 
     lang = ILanguage(signupSheet).get_language()
     if len(lang) == 0:
-        lang = "de"
+        lang = "en"
 
     contactInfo = signupSheet.contactInfo
     extraInfoStr = person.getExtraInfoAsString()
@@ -116,7 +116,7 @@ def sendWaitingListConfirmationEmail(person):
 
     lang = ILanguage(signupSheet).get_language()
     if len(lang) == 0:
-        lang = "de"
+        lang = "en"
 
     extraInfoStr = person.getExtraInfoAsString()
     contactInfo = signupSheet.contactInfo
@@ -212,7 +212,7 @@ def sendSignOffNotification(person):
 
     lang = ILanguage(signupSheet).get_language()
     if len(lang) == 0:
-        lang = "de"
+        lang = "en"
 
     contactInfo = signupSheet.contactInfo
     extraInfoStr = person.getExtraInfoAsString()

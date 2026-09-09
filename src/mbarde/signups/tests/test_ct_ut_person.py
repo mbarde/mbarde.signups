@@ -105,13 +105,11 @@ class UTPersonIntegrationTest(unittest.TestCase):
         signupsheet, day, timeslot, person = self.createFullStack()
 
         # the signup sheet has no explicit language set, so notification
-        # emails fall back to German (see subscribers.py) - substrings below
-        # are picked to avoid umlauts/sharp-s, since those get hex-escaped
-        # by quoted-printable and would never match a literal assertIn()
+        # emails fall back to English (see subscribers.py)
         self.assertEqual(len(self.portal.MailHost.messages), 0)
         self.assertWfState("unconfirmed", person)
         api.content.transition(obj=person, transition="signoff")
-        self.assertNewMailContains(self.users[0]["email"], ["Stornierungsbenachrichtigung"])
+        self.assertNewMailContains(self.users[0]["email"], ["Cancellation", "Notification"])
         self.assertEqual(timeslot.getNumberOfAvailableSlots(), 1)
 
         self.assertWfState("signedoff", person)
@@ -119,12 +117,12 @@ class UTPersonIntegrationTest(unittest.TestCase):
         self.assertEqual(len(self.portal.MailHost.messages), 2)
         self.assertNewMailContains(
             self.users[0]["email"],
-            ["Warteliste"],
+            ["Waiting", "List", "Confirmation"],
             self.portal.MailHost.messages[0],
         )
         self.assertNewMailContains(
             self.manager["email"],
-            ["Benachrichtigung", "Warteliste"],
+            ["Waiting", "List", "Notification"],
             self.portal.MailHost.messages[1],
         )
         self.portal.MailHost.messages = []
@@ -135,12 +133,12 @@ class UTPersonIntegrationTest(unittest.TestCase):
         self.assertEqual(len(self.portal.MailHost.messages), 2)
         self.assertNewMailContains(
             self.users[0]["email"],
-            ["angemeldet"],
+            ["Registration", "Confirmation"],
             self.portal.MailHost.messages[0],
         )
         self.assertNewMailContains(
             self.manager["email"],
-            ["Anmeldebenachrichtigung"],
+            ["Registration", "Notification"],
             self.portal.MailHost.messages[1],
         )
         self.portal.MailHost.messages = []

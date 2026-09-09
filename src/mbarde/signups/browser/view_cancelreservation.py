@@ -31,7 +31,7 @@ class CancelReservation(BrowserView):
 
         lang = ILanguage(signupSheet).get_language()
         if len(lang) == 0:
-            lang = "de"
+            lang = "en"
 
         toEmail = contactInfo
         fromEmail = signupSheet.contactInfo
