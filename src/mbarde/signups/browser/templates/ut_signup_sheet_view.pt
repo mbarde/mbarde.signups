@@ -325,7 +325,7 @@
             tal:condition="hideDateTime"
             tal:define="days context/getDays"
           >
-            <div class="card">
+            <div class="card mb-4">
               <table class="listing table table-hover">
                 <thead>
                   <tr>
@@ -336,7 +336,7 @@
                     <th tal:condition="not: hideAvailability" i18n:translate="">
                       Available
                     </th>
-                    <th i18n:translate="">Select</th>
+                    <th class="text-center" i18n:translate="">Select</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -447,23 +447,22 @@
           </tal:block>
 
           <div
-            class="portalMessage statusmessage-error alert alert-danger"
+            class="portalMessage statusmessage-error alert alert-warning"
             role="alert"
             tal:condition="not: isSignupAllowed"
           >
             <tal:icon
               replace="structure python: icons.tag('plone-statusmessage-error', tag_alt='Error:', tag_class='statusmessage-icon mb-1 me-2')"
             />
-            <strong i18n:translate="">Error:</strong>
+            <strong i18n:translate="">Warning</strong>:
             <span class="content" i18n:translate=""
-              >Signups are only allowed for authenticated users.</span
-            >
-            <br />
+              >Signups are only allowed for authenticated users</span
+            >:
             <a
               tal:attributes="href string:${context/@@plone_portal_state/portal_url}/login_form?came_from=${context/absolute_url}"
-              class="btn btn-primary mt-2"
+              class="alert-link"
               i18n:translate=""
-              >Login</a
+              >Login now</a
             >
           </div>
         </form>

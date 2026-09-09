@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-09 09:15+0000\n"
+"POT-Creation-Date: 2026-09-09 10:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,7 +81,7 @@ msgstr ""
 msgid "Automatic move up from waiting list"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:286
+#: ../browser/templates/ut_signup_sheet_view.pt:287
 msgid "Available"
 msgstr ""
 
@@ -134,7 +134,7 @@ msgstr ""
 msgid "Create timeslots"
 msgstr ""
 
-#: ../browser/views.py:141
+#: ../browser/views.py:136
 #: ../content/ut_day.py:21
 msgid "Date"
 msgstr ""
@@ -145,7 +145,7 @@ msgstr ""
 
 #: ../browser/view_cancelreservation.py:61
 #: ../browser/view_submitselection.py:372
-#: ../browser/views.py:144
+#: ../browser/views.py:139
 msgid "E-Mail"
 msgstr ""
 
@@ -155,7 +155,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:246
+#: ../browser/templates/ut_signup_sheet_view.pt:247
 msgid "Edit day"
 msgstr ""
 
@@ -181,10 +181,6 @@ msgstr ""
 
 #: ../content/ut_timeslot.py:21
 msgid "End Time"
-msgstr ""
-
-#: ../browser/templates/ut_signup_sheet_view.pt:457
-msgid "Error:"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:18
@@ -253,12 +249,12 @@ msgstr ""
 msgid "Info:"
 msgstr ""
 
-#: ../configure.zcml:30
+#: ../configure.zcml:32
 msgid "Installs the mbarde.signups add-on."
 msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:462
-msgid "Login"
+msgid "Login now"
 msgstr ""
 
 #: ../content/ut_signup_sheet.py:109
@@ -279,13 +275,13 @@ msgstr ""
 msgid "Max capacity"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:279
+#: ../browser/templates/ut_signup_sheet_view.pt:280
 #: ../browser/view_cancelreservation.py:60
 #: ../browser/view_submitselection.py:371
 msgid "Name"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:302
+#: ../browser/templates/ut_signup_sheet_view.pt:303
 msgid "No slots have been made available for this day yet."
 msgstr ""
 
@@ -317,7 +313,7 @@ msgstr ""
 msgid "Persons"
 msgstr ""
 
-#: ../browser/views.py:196
+#: ../browser/views.py:191
 msgid "Please provide a valid starting time, timeslot duration, number of timeslots and max capacity."
 msgstr ""
 
@@ -326,7 +322,7 @@ msgid "Please use the following code to verify your email address and complete y
 msgstr ""
 
 #. Default: "Your prename <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:384
+#: ../browser/templates/ut_signup_sheet_view.pt:385
 #: ../content/ut_person.py:19
 msgid "Prename"
 msgstr ""
@@ -351,7 +347,7 @@ msgstr ""
 msgid "Remove all persons?"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:377
+#: ../browser/templates/ut_signup_sheet_view.pt:378
 msgid "Required"
 msgstr ""
 
@@ -361,11 +357,11 @@ msgstr ""
 msgid "Return to the signup sheet"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:292
+#: ../browser/templates/ut_signup_sheet_view.pt:293
 msgid "Select"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:365
+#: ../browser/templates/ut_signup_sheet_view.pt:366
 msgid "Select a timeslot to proceed"
 msgstr ""
 
@@ -393,7 +389,7 @@ msgstr ""
 msgid "Sign Up Results"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:436
+#: ../browser/templates/ut_signup_sheet_view.pt:437
 msgid "Sign up"
 msgstr ""
 
@@ -402,13 +398,13 @@ msgid "Signed Off"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:97
-#: ../browser/views.py:239
+#: ../browser/views.py:234
 #: ../utils.py:93
 msgid "Signed Up"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:35
-#: ../browser/views.py:243
+#: ../browser/views.py:238
 msgid "Signed off"
 msgstr ""
 
@@ -420,8 +416,8 @@ msgstr ""
 msgid "Signup sheet with timeslot support"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:458
-msgid "Signups are only allowed for authenticated users."
+#: ../browser/templates/ut_signup_sheet_view.pt:459
+msgid "Signups are only allowed for authenticated users"
 msgstr ""
 
 #: ../content/ut_signup_sheet.py:42
@@ -441,7 +437,7 @@ msgid "Starting time"
 msgstr ""
 
 #: ../browser/templates/ut_person_view.pt:27
-#: ../browser/views.py:145
+#: ../browser/views.py:140
 msgid "State"
 msgstr ""
 
@@ -449,7 +445,7 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: ../browser/views.py:220
+#: ../browser/views.py:215
 msgid "Successfully created ${count} timeslots."
 msgstr ""
 
@@ -457,7 +453,7 @@ msgstr ""
 msgid "Successfully removed ${count} persons."
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:405
+#: ../browser/templates/ut_signup_sheet_view.pt:406
 #: ../content/ut_person.py:21
 msgid "Surname"
 msgstr ""
@@ -482,7 +478,7 @@ msgstr ""
 msgid "The system was unable to register you."
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:218
+#: ../browser/templates/ut_signup_sheet_view.pt:219
 msgid "There are no upcoming days for this signup sheet."
 msgstr ""
 
@@ -530,8 +526,8 @@ msgstr ""
 msgid "This message is to notify you that someone signed up for:"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:285
-#: ../browser/views.py:142
+#: ../browser/templates/ut_signup_sheet_view.pt:286
+#: ../browser/views.py:137
 msgid "Time"
 msgstr ""
 
@@ -579,7 +575,7 @@ msgstr ""
 msgid "Unconfirmed"
 msgstr ""
 
-#: ../configure.zcml:39
+#: ../configure.zcml:41
 msgid "Uninstalls the mbarde.signups add-on."
 msgstr ""
 
@@ -606,7 +602,7 @@ msgstr ""
 msgid "View My Reservations"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:256
+#: ../browser/templates/ut_signup_sheet_view.pt:257
 msgid "View day"
 msgstr ""
 
@@ -628,7 +624,7 @@ msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:48
 #: ../browser/templates/view_summary.pt:107
-#: ../browser/views.py:245
+#: ../browser/views.py:240
 msgid "Waiting List"
 msgstr ""
 
@@ -641,7 +637,7 @@ msgid "Waiting List Notification"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:102
-#: ../browser/views.py:241
+#: ../browser/views.py:236
 #: ../utils.py:95
 msgid "Waiting for confirmation"
 msgstr ""
@@ -656,6 +652,10 @@ msgstr ""
 
 #: ../content/ut_signup_sheet.py:163
 msgid "Waitinglist email subject"
+msgstr ""
+
+#: ../browser/templates/ut_signup_sheet_view.pt:458
+msgid "Warning"
 msgstr ""
 
 #: ../browser/templates/view_verifyemail.pt:33
@@ -731,7 +731,7 @@ msgid "Your Slot"
 msgstr ""
 
 #. Default: "Your email address <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:416
+#: ../browser/templates/ut_signup_sheet_view.pt:417
 msgid "Your email address"
 msgstr ""
 
@@ -740,7 +740,7 @@ msgid "Your preliminary signup has been received:"
 msgstr ""
 
 #. Default: "Your prename <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:377
+#: ../browser/templates/ut_signup_sheet_view.pt:378
 msgid "Your prename"
 msgstr ""
 
@@ -750,7 +750,7 @@ msgid "Your registration has been canceled"
 msgstr ""
 
 #. Default: "Your surname <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:398
+#: ../browser/templates/ut_signup_sheet_view.pt:399
 msgid "Your surname"
 msgstr ""
 
@@ -762,11 +762,11 @@ msgstr ""
 msgid "fieldName_agreeDataUsageDeclaration"
 msgstr ""
 
-#: ../configure.zcml:30
+#: ../configure.zcml:32
 msgid "mbarde.signups"
 msgstr ""
 
-#: ../configure.zcml:39
+#: ../configure.zcml:41
 msgid "mbarde.signups (uninstall)"
 msgstr ""
 

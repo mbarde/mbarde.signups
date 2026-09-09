@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-09 09:15+0000\n"
+"POT-Creation-Date: 2026-09-09 10:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <de@li.org>\n"
@@ -81,7 +81,7 @@ msgstr "Wer nicht angemeldet ist, muss die eigene E-Mail-Adresse mit einem Einma
 msgid "Automatic move up from waiting list"
 msgstr "Automatisches Nachrücken von der Warteliste"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:286
+#: ../browser/templates/ut_signup_sheet_view.pt:287
 msgid "Available"
 msgstr "Verfügbar"
 
@@ -134,7 +134,7 @@ msgstr "Mehrere Termine anlegen"
 msgid "Create timeslots"
 msgstr "Termine anlegen"
 
-#: ../browser/views.py:141
+#: ../browser/views.py:136
 #: ../content/ut_day.py:21
 msgid "Date"
 msgstr "Datum"
@@ -145,7 +145,7 @@ msgstr "Tag für mbarde.signups"
 
 #: ../browser/view_cancelreservation.py:61
 #: ../browser/view_submitselection.py:372
-#: ../browser/views.py:144
+#: ../browser/views.py:139
 msgid "E-Mail"
 msgstr "E-Mail"
 
@@ -155,7 +155,7 @@ msgstr "E-Mail"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:246
+#: ../browser/templates/ut_signup_sheet_view.pt:247
 msgid "Edit day"
 msgstr "Tag bearbeiten"
 
@@ -182,10 +182,6 @@ msgstr "E-Mail-Verifizierung für externe Nutzer"
 #: ../content/ut_timeslot.py:21
 msgid "End Time"
 msgstr "Endzeit"
-
-#: ../browser/templates/ut_signup_sheet_view.pt:457
-msgid "Error:"
-msgstr "Fehler:"
 
 #: ../browser/templates/view_summary.pt:18
 msgid "Export"
@@ -253,13 +249,13 @@ msgstr "Falscher Code. Bitte versuchen Sie es erneut."
 msgid "Info:"
 msgstr "Info:"
 
-#: ../configure.zcml:30
+#: ../configure.zcml:32
 msgid "Installs the mbarde.signups add-on."
 msgstr "Installiert das Add-on mbarde.signups."
 
 #: ../browser/templates/ut_signup_sheet_view.pt:462
-msgid "Login"
-msgstr "Anmelden"
+msgid "Login now"
+msgstr "Jetzt einloggen"
 
 #: ../content/ut_signup_sheet.py:109
 msgid "Mail settings"
@@ -279,13 +275,13 @@ msgstr "Anmeldungen müssen von der verantwortlichen Person bestätigt werden"
 msgid "Max capacity"
 msgstr "Maximale Kapazität"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:279
+#: ../browser/templates/ut_signup_sheet_view.pt:280
 #: ../browser/view_cancelreservation.py:60
 #: ../browser/view_submitselection.py:371
 msgid "Name"
 msgstr "Name"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:302
+#: ../browser/templates/ut_signup_sheet_view.pt:303
 msgid "No slots have been made available for this day yet."
 msgstr "Für diesen Tag wurden noch keine Termine freigegeben."
 
@@ -317,7 +313,7 @@ msgstr "Person für mbarde.signups"
 msgid "Persons"
 msgstr "Personen"
 
-#: ../browser/views.py:196
+#: ../browser/views.py:191
 msgid "Please provide a valid starting time, timeslot duration, number of timeslots and max capacity."
 msgstr "Bitte geben Sie eine gültige Startzeit, Termindauer, Anzahl der Termine und maximale Kapazität an."
 
@@ -326,7 +322,7 @@ msgid "Please use the following code to verify your email address and complete y
 msgstr "Bitte verwenden Sie den folgenden Code, um Ihre E-Mail-Adresse zu bestätigen und Ihre Anmeldung abzuschließen:"
 
 #. Default: "Your prename <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:384
+#: ../browser/templates/ut_signup_sheet_view.pt:385
 #: ../content/ut_person.py:19
 msgid "Prename"
 msgstr "Vorname"
@@ -351,7 +347,7 @@ msgstr "Alle Personen entfernen"
 msgid "Remove all persons?"
 msgstr "Alle Personen entfernen?"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:377
+#: ../browser/templates/ut_signup_sheet_view.pt:378
 msgid "Required"
 msgstr "Erforderlich"
 
@@ -361,11 +357,11 @@ msgstr "Erforderlich"
 msgid "Return to the signup sheet"
 msgstr "Zurück zur Anmeldeliste"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:292
+#: ../browser/templates/ut_signup_sheet_view.pt:293
 msgid "Select"
 msgstr "Auswählen"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:365
+#: ../browser/templates/ut_signup_sheet_view.pt:366
 msgid "Select a timeslot to proceed"
 msgstr "Wählen Sie einen Termin aus, um fortzufahren"
 
@@ -393,7 +389,7 @@ msgstr "Namen der einzelnen Termine anzeigen"
 msgid "Sign Up Results"
 msgstr "Anmeldeergebnisse"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:436
+#: ../browser/templates/ut_signup_sheet_view.pt:437
 msgid "Sign up"
 msgstr "Anmelden"
 
@@ -402,13 +398,13 @@ msgid "Signed Off"
 msgstr "Abgemeldet"
 
 #: ../browser/templates/view_summary.pt:97
-#: ../browser/views.py:239
+#: ../browser/views.py:234
 #: ../utils.py:93
 msgid "Signed Up"
 msgstr "Angemeldet"
 
 #: ../browser/templates/view_summary.pt:35
-#: ../browser/views.py:243
+#: ../browser/views.py:238
 msgid "Signed off"
 msgstr "Abgemeldet"
 
@@ -420,9 +416,9 @@ msgstr "Angemeldet"
 msgid "Signup sheet with timeslot support"
 msgstr "Anmeldeliste mit Terminunterstützung"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:458
-msgid "Signups are only allowed for authenticated users."
-msgstr "Anmeldungen sind nur für angemeldete Nutzer möglich."
+#: ../browser/templates/ut_signup_sheet_view.pt:459
+msgid "Signups are only allowed for authenticated users"
+msgstr "Anmeldung ist nur nach Login möglich"
 
 #: ../content/ut_signup_sheet.py:42
 msgid "Signups have to be confirmed by the manager (can also be rejected)."
@@ -441,7 +437,7 @@ msgid "Starting time"
 msgstr "Startzeit"
 
 #: ../browser/templates/ut_person_view.pt:27
-#: ../browser/views.py:145
+#: ../browser/views.py:140
 msgid "State"
 msgstr "Status"
 
@@ -449,7 +445,7 @@ msgstr "Status"
 msgid "Success"
 msgstr "Erfolg"
 
-#: ../browser/views.py:220
+#: ../browser/views.py:215
 msgid "Successfully created ${count} timeslots."
 msgstr "${count} Termine erfolgreich angelegt."
 
@@ -457,7 +453,7 @@ msgstr "${count} Termine erfolgreich angelegt."
 msgid "Successfully removed ${count} persons."
 msgstr "${count} Personen erfolgreich entfernt."
 
-#: ../browser/templates/ut_signup_sheet_view.pt:405
+#: ../browser/templates/ut_signup_sheet_view.pt:406
 #: ../content/ut_person.py:21
 msgid "Surname"
 msgstr "Nachname"
@@ -482,7 +478,7 @@ msgstr "Der ausgewählte Termin ist bereits ausgebucht. Bitte wählen Sie einen 
 msgid "The system was unable to register you."
 msgstr "Das System konnte Sie nicht anmelden."
 
-#: ../browser/templates/ut_signup_sheet_view.pt:218
+#: ../browser/templates/ut_signup_sheet_view.pt:219
 msgid "There are no upcoming days for this signup sheet."
 msgstr "Es gibt keine bevorstehenden Tage für diese Anmeldeliste."
 
@@ -530,8 +526,8 @@ msgstr "Diese Nachricht bestätigt, dass Sie angemeldet wurden für:"
 msgid "This message is to notify you that someone signed up for:"
 msgstr "Diese Nachricht informiert Sie darüber, dass sich jemand angemeldet hat für:"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:285
-#: ../browser/views.py:142
+#: ../browser/templates/ut_signup_sheet_view.pt:286
+#: ../browser/views.py:137
 msgid "Time"
 msgstr "Uhrzeit"
 
@@ -579,7 +575,7 @@ msgstr "UTTimeslot"
 msgid "Unconfirmed"
 msgstr "Unbestätigt"
 
-#: ../configure.zcml:39
+#: ../configure.zcml:41
 msgid "Uninstalls the mbarde.signups add-on."
 msgstr "Deinstalliert das Add-on mbarde.signups."
 
@@ -606,7 +602,7 @@ msgstr "Ansehen"
 msgid "View My Reservations"
 msgstr "Meine Reservierungen ansehen"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:256
+#: ../browser/templates/ut_signup_sheet_view.pt:257
 msgid "View day"
 msgstr "Tag ansehen"
 
@@ -628,7 +624,7 @@ msgstr "Betreff der E-Mail „Warten auf Bestätigung“"
 
 #: ../browser/templates/ut_signup_sheet_view.pt:48
 #: ../browser/templates/view_summary.pt:107
-#: ../browser/views.py:245
+#: ../browser/views.py:240
 msgid "Waiting List"
 msgstr "Warteliste"
 
@@ -641,7 +637,7 @@ msgid "Waiting List Notification"
 msgstr "Benachrichtigung zur Warteliste"
 
 #: ../browser/templates/view_summary.pt:102
-#: ../browser/views.py:241
+#: ../browser/views.py:236
 #: ../utils.py:95
 msgid "Waiting for confirmation"
 msgstr "Wartet auf Bestätigung"
@@ -657,6 +653,10 @@ msgstr "Inhalt der Warteliste-E-Mail"
 #: ../content/ut_signup_sheet.py:163
 msgid "Waitinglist email subject"
 msgstr "Betreff der Warteliste-E-Mail"
+
+#: ../browser/templates/ut_signup_sheet_view.pt:458
+msgid "Warning"
+msgstr "Warnung"
 
 #: ../browser/templates/view_verifyemail.pt:33
 msgid "We sent a verification code to the email address below. Please enter it to complete your signup."
@@ -731,7 +731,7 @@ msgid "Your Slot"
 msgstr "Ihr Termin"
 
 #. Default: "Your email address <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:416
+#: ../browser/templates/ut_signup_sheet_view.pt:417
 msgid "Your email address"
 msgstr "Ihre E-Mail-Adresse"
 
@@ -740,7 +740,7 @@ msgid "Your preliminary signup has been received:"
 msgstr "Ihre vorläufige Anmeldung wurde empfangen:"
 
 #. Default: "Your prename <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:377
+#: ../browser/templates/ut_signup_sheet_view.pt:378
 msgid "Your prename"
 msgstr "Ihr Vorname"
 
@@ -750,7 +750,7 @@ msgid "Your registration has been canceled"
 msgstr "Ihre Anmeldung wurde storniert"
 
 #. Default: "Your surname <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:398
+#: ../browser/templates/ut_signup_sheet_view.pt:399
 msgid "Your surname"
 msgstr "Ihr Nachname"
 
@@ -762,11 +762,11 @@ msgstr "Ihr Verifizierungscode"
 msgid "fieldName_agreeDataUsageDeclaration"
 msgstr "Einverständniserklärung zur Datennutzung"
 
-#: ../configure.zcml:30
+#: ../configure.zcml:32
 msgid "mbarde.signups"
 msgstr "mbarde.signups"
 
-#: ../configure.zcml:39
+#: ../configure.zcml:41
 msgid "mbarde.signups (uninstall)"
 msgstr "mbarde.signups (deinstallieren)"
 
