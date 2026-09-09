@@ -9,9 +9,25 @@ from plone.app.textfield import RichText
 from plone.app.vocabularies.catalog import CatalogSource
 from plone.dexterity.content import Container
 from plone.supermodel import model
+from Products.CMFPlone.interfaces import ILanguage
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
+from zope.i18n import translate
 from zope.interface import implementer
+from zope.interface import provider
+from zope.schema.interfaces import IContextAwareDefaultFactory
+
+
+# use this to initially translate email default texts to the right language
+def _mailDefaultFactory(message):
+    @provider(IContextAwareDefaultFactory)
+    def factory(context):
+        lang = ILanguage(context).get_language()
+        if len(lang) == 0:
+            lang = "en"
+        return translate(message, target_language=lang)
+
+    return factory
 
 
 class IUTSignupSheet(model.Schema):
@@ -132,18 +148,25 @@ class IUTSignupSheet(model.Schema):
             "logged in (if field 'Email verification for external users' is set)."
         ),
         required=True,
-        default="$$title$$ - Your verification code",
+        defaultFactory=_mailDefaultFactory(
+            _("email_otp_subject_default", default="$$title$$ - Your verification code")
+        ),
     )
 
     emailOtpContent = schema.Text(
         title=_("Email Verification Email Content"),
         required=True,
-        default=(
-            "Hello $$name$$,\n\n"
-            "Please use the following code to verify your email address and complete "
-            "your signup:\n\n"
-            "$$code$$\n\n"
-            "This code is valid for 15 minutes."
+        defaultFactory=_mailDefaultFactory(
+            _(
+                "email_otp_content_default",
+                default=(
+                    "Hello $$name$$,\n\n"
+                    "Please use the following code to verify your email address and "
+                    "complete your signup:\n\n"
+                    "$$code$$\n\n"
+                    "This code is valid for 15 minutes."
+                ),
+            )
         ),
     )
 
@@ -152,18 +175,28 @@ class IUTSignupSheet(model.Schema):
         title=_("Confirmation email subject"),
         description=_("This email will be send on successful registration."),
         required=True,
-        default="$$title$$ - Registration Confirmation",
+        defaultFactory=_mailDefaultFactory(
+            _(
+                "email_confirmation_subject_default",
+                default="$$title$$ - Registration Confirmation",
+            )
+        ),
     )
 
     emailConfirmationContent = schema.Text(
         title=_("Confirmation Email Content"),
         required=True,
-        default=(
-            "Hello $$name$$,\n\n"
-            "This message is to confirm that you have been signed up for:\n"
-            "$$slot$$\n\n"
-            "$$data$$\n\n"
-            "$$url$$"
+        defaultFactory=_mailDefaultFactory(
+            _(
+                "email_confirmation_content_default",
+                default=(
+                    "Hello $$name$$,\n\n"
+                    "This message is to confirm that you have been signed up for:\n"
+                    "$$slot$$\n\n"
+                    "$$data$$\n\n"
+                    "$$url$$"
+                ),
+            )
         ),
     )
 
@@ -174,20 +207,30 @@ class IUTSignupSheet(model.Schema):
             'This email will be send when user registered for a timeslot and a confirmation is required (if field "Manager has to confirm signups" is set).'  # noqa: E501
         ),
         required=True,
-        default="$$title$$ - Wait For Confirmation",
+        defaultFactory=_mailDefaultFactory(
+            _(
+                "email_wait_for_confirmation_subject_default",
+                default="$$title$$ - Wait For Confirmation",
+            )
+        ),
     )
 
     emailWaitForConfirmationContent = schema.Text(
         title=_("Wait for confirmation email content"),
         required=True,
-        default=(
-            "Hello $$name$$,\n\n"
-            "You signed up for following slot:\n"
-            "$$slot$$\n"
-            "You will receive another email as soon as your registration has been "
-            "confirmed (or rejected).\n\n"
-            "$$data$$\n\n"
-            "$$url$$"
+        defaultFactory=_mailDefaultFactory(
+            _(
+                "email_wait_for_confirmation_content_default",
+                default=(
+                    "Hello $$name$$,\n\n"
+                    "You signed up for following slot:\n"
+                    "$$slot$$\n"
+                    "You will receive another email as soon as your registration has "
+                    "been confirmed (or rejected).\n\n"
+                    "$$data$$\n\n"
+                    "$$url$$"
+                ),
+            )
         ),
     )
 
@@ -196,19 +239,29 @@ class IUTSignupSheet(model.Schema):
         title=_("Waitinglist email subject"),
         description=_("This email will be send on registration for the waitinglist."),
         required=True,
-        default="$$title$$ - Waiting List Confirmation",
+        defaultFactory=_mailDefaultFactory(
+            _(
+                "email_waitinglist_subject_default",
+                default="$$title$$ - Waiting List Confirmation",
+            )
+        ),
     )
 
     emailWaitinglistContent = schema.Text(
         title=_("Waitinglist Email Content"),
         required=True,
-        default=(
-            "Hello $$name$$,\n\n"
-            "This message is to confirm that you have been added to the waiting list "
-            "for:\n"
-            "$$slot$$\n\n"
-            "$$data$$\n\n"
-            "$$url$$"
+        defaultFactory=_mailDefaultFactory(
+            _(
+                "email_waitinglist_content_default",
+                default=(
+                    "Hello $$name$$,\n\n"
+                    "This message is to confirm that you have been added to the "
+                    "waiting list for:\n"
+                    "$$slot$$\n\n"
+                    "$$data$$\n\n"
+                    "$$url$$"
+                ),
+            )
         ),
     )
 
@@ -217,18 +270,28 @@ class IUTSignupSheet(model.Schema):
         title=_("Cancellation email subject"),
         description=_("This email will be send on a registration cancellation."),
         required=True,
-        default="$$title$$ - Cancellation Notification",
+        defaultFactory=_mailDefaultFactory(
+            _(
+                "email_cancel_subject_default",
+                default="$$title$$ - Cancellation Notification",
+            )
+        ),
     )
 
     emailCancelContent = schema.Text(
         title=_("Cancellation email content"),
         required=True,
-        default=(
-            "Hello $$name$$,\n\n"
-            "Following slot has been cancelled:\n"
-            "$$slot$$\n\n"
-            "$$data$$\n\n"
-            "$$url$$"
+        defaultFactory=_mailDefaultFactory(
+            _(
+                "email_cancel_content_default",
+                default=(
+                    "Hello $$name$$,\n\n"
+                    "Following slot has been cancelled:\n"
+                    "$$slot$$\n\n"
+                    "$$data$$\n\n"
+                    "$$url$$"
+                ),
+            )
         ),
     )
 
