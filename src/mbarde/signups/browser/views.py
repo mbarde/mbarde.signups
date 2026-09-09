@@ -60,7 +60,7 @@ class UTSignupSheetView(DefaultView):
         return formHTML
 
 
-class ShowReservationsView(BrowserView):
+class ViewMySignupsView(BrowserView):
 
     def __init__(self, context, request):
         self.context = context
@@ -68,14 +68,14 @@ class ShowReservationsView(BrowserView):
 
     def __call__(self):
         if api.user.is_anonymous():
-            came_from = self.context.absolute_url() + "/@@show-reservations"
+            came_from = self.context.absolute_url() + "/@@view-my-signups"
             self.request.response.redirect(
                 api.portal.get().absolute_url() + "/login_form?came_from=" + came_from
             )
         else:
             # load JS resources
             add_bundle_on_request(self.request, "mbarde.signups")
-            return super(ShowReservationsView, self).__call__()
+            return super(ViewMySignupsView, self).__call__()
 
 
 class ManagerSummaryView(BrowserView):

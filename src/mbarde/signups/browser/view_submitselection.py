@@ -311,7 +311,7 @@ class SubmitSelection(BrowserView):
             url,
             slotTitleLabel,
             extraInfoStr,
-            url + "/@@show-reservations",
+            url + "/@@view-my-signups",
         )
         message = replaceCustomMailPlaceholders(
             signupSheet.emailWaitForConfirmationContent,
@@ -320,7 +320,7 @@ class SubmitSelection(BrowserView):
             url,
             slotTitleLabel,
             extraInfoStr,
-            url + "/@@show-reservations",
+            url + "/@@view-my-signups",
         )
         message = appendAuthenticatedSuffix(
             message, person, signupSheet, slotTitleLabel, extraInfoStr

@@ -154,7 +154,7 @@
         </a>
         <a
           tal:condition="context/isCurrentUserLoggedIn"
-          tal:attributes="href string:${context/absolute_url}/@@show-reservations"
+          tal:attributes="href string:${context/absolute_url}/@@view-my-signups"
           class="btn btn-secondary"
         >
           <tal:icon

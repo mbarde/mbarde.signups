@@ -67,10 +67,10 @@
     />
 
     <browser:page
-        name="show-reservations"
+        name="view-my-signups"
         for="mbarde.signups.content.ut_signup_sheet.IUTSignupSheet"
-        template="templates/view_showreservations.pt"
-        class=".views.ShowReservationsView"
+        template="templates/view_mysignups.pt"
+        class=".views.ViewMySignupsView"
         permission="zope2.View"
     />
 

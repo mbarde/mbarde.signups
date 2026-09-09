@@ -68,7 +68,7 @@ class CancelReservation(BrowserView):
 
     def cancelReservation(self):
         if api.user.is_anonymous():
-            came_from = self.context.absolute_url() + "/@@show-reservations"
+            came_from = self.context.absolute_url() + "/@@view-my-signups"
             return self.request.response.redirect(
                 api.portal.get().absolute_url() + "/login_form?came_from=" + came_from
             )
@@ -84,7 +84,7 @@ class CancelReservation(BrowserView):
         # purge request to refresh view for everyone
         notify(Purge(self.context))
 
-        self.request.response.redirect(self.context.absolute_url() + "/@@show-reservations")
+        self.request.response.redirect(self.context.absolute_url() + "/@@view-my-signups")
 
     def signOffCurrentUserFromSlot(self, slot):
         curUser = api.user.get_current()

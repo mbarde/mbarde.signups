@@ -38,7 +38,7 @@ def sendSignupNotificationEmail(person):
         url,
         timeSlot.getLabel(),
         extraInfoStr,
-        url + "/@@show-reservations",
+        url + "/@@view-my-signups",
     )
     message = replaceCustomMailPlaceholders(
         signupSheet.emailConfirmationContent,
@@ -47,7 +47,7 @@ def sendSignupNotificationEmail(person):
         url,
         timeSlot.getLabel(),
         extraInfoStr,
-        url + "/@@show-reservations",
+        url + "/@@view-my-signups",
     )
     message = appendAuthenticatedSuffix(
         message, person, signupSheet, timeSlot.getLabel(), extraInfoStr
@@ -115,7 +115,7 @@ def sendWaitingListConfirmationEmail(person):
         url,
         timeSlot.getLabel(),
         extraInfoStr,
-        url + "/@@show-reservations",
+        url + "/@@view-my-signups",
     )
     message = replaceCustomMailPlaceholders(
         signupSheet.emailWaitinglistContent,
@@ -124,7 +124,7 @@ def sendWaitingListConfirmationEmail(person):
         url,
         timeSlot.getLabel(),
         extraInfoStr,
-        url + "/@@show-reservations",
+        url + "/@@view-my-signups",
     )
     message = appendAuthenticatedSuffix(
         message, person, signupSheet, timeSlot.getLabel(), extraInfoStr
@@ -186,7 +186,7 @@ def sendSignOffNotification(person):
         url,
         timeSlot.getLabel(),
         extraInfoStr,
-        url + "/@@show-reservations",
+        url + "/@@view-my-signups",
     )
     message = replaceCustomMailPlaceholders(
         signupSheet.emailCancelContent,
@@ -195,7 +195,7 @@ def sendSignOffNotification(person):
         url,
         timeSlot.getLabel(),
         extraInfoStr,
-        url + "/@@show-reservations",
+        url + "/@@view-my-signups",
     )
     message = appendAuthenticatedSuffix(
         message, person, signupSheet, timeSlot.getLabel(), extraInfoStr

@@ -36,7 +36,7 @@ def appendAuthenticatedSuffix(message, person, signupSheet, slotTitle, extraInfo
         signupSheet.absolute_url(),
         slotTitle,
         extraInfoStr,
-        signupSheet.absolute_url() + "/@@show-reservations",
+        signupSheet.absolute_url() + "/@@view-my-signups",
     )
     return message + "\n\n" + suffix
 
