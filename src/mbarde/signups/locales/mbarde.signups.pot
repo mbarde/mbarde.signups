@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-08 14:18+0000\n"
+"POT-Creation-Date: 2026-09-08 14:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,6 +71,7 @@ msgstr ""
 msgid "Allow the user to signup for more than one slot."
 msgstr ""
 
+#: ../browser/templates/ut_day_view.pt:125
 #: ../content/ut_timeslot.py:30
 msgid "Allow waiting list"
 msgstr ""
@@ -128,7 +129,7 @@ msgstr ""
 msgid "Create multiple timeslots"
 msgstr ""
 
-#: ../browser/templates/ut_day_view.pt:103
+#: ../browser/templates/ut_day_view.pt:132
 msgid "Create timeslots"
 msgstr ""
 
@@ -271,6 +272,7 @@ msgstr ""
 msgid "Manager has to confirm signups"
 msgstr ""
 
+#: ../browser/templates/ut_day_view.pt:104
 #: ../content/ut_timeslot.py:26
 msgid "Max capacity"
 msgstr ""
@@ -297,7 +299,7 @@ msgstr ""
 msgid "Number of timeslots"
 msgstr ""
 
-#: ../content/ut_day.py:68
+#: ../content/ut_day.py:72
 msgid "Number of timeslots must be at least 1."
 msgstr ""
 
@@ -313,8 +315,8 @@ msgstr ""
 msgid "Persons"
 msgstr ""
 
-#: ../browser/views.py:118
-msgid "Please provide a valid starting time, timeslot duration and number of timeslots."
+#: ../browser/views.py:119
+msgid "Please provide a valid starting time, timeslot duration, number of timeslots and max capacity."
 msgstr ""
 
 #: ../browser/view_submitselection.py:117
@@ -389,13 +391,13 @@ msgid "Signed Off"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:73
-#: ../browser/views.py:153
+#: ../browser/views.py:158
 #: ../utils.py:93
 msgid "Signed Up"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:24
-#: ../browser/views.py:157
+#: ../browser/views.py:162
 msgid "Signed off"
 msgstr ""
 
@@ -435,7 +437,7 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: ../browser/views.py:134
+#: ../browser/views.py:139
 msgid "Successfully created ${count} timeslots."
 msgstr ""
 
@@ -520,7 +522,7 @@ msgstr ""
 msgid "Timeslot duration (minutes)"
 msgstr ""
 
-#: ../content/ut_day.py:66
+#: ../content/ut_day.py:70
 msgid "Timeslot duration must be at least 1 minute."
 msgstr ""
 
@@ -609,7 +611,7 @@ msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:48
 #: ../browser/templates/view_summary.pt:83
-#: ../browser/views.py:159
+#: ../browser/views.py:164
 msgid "Waiting List"
 msgstr ""
 
@@ -622,7 +624,7 @@ msgid "Waiting List Notification"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:78
-#: ../browser/views.py:155
+#: ../browser/views.py:160
 #: ../utils.py:95
 msgid "Waiting for confirmation"
 msgstr ""

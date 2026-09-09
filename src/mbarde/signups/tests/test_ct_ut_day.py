@@ -106,6 +106,29 @@ class UTDayIntegrationTest(unittest.TestCase):
         actualRanges = [(slot.startTime, slot.endTime) for slot in createdTimeSlots]
         self.assertEqual(actualRanges, expectedRanges)
 
+        # default maxCapacity/allowWaitingList, matching IUTTimeslot's own defaults
+        for timeSlot in createdTimeSlots:
+            self.assertEqual(timeSlot.maxCapacity, 1)
+            self.assertFalse(timeSlot.allowWaitingList)
+
+    def test_create_sequential_time_slots_custom_capacity_and_waiting_list(self):
+        setRoles(self.portal, TEST_USER_ID, ["Contributor"])
+        today = date.today()
+        obj = createContentInContainer(
+            self.parent,
+            "UTDay",
+            id="ut_day",
+            date=today,
+        )
+
+        createdTimeSlots = obj.createSequentialTimeSlots(
+            time(9, 0), 15, 4, maxCapacity=5, allowWaitingList=True
+        )
+
+        for timeSlot in createdTimeSlots:
+            self.assertEqual(timeSlot.maxCapacity, 5)
+            self.assertTrue(timeSlot.allowWaitingList)
+
     def test_create_sequential_time_slots_invalid_duration(self):
         setRoles(self.portal, TEST_USER_ID, ["Contributor"])
         today = date.today()

@@ -48,7 +48,9 @@ class UTDay(Container):
         timeSlot = brains[0].getObject()
         return timeSlot
 
-    def createSequentialTimeSlots(self, startTime, duration, count):
+    def createSequentialTimeSlots(
+        self, startTime, duration, count, maxCapacity=1, allowWaitingList=False
+    ):
         """Create ``count`` timeslots of ``duration`` minutes each, one
         right after the other, starting at ``startTime``.
 
@@ -60,6 +62,8 @@ class UTDay(Container):
         :param startTime: datetime.time - start of the first timeslot
         :param duration: int - length of each timeslot in minutes
         :param count: int - number of timeslots to create
+        :param maxCapacity: int - max capacity to set on each new timeslot
+        :param allowWaitingList: bool - allow waiting list on each new timeslot
         :returns: list of the created UTTimeslot objects
         """
         if duration < 1:
@@ -81,6 +85,8 @@ class UTDay(Container):
                 "UTTimeslot",
                 startTime=slotStartTime,
                 endTime=slotEndTime,
+                maxCapacity=maxCapacity,
+                allowWaitingList=allowWaitingList,
             )
             createdTimeSlots.append(timeSlot)
 

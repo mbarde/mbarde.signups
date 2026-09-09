@@ -113,19 +113,28 @@ class CreateSequentialTimeslotsView(BrowserView):
             startTime = datetime.strptime(request.form.get("startTime", ""), "%H:%M").time()
             duration = int(request.form.get("timeslotDuration", ""))
             count = int(request.form.get("numberOfTimeslots", ""))
+            maxCapacity = int(request.form.get("maxCapacity", ""))
         except (TypeError, ValueError):
             api.portal.show_message(
                 message=_(
-                    "Please provide a valid starting time, timeslot duration and number "
-                    "of timeslots."
+                    "Please provide a valid starting time, timeslot duration, number "
+                    "of timeslots and max capacity."
                 ),
                 request=request,
                 type="error",
             )
             return request.response.redirect(redirectUrl)
 
+        allowWaitingList = bool(request.form.get("allowWaitingList"))
+
         try:
-            createdTimeSlots = self.context.createSequentialTimeSlots(startTime, duration, count)
+            createdTimeSlots = self.context.createSequentialTimeSlots(
+                startTime,
+                duration,
+                count,
+                maxCapacity=maxCapacity,
+                allowWaitingList=allowWaitingList,
+            )
         except ValueError as error:
             api.portal.show_message(message=str(error), request=request, type="error")
             return request.response.redirect(redirectUrl)

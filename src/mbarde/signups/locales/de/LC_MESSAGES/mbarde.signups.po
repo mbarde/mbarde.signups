@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-08 14:18+0000\n"
+"POT-Creation-Date: 2026-09-08 14:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <de@li.org>\n"
@@ -68,6 +68,7 @@ msgstr "Erlaubt die Anmeldung für Nutzer, die kein Hochschulkonto haben."
 msgid "Allow the user to signup for more than one slot."
 msgstr "Erlaubt es Nutzern, sich für mehr als einen Termin anzumelden."
 
+#: ../browser/templates/ut_day_view.pt:125
 #: ../content/ut_timeslot.py:30
 msgid "Allow waiting list"
 msgstr "Warteliste erlauben"
@@ -125,7 +126,7 @@ msgstr "Kontaktinformationen für die verantwortliche Person der Anmeldeliste."
 msgid "Create multiple timeslots"
 msgstr "Mehrere Termine anlegen"
 
-#: ../browser/templates/ut_day_view.pt:103
+#: ../browser/templates/ut_day_view.pt:132
 msgid "Create timeslots"
 msgstr "Termine anlegen"
 
@@ -268,6 +269,7 @@ msgstr "Verwaltungsübersicht"
 msgid "Manager has to confirm signups"
 msgstr "Anmeldungen müssen von der verantwortlichen Person bestätigt werden"
 
+#: ../browser/templates/ut_day_view.pt:104
 #: ../content/ut_timeslot.py:26
 msgid "Max capacity"
 msgstr "Maximale Kapazität"
@@ -294,7 +296,7 @@ msgstr "Notiz"
 msgid "Number of timeslots"
 msgstr "Anzahl der Termine"
 
-#: ../content/ut_day.py:68
+#: ../content/ut_day.py:72
 msgid "Number of timeslots must be at least 1."
 msgstr "Die Anzahl der Termine muss mindestens 1 betragen."
 
@@ -310,9 +312,9 @@ msgstr "Person für mbarde.signups"
 msgid "Persons"
 msgstr "Personen"
 
-#: ../browser/views.py:118
-msgid "Please provide a valid starting time, timeslot duration and number of timeslots."
-msgstr "Bitte geben Sie eine gültige Startzeit, Termindauer und Anzahl der Termine an."
+#: ../browser/views.py:119
+msgid "Please provide a valid starting time, timeslot duration, number of timeslots and max capacity."
+msgstr "Bitte geben Sie eine gültige Startzeit, Termindauer, Anzahl der Termine und maximale Kapazität an."
 
 #: ../browser/view_submitselection.py:117
 msgid "Please use the following code to verify your email address and complete your signup:"
@@ -387,13 +389,13 @@ msgid "Signed Off"
 msgstr "Abgemeldet"
 
 #: ../browser/templates/view_summary.pt:73
-#: ../browser/views.py:153
+#: ../browser/views.py:158
 #: ../utils.py:93
 msgid "Signed Up"
 msgstr "Angemeldet"
 
 #: ../browser/templates/view_summary.pt:24
-#: ../browser/views.py:157
+#: ../browser/views.py:162
 msgid "Signed off"
 msgstr "Abgemeldet"
 
@@ -433,7 +435,7 @@ msgstr "Status"
 msgid "Success"
 msgstr "Erfolg"
 
-#: ../browser/views.py:134
+#: ../browser/views.py:139
 msgid "Successfully created ${count} timeslots."
 msgstr "${count} Termine erfolgreich angelegt."
 
@@ -518,7 +520,7 @@ msgstr "Uhrzeit"
 msgid "Timeslot duration (minutes)"
 msgstr "Termindauer (Minuten)"
 
-#: ../content/ut_day.py:66
+#: ../content/ut_day.py:70
 msgid "Timeslot duration must be at least 1 minute."
 msgstr "Die Termindauer muss mindestens 1 Minute betragen."
 
@@ -607,7 +609,7 @@ msgstr "Betreff der E-Mail „Warten auf Bestätigung“"
 
 #: ../browser/templates/ut_signup_sheet_view.pt:48
 #: ../browser/templates/view_summary.pt:83
-#: ../browser/views.py:159
+#: ../browser/views.py:164
 msgid "Waiting List"
 msgstr "Warteliste"
 
@@ -620,7 +622,7 @@ msgid "Waiting List Notification"
 msgstr "Benachrichtigung zur Warteliste"
 
 #: ../browser/templates/view_summary.pt:78
-#: ../browser/views.py:155
+#: ../browser/views.py:160
 #: ../utils.py:95
 msgid "Waiting for confirmation"
 msgstr "Wartet auf Bestätigung"

@@ -100,6 +100,35 @@
                 required="required"
               />
             </div>
+            <div class="mb-3">
+              <label for="createSequentialTimeslotsMaxCapacity" i18n:translate=""
+                >Max capacity</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="createSequentialTimeslotsMaxCapacity"
+                name="maxCapacity"
+                min="1"
+                value="1"
+                required="required"
+              />
+            </div>
+            <div class="mb-3 form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="createSequentialTimeslotsAllowWaitingList"
+                name="allowWaitingList"
+                value="1"
+              />
+              <label
+                class="form-check-label"
+                for="createSequentialTimeslotsAllowWaitingList"
+                i18n:translate=""
+                >Allow waiting list</label
+              >
+            </div>
             <button type="submit" class="btn btn-primary" i18n:translate="">
               Create timeslots
             </button>
