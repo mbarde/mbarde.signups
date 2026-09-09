@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from mbarde.signups import _
 from mbarde.signups import otp
+from mbarde.signups.utils import appendAuthenticatedSuffix
 from mbarde.signups.utils import emailToPersonId
 from mbarde.signups.utils import replaceCustomMailPlaceholders
 from plone import api
@@ -257,6 +258,9 @@ class SubmitSelection(BrowserView):
         newPerson.prename = self.prename
         newPerson.surname = self.surname
 
+        # see utils.appendAuthenticatedSuffix for why that matters
+        newPerson.signedUpWhileLoggedIn = not api.user.is_anonymous()
+
         # also store names of extra fields to be able to read them out even
         # if extra field form changes (used in timeslotperson_view)
         extraFieldNames = []
@@ -307,6 +311,7 @@ class SubmitSelection(BrowserView):
             url,
             slotTitleLabel,
             extraInfoStr,
+            url + "/@@show-reservations",
         )
         message = replaceCustomMailPlaceholders(
             signupSheet.emailWaitForConfirmationContent,
@@ -315,6 +320,10 @@ class SubmitSelection(BrowserView):
             url,
             slotTitleLabel,
             extraInfoStr,
+            url + "/@@show-reservations",
+        )
+        message = appendAuthenticatedSuffix(
+            message, person, signupSheet, slotTitleLabel, extraInfoStr
         )
 
         api.portal.send_email(recipient=toEmail, sender=fromEmail, subject=subject, body=message)

@@ -9,7 +9,7 @@ import transaction
 
 
 def replaceCustomMailPlaceholders(
-    text, personName, signupSheetTitle, signupSheetURL, slotTitle, extraInfoStr
+    text, personName, signupSheetTitle, signupSheetURL, slotTitle, extraInfoStr, userURL=""
 ):
     return (
         text.replace("$$name$$", personName)
@@ -17,7 +17,28 @@ def replaceCustomMailPlaceholders(
         .replace("$$url$$", signupSheetURL)
         .replace("$$slot$$", slotTitle)
         .replace("$$data$$", extraInfoStr)
+        .replace("$$user_url$$", userURL)
     )
+
+
+def appendAuthenticatedSuffix(message, person, signupSheet, slotTitle, extraInfoStr):
+    if not person.signedUpWhileLoggedIn:
+        return message
+
+    suffix = signupSheet.emailSuffixAuthenticated
+    if not suffix:
+        return message
+
+    suffix = replaceCustomMailPlaceholders(
+        suffix,
+        person.Title(),
+        signupSheet.Title(),
+        signupSheet.absolute_url(),
+        slotTitle,
+        extraInfoStr,
+        signupSheet.absolute_url() + "/@@show-reservations",
+    )
+    return message + "\n\n" + suffix
 
 
 def getAllExtraFields(signupSheet):

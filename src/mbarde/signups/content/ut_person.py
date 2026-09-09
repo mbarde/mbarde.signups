@@ -4,6 +4,7 @@ from mbarde.signups.utils import deferRename
 from mbarde.signups.utils import emailToPersonId
 from mbarde.signups.utils import getAllExtraFields
 from plone import api
+from plone.autoform import directives as form
 from plone.dexterity.content import Item
 from plone.locking.interfaces import ILockable
 from plone.supermodel import model
@@ -21,6 +22,17 @@ class IUTPerson(model.Schema):
     surname = schema.TextLine(title=_("Surname"), required=True)
 
     note = schema.TextLine(title=_("Note"), required=False)
+
+    signedUpWhileLoggedIn = schema.Bool(
+        title=_("Signed up while logged in"),
+        description=_(
+            "Whether this person signed up while being logged in, as opposed to "
+            "anonymously/externally."
+        ),
+        required=False,
+        default=False,
+    )
+    form.omitted("signedUpWhileLoggedIn")
 
 
 @implementer(IUTPerson)

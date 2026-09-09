@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from mbarde.signups import _
+from mbarde.signups.utils import appendAuthenticatedSuffix
 from mbarde.signups.utils import replaceCustomMailPlaceholders
 from plone import api
 from Products.CMFPlone.interfaces import ILanguage
@@ -37,6 +38,7 @@ def sendSignupNotificationEmail(person):
         url,
         timeSlot.getLabel(),
         extraInfoStr,
+        url + "/@@show-reservations",
     )
     message = replaceCustomMailPlaceholders(
         signupSheet.emailConfirmationContent,
@@ -45,6 +47,10 @@ def sendSignupNotificationEmail(person):
         url,
         timeSlot.getLabel(),
         extraInfoStr,
+        url + "/@@show-reservations",
+    )
+    message = appendAuthenticatedSuffix(
+        message, person, signupSheet, timeSlot.getLabel(), extraInfoStr
     )
 
     api.portal.send_email(recipient=toEmail, sender=fromEmail, subject=subject, body=message)
@@ -109,6 +115,7 @@ def sendWaitingListConfirmationEmail(person):
         url,
         timeSlot.getLabel(),
         extraInfoStr,
+        url + "/@@show-reservations",
     )
     message = replaceCustomMailPlaceholders(
         signupSheet.emailWaitinglistContent,
@@ -117,6 +124,10 @@ def sendWaitingListConfirmationEmail(person):
         url,
         timeSlot.getLabel(),
         extraInfoStr,
+        url + "/@@show-reservations",
+    )
+    message = appendAuthenticatedSuffix(
+        message, person, signupSheet, timeSlot.getLabel(), extraInfoStr
     )
 
     api.portal.send_email(recipient=toEmail, sender=fromEmail, subject=subject, body=message)
@@ -175,6 +186,7 @@ def sendSignOffNotification(person):
         url,
         timeSlot.getLabel(),
         extraInfoStr,
+        url + "/@@show-reservations",
     )
     message = replaceCustomMailPlaceholders(
         signupSheet.emailCancelContent,
@@ -183,6 +195,10 @@ def sendSignOffNotification(person):
         url,
         timeSlot.getLabel(),
         extraInfoStr,
+        url + "/@@show-reservations",
+    )
+    message = appendAuthenticatedSuffix(
+        message, person, signupSheet, timeSlot.getLabel(), extraInfoStr
     )
 
     api.portal.send_email(recipient=toEmail, sender=fromEmail, subject=subject, body=message)

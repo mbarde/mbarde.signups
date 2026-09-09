@@ -62,7 +62,7 @@ class IUTSignupSheet(model.Schema):
 
     allowSignupForExternals = schema.Bool(
         title=_("Allow signup for external user"),
-        description=_("Allow signup for users which do not have an university account."),
+        description=_("Allow signup for users which do not have an account."),
         default=False,
         required=False,
     )
@@ -124,7 +124,7 @@ class IUTSignupSheet(model.Schema):
         "mailsettings",
         label=_("Mail settings"),
         description=_(
-            "Following placeholders can be used:<br/>$$name$$ -> Full name of user<br/>$$title$$ -> Title of the signup sheet<br/>$$url$$ -> URL of the signup sheet<br/>$$slot$$ -> Date and time of slot (name of slot if date and time hid)<br/>$$data$$ -> Additional data (see 'additional form')<br/>$$code$$ -> One-time verification code (only available for the email verification email)"  # noqa: E501
+            "Following placeholders can be used:<br/>$$name$$ -> Full name of user<br/>$$title$$ -> Title of the signup sheet<br/>$$url$$ -> URL of the signup sheet<br/>$$user_url$$ -> URL to view/manage your own registration(s) (not available for the email verification email)<br/>$$slot$$ -> Date and time of slot (name of slot if date and time hid)<br/>$$data$$ -> Additional data (see 'additional form')<br/>$$code$$ -> One-time verification code (only available for the email verification email)"  # noqa: E501
         ),
         fields=[
             "emailOtpSubject",
@@ -137,6 +137,7 @@ class IUTSignupSheet(model.Schema):
             "emailWaitinglistContent",
             "emailCancelSubject",
             "emailCancelContent",
+            "emailSuffixAuthenticated",
         ],
     )
 
@@ -193,8 +194,7 @@ class IUTSignupSheet(model.Schema):
                     "Hello $$name$$,\n\n"
                     "This message is to confirm that you have been signed up for:\n"
                     "$$slot$$\n\n"
-                    "$$data$$\n\n"
-                    "$$url$$"
+                    "$$data$$"
                 ),
             )
         ),
@@ -227,8 +227,7 @@ class IUTSignupSheet(model.Schema):
                     "$$slot$$\n"
                     "You will receive another email as soon as your registration has "
                     "been confirmed (or rejected).\n\n"
-                    "$$data$$\n\n"
-                    "$$url$$"
+                    "$$data$$"
                 ),
             )
         ),
@@ -258,8 +257,7 @@ class IUTSignupSheet(model.Schema):
                     "This message is to confirm that you have been added to the "
                     "waiting list for:\n"
                     "$$slot$$\n\n"
-                    "$$data$$\n\n"
-                    "$$url$$"
+                    "$$data$$"
                 ),
             )
         ),
@@ -288,9 +286,24 @@ class IUTSignupSheet(model.Schema):
                     "Hello $$name$$,\n\n"
                     "Following slot has been cancelled:\n"
                     "$$slot$$\n\n"
-                    "$$data$$\n\n"
-                    "$$url$$"
+                    "$$data$$"
                 ),
+            )
+        ),
+    )
+
+    # appended to the emails above for a signup made by a logged-in user
+    emailSuffixAuthenticated = schema.Text(
+        title=_("Suffix for authenticated users"),
+        description=_(
+            "Appended to the emails above, but only for signups made by a logged-in "
+            "user (not for anonymous/external ones). Leave empty to append nothing."
+        ),
+        required=False,
+        defaultFactory=_mailDefaultFactory(
+            _(
+                "email_suffix_authenticated_default",
+                default="You can view your registration here: $$user_url$$",
             )
         ),
     )
