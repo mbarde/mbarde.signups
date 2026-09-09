@@ -156,3 +156,7 @@ Settings:
 ## License
 
 The project is licensed under the GPLv2, see [LICENSE.GPL](LICENSE.GPL).
+
+## AI Usage
+
+Parts of this addon were developed with assistance from Claude Code, Anthropic's agentic coding CLI, using the Claude Sonnet 5 model. The tool was used interactively under human direction and review.
