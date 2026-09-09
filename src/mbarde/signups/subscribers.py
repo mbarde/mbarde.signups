@@ -30,48 +30,22 @@ def sendSignupNotificationEmail(person):
     url = signupSheet.absolute_url()
     toEmail = person.email
 
-    subject = signupSheet.emailConfirmationSubject
-    if subject is None or len(subject) == 0:
-        subject = (
-            signupSheet.Title()
-            + " - "
-            + translate(_("Registration Confirmation"), target_language=lang)
-        )
-    else:
-        subject = replaceCustomMailPlaceholders(
-            subject, person.Title(), signupSheet.Title(), url, timeSlot.getLabel(), extraInfoStr
-        )
-
-    content = signupSheet.emailConfirmationContent
-    if content is not None and len(content) > 0:
-        message = replaceCustomMailPlaceholders(
-            content, person.Title(), signupSheet.Title(), url, timeSlot.getLabel(), extraInfoStr
-        )
-    else:
-        # default message if no content has been specified
-        message = translate(_("Hello"), target_language=lang) + " " + person.Title() + ",\n\n"
-        message += (
-            translate(
-                _("This message is to confirm that you have been signed up for:"),
-                target_language=lang,
-            )
-            + "\n"
-        )
-        message += timeSlot.getLabel() + "\n\n"
-
-        if len(extraInfoStr) > 0:
-            message += translate(_("Additional information"), target_language=lang) + "\n"
-            message += extraInfoStr + "\n\n"
-
-        if len(contactInfo) > 0:
-            message += (
-                translate(_("If you have any questions please contact:"), target_language=lang)
-                + " "
-                + contactInfo
-                + "\n\n"
-            )
-
-        message += url + "\n\n"
+    subject = replaceCustomMailPlaceholders(
+        signupSheet.emailConfirmationSubject,
+        person.Title(),
+        signupSheet.Title(),
+        url,
+        timeSlot.getLabel(),
+        extraInfoStr,
+    )
+    message = replaceCustomMailPlaceholders(
+        signupSheet.emailConfirmationContent,
+        person.Title(),
+        signupSheet.Title(),
+        url,
+        timeSlot.getLabel(),
+        extraInfoStr,
+    )
 
     api.portal.send_email(recipient=toEmail, sender=fromEmail, subject=subject, body=message)
 
@@ -128,48 +102,22 @@ def sendWaitingListConfirmationEmail(person):
     url = signupSheet.absolute_url()
     toEmail = person.email
 
-    subject = signupSheet.emailWaitinglistSubject
-    if subject is None or len(subject) == 0:
-        subject = (
-            signupSheet.Title()
-            + " - "
-            + translate(_("Waiting List Confirmation"), target_language=lang)
-        )
-    else:
-        subject = replaceCustomMailPlaceholders(
-            subject, person.Title(), signupSheet.Title(), url, timeSlot.getLabel(), extraInfoStr
-        )
-
-    content = signupSheet.emailWaitinglistContent
-    if content is not None and len(content) > 0:
-        message = replaceCustomMailPlaceholders(
-            content, person.Title(), signupSheet.Title(), url, timeSlot.getLabel(), extraInfoStr
-        )
-    else:
-        # default message if no content has been specified
-        message = translate(_("Hello"), target_language=lang) + " " + person.Title() + ",\n\n"
-        message += (
-            translate(
-                _("This message is to confirm that you have been added to the waiting list for:"),
-                target_language=lang,
-            )
-            + "\n"
-        )  # noqa: E501
-        message += timeSlot.getLabel() + "\n\n"
-
-        if len(extraInfoStr) > 0:
-            message += translate(_("Additional information"), target_language=lang) + "\n"
-            message += extraInfoStr + "\n\n"
-
-        if len(contactInfo) > 0:
-            message += (
-                translate(_("If you have any questions please contact:"), target_language=lang)
-                + " "
-                + contactInfo
-                + "\n\n"
-            )
-
-        message += url + "\n\n"
+    subject = replaceCustomMailPlaceholders(
+        signupSheet.emailWaitinglistSubject,
+        person.Title(),
+        signupSheet.Title(),
+        url,
+        timeSlot.getLabel(),
+        extraInfoStr,
+    )
+    message = replaceCustomMailPlaceholders(
+        signupSheet.emailWaitinglistContent,
+        person.Title(),
+        signupSheet.Title(),
+        url,
+        timeSlot.getLabel(),
+        extraInfoStr,
+    )
 
     api.portal.send_email(recipient=toEmail, sender=fromEmail, subject=subject, body=message)
 
@@ -210,13 +158,7 @@ def sendSignOffNotification(person):
     day = timeSlot.aq_parent
     signupSheet = day.aq_parent
 
-    lang = ILanguage(signupSheet).get_language()
-    if len(lang) == 0:
-        lang = "en"
-
-    contactInfo = signupSheet.contactInfo
     extraInfoStr = person.getExtraInfoAsString()
-    fromEmail = signupSheet.contactInfo
 
     # mail to person who signed up
     if isEmail(person.email) != 1:
@@ -224,43 +166,24 @@ def sendSignOffNotification(person):
 
     url = signupSheet.absolute_url()
     toEmail = person.email
+    fromEmail = signupSheet.contactInfo
 
-    subject = signupSheet.emailCancelSubject
-    if subject is None or len(subject) == 0:
-        subject = (
-            signupSheet.Title()
-            + " - "
-            + translate(_("Cancellation Notification"), target_language=lang)
-        )
-    else:
-        subject = replaceCustomMailPlaceholders(
-            subject, person.Title(), signupSheet.Title(), url, timeSlot.getLabel(), extraInfoStr
-        )
-
-    content = signupSheet.emailCancelContent
-    if content is not None and len(content) > 0:
-        message = replaceCustomMailPlaceholders(
-            content, person.Title(), signupSheet.Title(), url, timeSlot.getLabel(), extraInfoStr
-        )
-    else:
-        # default message if no content has been specified
-        message = translate(_("Hello"), target_language=lang) + " " + person.Title() + ",\n\n"
-        message += translate(_("Following slot has been cancelled:"), target_language=lang) + "\n"
-        message += timeSlot.getLabel() + "\n\n"
-
-        if len(extraInfoStr) > 0:
-            message += translate(_("Additional information"), target_language=lang) + "\n"
-            message += extraInfoStr + "\n\n"
-
-        if len(contactInfo) > 0:
-            message += (
-                translate(_("If you have any questions please contact:"), target_language=lang)
-                + " "
-                + contactInfo
-                + "\n\n"
-            )
-
-        message += url + "\n\n"
+    subject = replaceCustomMailPlaceholders(
+        signupSheet.emailCancelSubject,
+        person.Title(),
+        signupSheet.Title(),
+        url,
+        timeSlot.getLabel(),
+        extraInfoStr,
+    )
+    message = replaceCustomMailPlaceholders(
+        signupSheet.emailCancelContent,
+        person.Title(),
+        signupSheet.Title(),
+        url,
+        timeSlot.getLabel(),
+        extraInfoStr,
+    )
 
     api.portal.send_email(recipient=toEmail, sender=fromEmail, subject=subject, body=message)
 

@@ -300,53 +300,22 @@ class SubmitSelection(BrowserView):
         toEmail = self.email
         fromEmail = signupSheet.contactInfo
 
-        subject = signupSheet.emailWaitForConfirmationSubject
-        if subject is None or len(subject) == 0:
-            subject = "{0} - {1}".format(
-                signupSheet.Title(), translate(_("Wait For Confirmation"), target_language=lang)
-            )
-        else:
-            subject = replaceCustomMailPlaceholders(
-                subject, person.Title(), signupSheet.Title(), url, slotTitleLabel, extraInfoStr
-            )
-
-        content = signupSheet.emailWaitForConfirmationContent
-        if content is not None and len(content) > 0:
-            message = replaceCustomMailPlaceholders(
-                content, person.Title(), signupSheet.Title(), url, slotTitleLabel, extraInfoStr
-            )
-        else:
-            # default message if no content has been specified
-            message = translate(_("Hello"), target_language=lang) + " " + person.Title() + ",\n\n"
-            message += (
-                translate(_("You signed up for following slot:"), target_language=lang) + "\n"
-            )  # noqa: E501
-            message += slotTitleLabel + "\n"
-            message += (
-                translate(
-                    _(
-                        "You will receive another email as soon as your registration has been confirmed (or rejected)."  # noqa: E501
-                    ),
-                    target_language=lang,
-                )
-                + "\n\n"
-            )  # noqa: E501
-
-            if len(extraInfoStr) > 0:
-                message += (
-                    translate(_("Additional information"), target_language=lang) + "\n"
-                )  # noqa: E501
-                message += extraInfoStr + "\n\n"
-
-            if len(contactInfo) > 0:
-                message += (
-                    translate(_("If you have any questions please contact:"), target_language=lang)
-                    + " "
-                    + contactInfo
-                    + "\n\n"
-                )  # noqa: E501
-
-            message += url + "\n\n"
+        subject = replaceCustomMailPlaceholders(
+            signupSheet.emailWaitForConfirmationSubject,
+            person.Title(),
+            signupSheet.Title(),
+            url,
+            slotTitleLabel,
+            extraInfoStr,
+        )
+        message = replaceCustomMailPlaceholders(
+            signupSheet.emailWaitForConfirmationContent,
+            person.Title(),
+            signupSheet.Title(),
+            url,
+            slotTitleLabel,
+            extraInfoStr,
+        )
 
         api.portal.send_email(recipient=toEmail, sender=fromEmail, subject=subject, body=message)
 

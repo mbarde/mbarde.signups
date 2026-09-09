@@ -131,19 +131,41 @@ class IUTSignupSheet(model.Schema):
             "This email will be send to verify the email address of a user who is not "
             "logged in (if field 'Email verification for external users' is set)."
         ),
-        required=False,
+        required=True,
+        default="$$title$$ - Your verification code",
     )
 
-    emailOtpContent = schema.Text(title=_("Email Verification Email Content"), required=False)
+    emailOtpContent = schema.Text(
+        title=_("Email Verification Email Content"),
+        required=True,
+        default=(
+            "Hello $$name$$,\n\n"
+            "Please use the following code to verify your email address and complete "
+            "your signup:\n\n"
+            "$$code$$\n\n"
+            "This code is valid for 15 minutes."
+        ),
+    )
 
     # confirmation email
     emailConfirmationSubject = schema.TextLine(
         title=_("Confirmation email subject"),
         description=_("This email will be send on successful registration."),
-        required=False,
+        required=True,
+        default="$$title$$ - Registration Confirmation",
     )
 
-    emailConfirmationContent = schema.Text(title=_("Confirmation Email Content"), required=False)
+    emailConfirmationContent = schema.Text(
+        title=_("Confirmation Email Content"),
+        required=True,
+        default=(
+            "Hello $$name$$,\n\n"
+            "This message is to confirm that you have been signed up for:\n"
+            "$$slot$$\n\n"
+            "$$data$$\n\n"
+            "$$url$$"
+        ),
+    )
 
     # wait for confirmation email
     emailWaitForConfirmationSubject = schema.TextLine(
@@ -151,30 +173,64 @@ class IUTSignupSheet(model.Schema):
         description=_(
             'This email will be send when user registered for a timeslot and a confirmation is required (if field "Manager has to confirm signups" is set).'  # noqa: E501
         ),
-        required=False,
+        required=True,
+        default="$$title$$ - Wait For Confirmation",
     )
 
     emailWaitForConfirmationContent = schema.Text(
-        title=_("Wait for confirmation email content"), required=False
+        title=_("Wait for confirmation email content"),
+        required=True,
+        default=(
+            "Hello $$name$$,\n\n"
+            "You signed up for following slot:\n"
+            "$$slot$$\n"
+            "You will receive another email as soon as your registration has been "
+            "confirmed (or rejected).\n\n"
+            "$$data$$\n\n"
+            "$$url$$"
+        ),
     )
 
     # waiting list email
     emailWaitinglistSubject = schema.TextLine(
         title=_("Waitinglist email subject"),
         description=_("This email will be send on registration for the waitinglist."),
-        required=False,
+        required=True,
+        default="$$title$$ - Waiting List Confirmation",
     )
 
-    emailWaitinglistContent = schema.Text(title=_("Waitinglist Email Content"), required=False)
+    emailWaitinglistContent = schema.Text(
+        title=_("Waitinglist Email Content"),
+        required=True,
+        default=(
+            "Hello $$name$$,\n\n"
+            "This message is to confirm that you have been added to the waiting list "
+            "for:\n"
+            "$$slot$$\n\n"
+            "$$data$$\n\n"
+            "$$url$$"
+        ),
+    )
 
     # cancellation email
     emailCancelSubject = schema.TextLine(
         title=_("Cancellation email subject"),
         description=_("This email will be send on a registration cancellation."),
-        required=False,
+        required=True,
+        default="$$title$$ - Cancellation Notification",
     )
 
-    emailCancelContent = schema.Text(title=_("Cancellation email content"), required=False)
+    emailCancelContent = schema.Text(
+        title=_("Cancellation email content"),
+        required=True,
+        default=(
+            "Hello $$name$$,\n\n"
+            "Following slot has been cancelled:\n"
+            "$$slot$$\n\n"
+            "$$data$$\n\n"
+            "$$url$$"
+        ),
+    )
 
 
 @implementer(IUTSignupSheet)
