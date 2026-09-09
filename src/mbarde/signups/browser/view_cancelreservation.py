@@ -67,6 +67,12 @@ class CancelReservation(BrowserView):
         api.portal.send_email(recipient=toEmail, sender=fromEmail, subject=subject, body=message)
 
     def cancelReservation(self):
+        if api.user.is_anonymous():
+            came_from = self.context.absolute_url() + "/@@show-reservations"
+            return self.request.response.redirect(
+                api.portal.get().absolute_url() + "/login_form?came_from=" + came_from
+            )
+
         selectedSlots = self.request.get("selectedSlot", None)
         if type(selectedSlots) is not list:
             selectedSlots = [selectedSlots]
