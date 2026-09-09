@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import date
 from mbarde.signups.content.ut_timeslot import IUTTimeslot  # NOQA E501
 from mbarde.signups.testing import MBARDE_SIGNUPS_INTEGRATION_TESTING  # noqa
 from plone import api
@@ -81,6 +82,44 @@ class UTTimeslotIntegrationTest(unittest.TestCase):
                 obj.id,
             ),
         )
+
+    def test_get_label_with_hidden_date_time(self):
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+        signupSheet = createContentInContainer(
+            self.portal,
+            "UTSignupSheet",
+            id="ut_signup_sheet",
+            title="Signup sheet",
+            contactInfo="manager@example.org",
+            hideDateTime=True,
+        )
+        day = createContentInContainer(
+            signupSheet,
+            "UTDay",
+            id="ut_day",
+            date=date.today(),
+        )
+        namedSlot = createContentInContainer(
+            day,
+            "UTTimeslot",
+            id="named_slot",
+            name="Consulting hour",
+        )
+        unnamedSlot = createContentInContainer(
+            day,
+            "UTTimeslot",
+            id="unnamed_slot",
+        )
+
+        self.assertEqual(namedSlot.getLabel(), "Consulting hour")
+        # `name` is optional - must not raise even when it was never set;
+        # falls back to the signup sheet's own title instead
+        self.assertEqual(unnamedSlot.getLabel(), "Signup sheet")
+
+        # showSlotNames=False always falls back to the signup sheet's
+        # title, even for a slot that does have its own name set
+        signupSheet.showSlotNames = False
+        self.assertEqual(namedSlot.getLabel(), "Signup sheet")
 
     def test_ct_ut_timeslot_globally_not_addable(self):
         setRoles(self.portal, TEST_USER_ID, ["Contributor"])

@@ -42,7 +42,10 @@ class UTTimeslot(Container):
         parentDay = self.aq_parent
         signupSheet = parentDay.aq_parent
         if signupSheet.hideDateTime:
-            return self.getName()
+            if signupSheet.showSlotNames is False:
+                return signupSheet.Title()
+            # fallback to SignupSheet title if name is not set
+            return self.name or signupSheet.Title()
         else:
             return "{0} @ {1}".format(parentDay.Title(), self.Title())
 
