@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-08 14:22+0000\n"
+"POT-Creation-Date: 2026-09-09 09:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,7 @@ msgstr ""
 msgid "Additional information"
 msgstr ""
 
-#: ../browser/templates/view_summary.pt:39
+#: ../browser/templates/view_summary.pt:63
 msgid "All persons, regardless of their signup status, will be deleted. No notification e-mails are sent."
 msgstr ""
 
@@ -106,6 +106,10 @@ msgstr ""
 msgid "Check if you want to allow signups to waiting list once max capacity is reached."
 msgstr ""
 
+#: ../browser/templates/view_summary.pt:45
+msgid "Comma (,)"
+msgstr ""
+
 #: ../content/ut_signup_sheet.py:146
 msgid "Confirmation Email Content"
 msgstr ""
@@ -130,6 +134,7 @@ msgstr ""
 msgid "Create timeslots"
 msgstr ""
 
+#: ../browser/views.py:141
 #: ../content/ut_day.py:21
 msgid "Date"
 msgstr ""
@@ -140,7 +145,7 @@ msgstr ""
 
 #: ../browser/view_cancelreservation.py:61
 #: ../browser/view_submitselection.py:372
-#: ../content/ut_person.py:17
+#: ../browser/views.py:144
 msgid "E-Mail"
 msgstr ""
 
@@ -154,7 +159,7 @@ msgstr ""
 msgid "Edit day"
 msgstr ""
 
-#: ../browser/templates/view_summary.pt:104
+#: ../browser/templates/view_summary.pt:128
 msgid "Edit person"
 msgstr ""
 
@@ -236,7 +241,7 @@ msgstr ""
 msgid "If you have any questions please contact:"
 msgstr ""
 
-#: ../browser/templates/view_summary.pt:21
+#: ../browser/templates/view_summary.pt:24
 msgid "Include persons with following states:"
 msgstr ""
 
@@ -312,7 +317,7 @@ msgstr ""
 msgid "Persons"
 msgstr ""
 
-#: ../browser/views.py:119
+#: ../browser/views.py:196
 msgid "Please provide a valid starting time, timeslot duration, number of timeslots and max capacity."
 msgstr ""
 
@@ -338,11 +343,11 @@ msgstr ""
 msgid "Registration expired"
 msgstr ""
 
-#: ../browser/templates/view_summary.pt:32
+#: ../browser/templates/view_summary.pt:56
 msgid "Remove all persons"
 msgstr ""
 
-#: ../browser/templates/view_summary.pt:37
+#: ../browser/templates/view_summary.pt:61
 msgid "Remove all persons?"
 msgstr ""
 
@@ -364,12 +369,20 @@ msgstr ""
 msgid "Select a timeslot to proceed"
 msgstr ""
 
+#: ../browser/templates/view_summary.pt:46
+msgid "Semicolon (;)"
+msgstr ""
+
 #: ../content/ut_signup_sheet.py:32
 msgid "Send notification mails to contact info"
 msgstr ""
 
 #: ../content/ut_signup_sheet.py:33
 msgid "Send notifications to the mail address provided in the contact info field on new signups or cancellations."
+msgstr ""
+
+#: ../browser/templates/view_summary.pt:43
+msgid "Separator"
 msgstr ""
 
 #: ../content/ut_signup_sheet.py:80
@@ -388,18 +401,18 @@ msgstr ""
 msgid "Signed Off"
 msgstr ""
 
-#: ../browser/templates/view_summary.pt:73
-#: ../browser/views.py:158
+#: ../browser/templates/view_summary.pt:97
+#: ../browser/views.py:239
 #: ../utils.py:93
 msgid "Signed Up"
 msgstr ""
 
-#: ../browser/templates/view_summary.pt:24
-#: ../browser/views.py:162
+#: ../browser/templates/view_summary.pt:35
+#: ../browser/views.py:243
 msgid "Signed off"
 msgstr ""
 
-#: ../browser/templates/view_summary.pt:23
+#: ../browser/templates/view_summary.pt:31
 msgid "Signed up"
 msgstr ""
 
@@ -428,6 +441,7 @@ msgid "Starting time"
 msgstr ""
 
 #: ../browser/templates/ut_person_view.pt:27
+#: ../browser/views.py:145
 msgid "State"
 msgstr ""
 
@@ -435,17 +449,21 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: ../browser/views.py:139
+#: ../browser/views.py:220
 msgid "Successfully created ${count} timeslots."
 msgstr ""
 
-#: ../browser/views.py:95
+#: ../browser/views.py:97
 msgid "Successfully removed ${count} persons."
 msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:405
 #: ../content/ut_person.py:21
 msgid "Surname"
+msgstr ""
+
+#: ../browser/templates/view_summary.pt:47
+msgid "Tab"
 msgstr ""
 
 #: ../content/ut_signup_sheet.py:20
@@ -513,6 +531,7 @@ msgid "This message is to notify you that someone signed up for:"
 msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:285
+#: ../browser/views.py:142
 msgid "Time"
 msgstr ""
 
@@ -556,7 +575,7 @@ msgstr ""
 msgid "UTTimeslot"
 msgstr ""
 
-#: ../browser/templates/view_summary.pt:22
+#: ../browser/templates/view_summary.pt:27
 msgid "Unconfirmed"
 msgstr ""
 
@@ -608,8 +627,8 @@ msgid "Wait for confirmation email subject"
 msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:48
-#: ../browser/templates/view_summary.pt:83
-#: ../browser/views.py:164
+#: ../browser/templates/view_summary.pt:107
+#: ../browser/views.py:245
 msgid "Waiting List"
 msgstr ""
 
@@ -621,13 +640,13 @@ msgstr ""
 msgid "Waiting List Notification"
 msgstr ""
 
-#: ../browser/templates/view_summary.pt:78
-#: ../browser/views.py:160
+#: ../browser/templates/view_summary.pt:102
+#: ../browser/views.py:241
 #: ../utils.py:95
 msgid "Waiting for confirmation"
 msgstr ""
 
-#: ../browser/templates/view_summary.pt:25
+#: ../browser/templates/view_summary.pt:39
 msgid "Waitinglist"
 msgstr ""
 
@@ -647,11 +666,11 @@ msgstr ""
 msgid "Whether or not to show individual slot names."
 msgstr ""
 
-#: ../browser/templates/view_summary.pt:19
+#: ../browser/templates/view_summary.pt:21
 msgid "With empty slots"
 msgstr ""
 
-#: ../browser/templates/view_summary.pt:38
+#: ../browser/templates/view_summary.pt:62
 msgid "Would you really like to remove all the people from this signup sheet?"
 msgstr ""
 
@@ -761,7 +780,7 @@ msgid "signedoff"
 msgstr ""
 
 #. Default: "There are no upcoming days for this signup sheet."
-#: ../browser/templates/view_summary.pt:49
+#: ../browser/templates/view_summary.pt:73
 msgid "timeslot_label_noUpcomingDays"
 msgstr ""
 

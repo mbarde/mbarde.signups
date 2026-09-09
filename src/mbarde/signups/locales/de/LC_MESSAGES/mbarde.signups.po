@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-08 14:22+0000\n"
+"POT-Creation-Date: 2026-09-09 09:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <de@li.org>\n"
@@ -48,7 +48,7 @@ msgstr "Zusätzliches Formular, das bei der Anmeldung ausgefüllt werden soll."
 msgid "Additional information"
 msgstr "Zusätzliche Informationen"
 
-#: ../browser/templates/view_summary.pt:39
+#: ../browser/templates/view_summary.pt:63
 msgid "All persons, regardless of their signup status, will be deleted. No notification e-mails are sent."
 msgstr "Alle Personen werden unabhängig von ihrem Anmeldestatus gelöscht. Es werden keine Benachrichtigungs-E-Mails versendet."
 
@@ -106,6 +106,10 @@ msgstr "Betreff der Stornierungs-E-Mail"
 msgid "Check if you want to allow signups to waiting list once max capacity is reached."
 msgstr "Aktivieren, um Anmeldungen zur Warteliste zu erlauben, sobald die maximale Kapazität erreicht ist."
 
+#: ../browser/templates/view_summary.pt:45
+msgid "Comma (,)"
+msgstr "Komma (,)"
+
 #: ../content/ut_signup_sheet.py:146
 msgid "Confirmation Email Content"
 msgstr "Inhalt der Bestätigungs-E-Mail"
@@ -130,6 +134,7 @@ msgstr "Mehrere Termine anlegen"
 msgid "Create timeslots"
 msgstr "Termine anlegen"
 
+#: ../browser/views.py:141
 #: ../content/ut_day.py:21
 msgid "Date"
 msgstr "Datum"
@@ -140,7 +145,7 @@ msgstr "Tag für mbarde.signups"
 
 #: ../browser/view_cancelreservation.py:61
 #: ../browser/view_submitselection.py:372
-#: ../content/ut_person.py:17
+#: ../browser/views.py:144
 msgid "E-Mail"
 msgstr "E-Mail"
 
@@ -154,7 +159,7 @@ msgstr "Bearbeiten"
 msgid "Edit day"
 msgstr "Tag bearbeiten"
 
-#: ../browser/templates/view_summary.pt:104
+#: ../browser/templates/view_summary.pt:128
 msgid "Edit person"
 msgstr "Person bearbeiten"
 
@@ -236,7 +241,7 @@ msgstr "Wird eine Anmeldung storniert, rückt automatisch die erste Person der W
 msgid "If you have any questions please contact:"
 msgstr "Bei Fragen wenden Sie sich bitte an:"
 
-#: ../browser/templates/view_summary.pt:21
+#: ../browser/templates/view_summary.pt:24
 msgid "Include persons with following states:"
 msgstr "Personen mit folgendem Status einschließen:"
 
@@ -312,7 +317,7 @@ msgstr "Person für mbarde.signups"
 msgid "Persons"
 msgstr "Personen"
 
-#: ../browser/views.py:119
+#: ../browser/views.py:196
 msgid "Please provide a valid starting time, timeslot duration, number of timeslots and max capacity."
 msgstr "Bitte geben Sie eine gültige Startzeit, Termindauer, Anzahl der Termine und maximale Kapazität an."
 
@@ -338,11 +343,11 @@ msgstr "Anmeldebenachrichtigung"
 msgid "Registration expired"
 msgstr "Anmeldung abgelaufen"
 
-#: ../browser/templates/view_summary.pt:32
+#: ../browser/templates/view_summary.pt:56
 msgid "Remove all persons"
 msgstr "Alle Personen entfernen"
 
-#: ../browser/templates/view_summary.pt:37
+#: ../browser/templates/view_summary.pt:61
 msgid "Remove all persons?"
 msgstr "Alle Personen entfernen?"
 
@@ -364,6 +369,10 @@ msgstr "Auswählen"
 msgid "Select a timeslot to proceed"
 msgstr "Wählen Sie einen Termin aus, um fortzufahren"
 
+#: ../browser/templates/view_summary.pt:46
+msgid "Semicolon (;)"
+msgstr "Semikolon (;)"
+
 #: ../content/ut_signup_sheet.py:32
 msgid "Send notification mails to contact info"
 msgstr "Benachrichtigungs-E-Mails an Kontaktadresse senden"
@@ -371,6 +380,10 @@ msgstr "Benachrichtigungs-E-Mails an Kontaktadresse senden"
 #: ../content/ut_signup_sheet.py:33
 msgid "Send notifications to the mail address provided in the contact info field on new signups or cancellations."
 msgstr "Sendet Benachrichtigungen an die im Feld Kontaktinformationen hinterlegte E-Mail-Adresse bei neuen Anmeldungen oder Stornierungen."
+
+#: ../browser/templates/view_summary.pt:43
+msgid "Separator"
+msgstr "Trennzeichen"
 
 #: ../content/ut_signup_sheet.py:80
 msgid "Show individual time slot names"
@@ -388,18 +401,18 @@ msgstr "Anmelden"
 msgid "Signed Off"
 msgstr "Abgemeldet"
 
-#: ../browser/templates/view_summary.pt:73
-#: ../browser/views.py:158
+#: ../browser/templates/view_summary.pt:97
+#: ../browser/views.py:239
 #: ../utils.py:93
 msgid "Signed Up"
 msgstr "Angemeldet"
 
-#: ../browser/templates/view_summary.pt:24
-#: ../browser/views.py:162
+#: ../browser/templates/view_summary.pt:35
+#: ../browser/views.py:243
 msgid "Signed off"
 msgstr "Abgemeldet"
 
-#: ../browser/templates/view_summary.pt:23
+#: ../browser/templates/view_summary.pt:31
 msgid "Signed up"
 msgstr "Angemeldet"
 
@@ -428,6 +441,7 @@ msgid "Starting time"
 msgstr "Startzeit"
 
 #: ../browser/templates/ut_person_view.pt:27
+#: ../browser/views.py:145
 msgid "State"
 msgstr "Status"
 
@@ -435,11 +449,11 @@ msgstr "Status"
 msgid "Success"
 msgstr "Erfolg"
 
-#: ../browser/views.py:139
+#: ../browser/views.py:220
 msgid "Successfully created ${count} timeslots."
 msgstr "${count} Termine erfolgreich angelegt."
 
-#: ../browser/views.py:95
+#: ../browser/views.py:97
 msgid "Successfully removed ${count} persons."
 msgstr "${count} Personen erfolgreich entfernt."
 
@@ -447,6 +461,10 @@ msgstr "${count} Personen erfolgreich entfernt."
 #: ../content/ut_person.py:21
 msgid "Surname"
 msgstr "Nachname"
+
+#: ../browser/templates/view_summary.pt:47
+msgid "Tab"
+msgstr "Tabulator"
 
 #: ../content/ut_signup_sheet.py:20
 msgid "Text"
@@ -513,6 +531,7 @@ msgid "This message is to notify you that someone signed up for:"
 msgstr "Diese Nachricht informiert Sie darüber, dass sich jemand angemeldet hat für:"
 
 #: ../browser/templates/ut_signup_sheet_view.pt:285
+#: ../browser/views.py:142
 msgid "Time"
 msgstr "Uhrzeit"
 
@@ -556,7 +575,7 @@ msgstr "UTSignupSheet"
 msgid "UTTimeslot"
 msgstr "UTTimeslot"
 
-#: ../browser/templates/view_summary.pt:22
+#: ../browser/templates/view_summary.pt:27
 msgid "Unconfirmed"
 msgstr "Unbestätigt"
 
@@ -608,8 +627,8 @@ msgid "Wait for confirmation email subject"
 msgstr "Betreff der E-Mail „Warten auf Bestätigung“"
 
 #: ../browser/templates/ut_signup_sheet_view.pt:48
-#: ../browser/templates/view_summary.pt:83
-#: ../browser/views.py:164
+#: ../browser/templates/view_summary.pt:107
+#: ../browser/views.py:245
 msgid "Waiting List"
 msgstr "Warteliste"
 
@@ -621,13 +640,13 @@ msgstr "Bestätigung der Warteliste"
 msgid "Waiting List Notification"
 msgstr "Benachrichtigung zur Warteliste"
 
-#: ../browser/templates/view_summary.pt:78
-#: ../browser/views.py:160
+#: ../browser/templates/view_summary.pt:102
+#: ../browser/views.py:241
 #: ../utils.py:95
 msgid "Waiting for confirmation"
 msgstr "Wartet auf Bestätigung"
 
-#: ../browser/templates/view_summary.pt:25
+#: ../browser/templates/view_summary.pt:39
 msgid "Waitinglist"
 msgstr "Warteliste"
 
@@ -647,11 +666,11 @@ msgstr "Wir haben einen Verifizierungscode an die unten stehende E-Mail-Adresse 
 msgid "Whether or not to show individual slot names."
 msgstr "Legt fest, ob die Namen der einzelnen Termine angezeigt werden."
 
-#: ../browser/templates/view_summary.pt:19
+#: ../browser/templates/view_summary.pt:21
 msgid "With empty slots"
 msgstr "Mit freien Terminen"
 
-#: ../browser/templates/view_summary.pt:38
+#: ../browser/templates/view_summary.pt:62
 msgid "Would you really like to remove all the people from this signup sheet?"
 msgstr "Möchten Sie wirklich alle Personen von dieser Anmeldeliste entfernen?"
 
@@ -761,7 +780,7 @@ msgid "signedoff"
 msgstr "Abgemeldet"
 
 #. Default: "There are no upcoming days for this signup sheet."
-#: ../browser/templates/view_summary.pt:49
+#: ../browser/templates/view_summary.pt:73
 msgid "timeslot_label_noUpcomingDays"
 msgstr "Es gibt keine bevorstehenden Tage für diese Anmeldeliste."
 

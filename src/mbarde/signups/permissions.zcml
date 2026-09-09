@@ -4,25 +4,21 @@
     i18n_domain="plone">
 
     <configure zcml:condition="installed AccessControl.security">
-        <!-- -*- extra stuff goes here -*- -->
 
         <permission
             id="mbarde.signups.AddUTPerson"
             title="mbarde.signups: Add UTPerson"
         />
 
-
         <permission
             id="mbarde.signups.AddUTTimeslot"
             title="mbarde.signups: Add UTTimeslot"
         />
 
-
         <permission
             id="mbarde.signups.AddUTDay"
             title="mbarde.signups: Add UTDay"
         />
-
 
         <permission
             id="mbarde.signups.AddUTSignupSheet"

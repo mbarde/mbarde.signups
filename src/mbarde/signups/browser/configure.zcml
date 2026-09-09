@@ -98,4 +98,11 @@
         permission="cmf.ManagePortal"
     />
 
+    <browser:page
+        name="export-to-csv"
+        for="mbarde.signups.content.ut_signup_sheet.IUTSignupSheet"
+        class=".views.ExportToCsvView"
+        permission="cmf.ManagePortal"
+    />
+
 </configure>

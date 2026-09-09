@@ -9,7 +9,9 @@ from plone.dexterity.browser.view import DefaultView
 from plone.protect.utils import addTokenToUrl
 from Products.CMFPlone.resources import add_bundle_on_request
 from Products.Five import BrowserView
+from zope.i18n import translate
 
+import csv
 import re
 
 
@@ -97,6 +99,76 @@ class ManagerSummaryView(BrowserView):
             type="info",
         )
         return self.request.response.redirect(self.context.absolute_url() + "/manager-summary")
+
+
+class ExportToCsvView(BrowserView):
+
+    allowedSeparators = (",", ";", "\t")
+
+    def __call__(self):
+        request = self.request
+
+        includeEmptySlots = bool(request.form.get("emptyslots"))
+        statuses = request.form.get("status", [])
+        if not isinstance(statuses, list):
+            statuses = [statuses]
+
+        separator = request.form.get("separator", ",")
+        if separator not in self.allowedSeparators:
+            separator = ","
+
+        rows = self.getRows(includeEmptySlots, statuses)
+
+        currentDateTime = datetime.now().strftime("%Y%m%d%H%M")
+
+        response = request.response
+        response.setHeader("Content-Type", "text/csv; charset=utf-8")
+        response.setHeader(
+            "Content-Disposition",
+            'attachment; filename="{0}_{1}.csv"'.format(self.context.getId(), currentDateTime),
+        )
+
+        # UTF-8 BOM so Excel correctly recognizes the encoding (and umlauts)
+        buffer = StringIO()
+        writer = csv.writer(buffer, delimiter=separator)
+        writer.writerow(
+            [
+                translate(_("Date"), context=request),
+                translate(_("Time"), context=request),
+                translate(_("Name"), context=request),
+                translate(_("E-Mail"), context=request),
+                translate(_("State"), context=request),
+            ]
+        )
+        writer.writerows(rows)
+
+        return "\ufeff" + buffer.getvalue()
+
+    def getRows(self, includeEmptySlots, statuses):
+        rows = []
+        for day in self.context.getDays(False):
+            for timeSlot in day.getTimeSlots():
+                people = []
+                for status in statuses:
+                    people.extend(timeSlot.getPeople(False, status))
+
+                if not people and includeEmptySlots:
+                    rows.append([day.Title(), timeSlot.getTimeRange(), "", "", ""])
+                    continue
+
+                for person in people:
+                    state = api.content.get_state(person)
+                    rows.append(
+                        [
+                            day.Title(),
+                            timeSlot.getTimeRange(),
+                            person.Title(),
+                            person.email,
+                            translate(translateReviewState(state), context=self.request),
+                        ]
+                    )
+
+        return rows
 
 
 class UTDayView(DefaultView):

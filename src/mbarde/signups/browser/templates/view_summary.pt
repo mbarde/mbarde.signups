@@ -16,13 +16,37 @@
 
       <form tal:attributes="action string:${context/absolute_url}/@@export-to-csv">
         <h3 i18n:translate="">Export</h3>
-        <div class="checkbox"><label><input type="checkbox" name="emptyslots" value="True"> <span i18n:translate="">With empty slots</span></label></div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exportEmptySlots" name="emptyslots" value="True">
+          <label class="form-check-label" for="exportEmptySlots" i18n:translate="">With empty slots</label>
+        </div>
 
         <label i18n:translate="">Include persons with following states:</label>
-        <div class="checkbox"><label><input type="checkbox" name="status" value="unconfirmed"> <span i18n:translate="">Unconfirmed</span></label></div>
-        <div class="checkbox"><label><input type="checkbox" name="status" value="signedup" checked> <span i18n:translate="">Signed up</span></label></div>
-        <div class="checkbox"><label><input type="checkbox" name="status" value="signedoff"> <span i18n:translate="">Signed off</span></label></div>
-        <div class="checkbox"><label><input type="checkbox" name="status" value="waiting"> <span i18n:translate="">Waitinglist</span></label></div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exportStatusUnconfirmed" name="status" value="unconfirmed">
+          <label class="form-check-label" for="exportStatusUnconfirmed" i18n:translate="">Unconfirmed</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exportStatusSignedup" name="status" value="signedup" checked>
+          <label class="form-check-label" for="exportStatusSignedup" i18n:translate="">Signed up</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exportStatusSignedoff" name="status" value="signedoff">
+          <label class="form-check-label" for="exportStatusSignedoff" i18n:translate="">Signed off</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exportStatusWaiting" name="status" value="waiting">
+          <label class="form-check-label" for="exportStatusWaiting" i18n:translate="">Waitinglist</label>
+        </div>
+
+        <div class="field">
+          <label for="exportSeparator" i18n:translate="">Separator</label>
+          <select class="form-select" id="exportSeparator" name="separator">
+            <option value="," selected i18n:translate="">Comma (,)</option>
+            <option value=";" i18n:translate="">Semicolon (;)</option>
+            <option value="&#9;" i18n:translate="">Tab</option>
+          </select>
+        </div>
 
         <button class="btn btn-primary" type="submit"><tal:icon replace="structure python: icons.tag('download', tag_class='me-1')" /> Export</button>
       </form>
