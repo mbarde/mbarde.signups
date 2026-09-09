@@ -111,6 +111,35 @@
     </permission-map>
   </state>
 
+  <!--
+    The guards on the signup/signoff/putOnWaitingList transitions below are
+    intentionally left empty (no guard-permission/guard-role/guard-expression)
+    - please do not "fix" this by adding e.g. a Modify-portal-content guard.
+
+    UTPerson objects created for anonymous/external signups are deliberately
+    given no local role at all (view_submitselection.py's createPersonObject
+    bypasses api.content.create() specifically to avoid granting the
+    anonymous submitter any permission on the object), and the states'
+    permission-maps restrict "Modify portal content" to Owner/Editor/
+    Reviewer/Manager with acquired="False". A permission-based guard here
+    would therefore make api.content.transition() fail for that very same
+    anonymous submitter one line later, breaking external signup entirely -
+    and likewise for subscribers.attemptToFillEmptySpot(), which promotes a
+    *different* person from the waiting list using whatever security context
+    happens to be active after a signoff.
+
+    Instead, authorization is enforced entirely in application code: every
+    call site that triggers these transitions (view_cancelreservation.py,
+    view_submitselection.py, subscribers.py) resolves its target person
+    either from the caller's own session identity or from a business rule
+    (oldest waiting person) - never from a client-supplied person id - so
+    there is currently no path for a user to change another person's state.
+    That protection lives entirely in that application code though, not in
+    this workflow, so any *new* call site added in the future gets no
+    enforcement from the workflow layer and must uphold this discipline
+    itself.
+  -->
+
   <transition transition_id="signup"
     title="Signup"
     new_state="signedup" trigger="USER"
