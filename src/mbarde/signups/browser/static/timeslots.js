@@ -30,7 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // let a click anywhere in a timeslot's row select it, instead of forcing
-  // users to hit the small radio button/checkbox itself
+  // users to hit the small radio button/checkbox itself (used both for
+  // picking a slot to sign up for, and for selecting a slot to cancel on
+  // the "view my signups" page)
   document.querySelectorAll('tr.slot-row').forEach(function (row) {
     row.addEventListener('click', function (event) {
       // don't hijack clicks on links (e.g. edit/view icons) or on the
@@ -38,7 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
       if (event.target.closest('a, input')) {
         return;
       }
-      var input = row.querySelector('input[name="slotSelection"]');
+      var input = row.querySelector(
+        'input[name="slotSelection"], input[name="selectedSlot"]'
+      );
       if (!input) {
         return;
       }

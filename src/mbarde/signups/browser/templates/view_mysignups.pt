@@ -32,10 +32,13 @@
                     You signed up for the following slots:
                   </th>
                 </tr>
-                <tr tal:repeat="slot slots">
-                  <tal:block
+                <tal:block tal:repeat="slot slots">
+                  <tr
                     tal:define="label slot/getLabel;
-                                 state slot/getCurrentUserSignUpState"
+                                 state slot/getCurrentUserSignUpState;
+                                 selectable python: state in ['signedup', 'unconfirmed']"
+                    tal:attributes="class python: 'slot-row' if selectable else None;
+                                     style python: 'cursor: pointer' if selectable else None"
                   >
                     <td>
                       <span tal:content="label" />
@@ -54,17 +57,15 @@
                         <span i18n:translate="signedoff" /> )
                       </span>
                     </td>
-                    <td
-                      tal:condition="python: state in ['signedup', 'unconfirmed']"
-                    >
+                    <td tal:condition="selectable">
                       <input
                         type="checkbox"
                         name="selectedSlot"
                         tal:attributes="value slot/getIDLabel"
                       />
                     </td>
-                  </tal:block>
-                </tr>
+                  </tr>
+                </tal:block>
                 <tr tal:condition="python: len(slots) == 0">
                   <td colspan="2" i18n:translate="">None</td>
                 </tr>
@@ -78,8 +79,12 @@
                     You are on a waiting list for the following slots:
                   </th>
                 </tr>
-                <tr tal:repeat="slot slots">
-                  <tal:block tal:define="label slot/getLabel">
+                <tal:block tal:repeat="slot slots">
+                  <tr
+                    tal:define="label slot/getLabel"
+                    class="slot-row"
+                    style="cursor: pointer"
+                  >
                     <td style="border-right: none" tal:content="label" />
                     <td style="border-left: none">
                       <input
@@ -88,8 +93,8 @@
                         tal:attributes="value slot/getIDLabel"
                       />
                     </td>
-                  </tal:block>
-                </tr>
+                  </tr>
+                </tal:block>
                 <tr tal:condition="python: len(slots) == 0">
                   <td colspan="2" i18n:translate="">None</td>
                 </tr>
