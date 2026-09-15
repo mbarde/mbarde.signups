@@ -105,4 +105,11 @@
         permission="mbarde.signups.ManageSchedule"
     />
 
+    <browser:page
+        name="mbarde-signups-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".controlpanel.MbardeSignupsControlPanelView"
+        permission="cmf.ManagePortal"
+    />
+
 </configure>

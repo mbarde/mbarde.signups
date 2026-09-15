@@ -71,16 +71,36 @@ def emailToPersonId(email):
     return normalizer.normalize(email)
 
 
+# best-effort value of a member property (empty string if unset/unnamed)
+def getMemberPropertyValue(user, propertyName):
+    if not propertyName:
+        return ""
+    try:
+        return user.getProperty(propertyName) or ""
+    except ValueError:
+        # in case that property does not exist
+        return ""
+
+
 # best-effort email address of a Plone user (may be empty if none is set)
 def getEmailOfPloneUser(user):
     if api.portal.get_registry_record("plone.use_email_as_login"):
         # case: email = username
         return user.getUserName()
-    try:
-        return user.getProperty("email") or ""
-    except ValueError:
-        # in case property `email` does not exist
-        return ""
+    propertyName = api.portal.get_registry_record("mbarde.signups.member_property_email")
+    return getMemberPropertyValue(user, propertyName)
+
+
+# best-effort prename of a Plone user (may be empty if not configured/unset)
+def getPrenameOfPloneUser(user):
+    propertyName = api.portal.get_registry_record("mbarde.signups.member_property_prename")
+    return getMemberPropertyValue(user, propertyName)
+
+
+# best-effort surname of a Plone user (may be empty if not configured/unset)
+def getSurnameOfPloneUser(user):
+    propertyName = api.portal.get_registry_record("mbarde.signups.member_property_surname")
+    return getMemberPropertyValue(user, propertyName)
 
 
 # plone user to personId

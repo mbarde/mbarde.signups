@@ -8,4 +8,8 @@
     <value key="load_async">False</value>
     <value key="load_defer">False</value>
   </records>
+
+  <records interface="mbarde.signups.browser.controlpanel.IMbardeSignupsControlPanel"
+    prefix="mbarde.signups">
+  </records>
 </registry>

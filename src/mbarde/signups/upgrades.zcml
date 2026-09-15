@@ -3,13 +3,6 @@
   xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
   <!-- -*- extra stuff goes here -*- -->
-  <!--<genericsetup:upgradeStep
-    source="*"
-    destination="1001"
-    title="Reload GS profiles"
-    description=""
-    profile="mbarde.signups:default"
-    handler=".upgrades.reload_gs_profile"
-    />-->
+
 
 </configure>

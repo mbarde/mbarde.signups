@@ -4,6 +4,8 @@ from io import StringIO
 from lxml import etree
 from mbarde.signups import _
 from mbarde.signups.utils import getEmailOfPloneUser
+from mbarde.signups.utils import getPrenameOfPloneUser
+from mbarde.signups.utils import getSurnameOfPloneUser
 from mbarde.signups.utils import translateReviewState
 from plone import api
 from plone.dexterity.browser.view import DefaultView
@@ -34,6 +36,16 @@ class UTSignupSheetView(DefaultView):
         if api.user.is_anonymous():
             return ""
         return getEmailOfPloneUser(api.user.get_current())
+
+    def getCurrentUserPrename(self):
+        if api.user.is_anonymous():
+            return ""
+        return getPrenameOfPloneUser(api.user.get_current())
+
+    def getCurrentUserSurname(self):
+        if api.user.is_anonymous():
+            return ""
+        return getSurnameOfPloneUser(api.user.get_current())
 
     def renderExtraForm(self):
         portal = api.portal.get()

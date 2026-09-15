@@ -387,6 +387,7 @@
                   type="text"
                   class="form-control"
                   i18n:attributes="placeholder Prename"
+                  tal:attributes="value view/getCurrentUserPrename"
                 />
               </div>
               <div class="field mb-3">
@@ -408,6 +409,7 @@
                   type="text"
                   class="form-control"
                   i18n:attributes="placeholder Surname"
+                  tal:attributes="value view/getCurrentUserSurname"
                 />
               </div>
               <div class="field mb-3">
