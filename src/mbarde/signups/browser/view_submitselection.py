@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from AccessControl.unauthorized import Unauthorized
 from mbarde.signups import _
 from mbarde.signups import otp
 from mbarde.signups.utils import appendAuthenticatedSuffix
@@ -33,6 +34,9 @@ class SubmitSelection(BrowserView):
         return self.context.getExtraFieldsVocabulary()
 
     def submitUserSelection(self):
+        if not self.context.allowSignupForExternals and api.user.is_anonymous():
+            raise Unauthorized("Signup for external (not logged-in) users is disabled.")
+
         self.results = list()
 
         portal_state = getMultiAdapter((self.context, self.request), name="plone_portal_state")
