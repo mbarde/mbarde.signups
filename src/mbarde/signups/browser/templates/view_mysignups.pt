@@ -103,11 +103,11 @@
             <br />
 
             <button
-              class="btn btn-danger float-right"
+              class="btn btn-danger mb-2"
               type="submit"
               name="cancelSlots"
               id="btnCancelReservations"
-              style="display: none"
+              style="display: none; float: right"
             >
               <tal:icon
                 replace="structure python: icons.tag('plone-delete', tag_alt='Cancel Selected Slots')"

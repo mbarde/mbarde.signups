@@ -58,7 +58,11 @@
                 <em
                   ><strong>
                     &rarr;
-                    <span i18n:translate="">Your Slot</span>
+                    <a
+                      tal:attributes="href string:${context/absolute_url}/@@view-my-signups"
+                      i18n:translate=""
+                      >Your Slot</a
+                    >
                     <span tal:condition="python: state == 'unconfirmed'">
                       (<span i18n:translate="unconfirmed" />)
                     </span>
@@ -81,7 +85,10 @@
                 <em
                   ><strong
                     >&rarr;
-                    <span i18n:translate="on_waiting_list"></span>
+                    <a
+                      tal:attributes="href string:${context/absolute_url}/@@view-my-signups"
+                      i18n:translate="on_waiting_list"
+                    ></a>
                     &larr;</strong
                   ></em
                 >
