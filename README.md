@@ -38,6 +38,8 @@ or
 
 - Create a member property called `email`
 
+If you want pre-filling of personal data you have to specify corresponding member properties in `@@mbarde-signups-controlpanel`.
+
 ## Usage
 
 1. Create `UTSignupSheet`
