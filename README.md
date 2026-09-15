@@ -29,7 +29,14 @@ User states:
 
 ## Installation
 
-tbd.
+Datasets of signups are identified by the email address of the registrant.
+So in order to do a proper matching you need to either
+
+- Set `Use email address as login name` to `True` in Plone security controlpanel
+
+or
+
+- Create a member property called `email`
 
 ## Usage
 
