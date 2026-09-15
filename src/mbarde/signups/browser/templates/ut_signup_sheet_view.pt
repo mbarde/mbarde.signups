@@ -376,18 +376,15 @@
 
             <div id="personalInfoFields" style="display: none">
               <div class="field mb-3">
-                <label
-                  for="inputPrename"
-                  class="form-label"
-                  i18n:translate="Your prename"
-                  >Your prename
+                <label for="inputPrename" class="form-label">
+                  <span i18n:translate="">Your prename</span>
                   <span
                     class="required"
                     i18n:attributes="title"
                     title="Required"
-                    >&nbsp;</span
-                  > </label
-                ><br />
+                  ></span>
+                </label>
+                <br />
                 <input
                   id="inputPrename"
                   name="inputPrename"
@@ -400,18 +397,15 @@
                 />
               </div>
               <div class="field mb-3">
-                <label
-                  for="inputSurname"
-                  class="form-label"
-                  i18n:translate="Your surname"
-                  >Your surname
+                <label for="inputSurname" class="form-label">
+                  <span i18n:translate="">Your surname</span>
                   <span
                     class="required"
                     i18n:attributes="title"
                     title="Required"
-                    >&nbsp;</span
-                  > </label
-                ><br />
+                  ></span>
+                </label>
+                <br />
                 <input
                   id="inputSurname"
                   name="inputSurname"
@@ -424,15 +418,15 @@
                 />
               </div>
               <div class="field mb-3">
-                <label for="inputEmail" i18n:translate="Your email address"
-                  >Your email address
+                <label for="inputEmail">
+                  <span i18n:translate="">Your email address</span>
                   <span
                     class="required"
                     i18n:attributes="title"
                     title="Required"
-                    >&nbsp;</span
-                  > </label
-                ><br />
+                  ></span>
+                </label>
+                <br />
                 <input
                   id="inputEmail"
                   class="form-control"
