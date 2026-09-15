@@ -34,6 +34,29 @@ class IUTPerson(model.Schema):
     )
     form.omitted("signedUpWhileLoggedIn")
 
+    # evidence of consent to the signup sheet's data usage declaration
+    dataUsageConsentGivenAt = schema.Datetime(
+        title=_("Consent to data usage declaration given at"),
+        description=_(
+            "When this person consented to the data usage declaration, if "
+            "consent was required at the time of signup."
+        ),
+        required=False,
+    )
+    form.omitted("dataUsageConsentGivenAt")
+
+    dataUsageDeclarationTextSnapshot = schema.Text(
+        title=_("Data usage declaration text (at time of consent)"),
+        description=_(
+            "A copy of the data usage declaration as it read when this person "
+            "consented to it, so a later edit to the declaration doesn't "
+            "retroactively change what this person is considered to have "
+            "consented to."
+        ),
+        required=False,
+    )
+    form.omitted("dataUsageDeclarationTextSnapshot")
+
 
 @implementer(IUTPerson)
 class UTPerson(Item):

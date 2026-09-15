@@ -442,6 +442,35 @@
 
               <tal:block tal:replace="structure view/renderExtraForm" />
 
+              <div class="field mb-3" tal:condition="context/dataUsageDeclaration">
+                <label class="form-label" i18n:translate="">Data usage declaration</label>
+                <tal:block tal:replace="structure view/w/dataUsageDeclaration/render" />
+              </div>
+
+              <div
+                class="field mb-3 form-check"
+                tal:condition="python: context.dataUsageDeclaration and context.dataUsageDeclarationConsentRequired"
+              >
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="agreeDataUsage"
+                  id="agreeDataUsage"
+                  value="1"
+                />
+                <label class="form-check-label" for="agreeDataUsage">
+                  <span i18n:translate=""
+                    >I agree to the data usage declaration above</span
+                  >
+                  <span
+                    class="required"
+                    i18n:attributes="title"
+                    title="Required"
+                    >&nbsp;</span
+                  >
+                </label>
+              </div>
+
               <div class="d-grid gap-2">
                 <button
                   id="form-buttons-submit"

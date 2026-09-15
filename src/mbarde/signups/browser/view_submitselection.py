@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from AccessControl.unauthorized import Unauthorized
+from datetime import datetime
 from mbarde.signups import _
 from mbarde.signups import otp
 from mbarde.signups.utils import appendAuthenticatedSuffix
@@ -273,6 +274,11 @@ class SubmitSelection(BrowserView):
 
         # see utils.appendAuthenticatedSuffix for why that matters
         newPerson.signedUpWhileLoggedIn = not api.user.is_anonymous()
+
+        if self.context.dataUsageDeclarationConsentRequired and self.context.dataUsageDeclaration:
+            newPerson.dataUsageConsentGivenAt = datetime.now()
+            # keep record of which declaration text user actually accepted (could be changed later)
+            newPerson.dataUsageDeclarationTextSnapshot = self.context.dataUsageDeclaration.output
 
         # also store names of extra fields to be able to read them out even
         # if extra field form changes (used in timeslotperson_view)
