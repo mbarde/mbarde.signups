@@ -59,6 +59,4 @@ class MbardeSignupsControlPanel(RegistryEditForm):
     )
 
 
-MbardeSignupsControlPanelView = layout.wrap_form(
-    MbardeSignupsControlPanel, ControlPanelFormWrapper
-)
+MbardeSignupsControlPanelView = layout.wrap_form(MbardeSignupsControlPanel, ControlPanelFormWrapper)

@@ -26,9 +26,7 @@ class MemberPropertyMappingSettingsTest(unittest.TestCase):
     def test_settings_registered_with_expected_defaults(self):
         # email pre-fill/matching keeps working out of the box, prename and
         # surname are opt-in since Plone has no standard property for them
-        self.assertEqual(
-            self.registry["mbarde.signups.member_property_email"], "email"
-        )
+        self.assertEqual(self.registry["mbarde.signups.member_property_email"], "email")
         self.assertEqual(self.registry["mbarde.signups.member_property_prename"], "")
         self.assertEqual(self.registry["mbarde.signups.member_property_surname"], "")
 
