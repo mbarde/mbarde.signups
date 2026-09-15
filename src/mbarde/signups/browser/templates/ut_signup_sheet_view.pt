@@ -394,7 +394,9 @@
                   type="text"
                   class="form-control"
                   i18n:attributes="placeholder Prename"
-                  tal:attributes="value view/getCurrentUserPrename"
+                  tal:attributes="value view/getCurrentUserPrename;
+                                   readonly python: 'readonly' if context.lockPersonalData else None;
+                                   disabled python: 'true' if context.lockPersonalData else None"
                 />
               </div>
               <div class="field mb-3">
@@ -416,7 +418,9 @@
                   type="text"
                   class="form-control"
                   i18n:attributes="placeholder Surname"
-                  tal:attributes="value view/getCurrentUserSurname"
+                  tal:attributes="value view/getCurrentUserSurname;
+                                   readonly python: 'readonly' if context.lockPersonalData else None;
+                                   disabled python: 'true' if context.lockPersonalData else None"
                 />
               </div>
               <div class="field mb-3">
@@ -435,7 +439,9 @@
                   name="inputEmail"
                   type="email"
                   placeholder="E-Mail"
-                  tal:attributes="value view/getCurrentUserEmail"
+                  tal:attributes="value view/getCurrentUserEmail;
+                                   readonly python: 'readonly' if context.lockPersonalData else None;
+                                   disabled python: 'true' if context.lockPersonalData else None"
                 />
                 <input type="hidden" name="isExternal" value="1" />
               </div>

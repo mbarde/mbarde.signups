@@ -14,6 +14,8 @@ from z3c.relationfield.schema import RelationChoice
 from zope import schema
 from zope.i18n import translate
 from zope.interface import implementer
+from zope.interface import Invalid
+from zope.interface import invariant
 from zope.interface import provider
 from zope.schema.interfaces import IContextAwareDefaultFactory
 
@@ -73,6 +75,15 @@ class IUTSignupSheet(model.Schema):
             "Anyone who is not currently logged in has to verify their email address with a one-time code before their signup is completed.",  # noqa: E501
         ),
         default=True,
+        required=False,
+    )
+
+    lockPersonalData = schema.Bool(
+        title=_("Lock personal data"),
+        description=_(
+            "Prevents the prename, surname and email address from being changed - they are only pre-filled from the logged-in user's account. Only available if signup for external users is disabled.",  # noqa: E501
+        ),
+        default=False,
         required=False,
     )
 
@@ -307,6 +318,13 @@ class IUTSignupSheet(model.Schema):
             )
         ),
     )
+
+    @invariant
+    def validateLockPersonalData(data):
+        if data.lockPersonalData and data.allowSignupForExternals:
+            raise Invalid(
+                _("Personal data can only be locked if signup for external users is disabled.")
+            )
 
 
 @implementer(IUTSignupSheet)

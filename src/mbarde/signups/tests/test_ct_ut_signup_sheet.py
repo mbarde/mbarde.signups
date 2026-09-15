@@ -8,6 +8,7 @@ from plone.app.testing import TEST_USER_ID
 from plone.dexterity.interfaces import IDexterityFTI
 from zope.component import createObject
 from zope.component import queryUtility
+from zope.interface import Invalid
 
 import unittest
 
@@ -85,3 +86,25 @@ class UTSignupSheetIntegrationTest(unittest.TestCase):
                 type="Document",
                 title="My Content",
             )
+
+    def test_lockPersonalData_rejected_when_externals_allowed(self):
+        obj = api.content.create(
+            container=self.portal,
+            type="UTSignupSheet",
+            id="ut_signup_sheet",
+            allowSignupForExternals=True,
+            lockPersonalData=True,
+        )
+        with self.assertRaises(Invalid):
+            IUTSignupSheet.validateInvariants(obj)
+
+    def test_lockPersonalData_allowed_when_externals_disabled(self):
+        obj = api.content.create(
+            container=self.portal,
+            type="UTSignupSheet",
+            id="ut_signup_sheet",
+            allowSignupForExternals=False,
+            lockPersonalData=True,
+        )
+        # should not raise
+        IUTSignupSheet.validateInvariants(obj)

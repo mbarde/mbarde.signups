@@ -3,6 +3,9 @@ from mbarde.signups import _
 from mbarde.signups import otp
 from mbarde.signups.utils import appendAuthenticatedSuffix
 from mbarde.signups.utils import emailToPersonId
+from mbarde.signups.utils import getEmailOfPloneUser
+from mbarde.signups.utils import getPrenameOfPloneUser
+from mbarde.signups.utils import getSurnameOfPloneUser
 from mbarde.signups.utils import replaceCustomMailPlaceholders
 from plone import api
 from plone.memoize import instance
@@ -41,6 +44,12 @@ class SubmitSelection(BrowserView):
         self.prename = self.request.get("inputPrename", "").strip()
         self.surname = self.request.get("inputSurname", "").strip()
         self.email = self.request.get("inputEmail", "").strip()
+
+        if self.context.lockPersonalData:
+            user = api.user.get_current()
+            self.prename = getPrenameOfPloneUser(user)
+            self.surname = getSurnameOfPloneUser(user)
+            self.email = getEmailOfPloneUser(user)
 
         if self.areAnyRequiredFieldsEmpty() or not self.isAtLeastOneSlotSelected():
             return self.resultTemplate()
