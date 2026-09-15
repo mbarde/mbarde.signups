@@ -426,6 +426,7 @@
                   name="inputEmail"
                   type="email"
                   placeholder="E-Mail"
+                  tal:attributes="value view/getCurrentUserEmail"
                 />
                 <input type="hidden" name="isExternal" value="1" />
               </div>

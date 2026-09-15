@@ -3,6 +3,7 @@ from datetime import datetime
 from io import StringIO
 from lxml import etree
 from mbarde.signups import _
+from mbarde.signups.utils import getEmailOfPloneUser
 from mbarde.signups.utils import translateReviewState
 from plone import api
 from plone.dexterity.browser.view import DefaultView
@@ -28,6 +29,11 @@ class UTSignupSheetView(DefaultView):
 
     def showEditLinks(self):
         return api.user.has_permission("mbarde.signups: Manage Schedule")
+
+    def getCurrentUserEmail(self):
+        if api.user.is_anonymous():
+            return ""
+        return getEmailOfPloneUser(api.user.get_current())
 
     def renderExtraForm(self):
         portal = api.portal.get()

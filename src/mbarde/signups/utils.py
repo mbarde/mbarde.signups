@@ -71,18 +71,21 @@ def emailToPersonId(email):
     return normalizer.normalize(email)
 
 
-# plone user to personId
-def ploneUserToPersonId(user):
+# best-effort email address of a Plone user (may be empty if none is set)
+def getEmailOfPloneUser(user):
     if api.portal.get_registry_record("plone.use_email_as_login"):
         # case: email = username
-        email = user.getUserName()
-    else:
-        try:
-            email = user.getProperty("email")
-        except ValueError:
-            # in case property `email` does not exist
-            email = ""
-    return emailToPersonId(email)
+        return user.getUserName()
+    try:
+        return user.getProperty("email") or ""
+    except ValueError:
+        # in case property `email` does not exist
+        return ""
+
+
+# plone user to personId
+def ploneUserToPersonId(user):
+    return emailToPersonId(getEmailOfPloneUser(user))
 
 
 # Content-type subscribers in this addon (see the various `autoSetID`
