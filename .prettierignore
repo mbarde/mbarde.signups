@@ -1,0 +1,7 @@
+# Zope Page Templates (.pt) are XML using tal:/metal:/i18n: namespaced
+# attributes - Prettier has no parser for this syntax. VS Code has no
+# built-in language for .pt, so Prettier falls back to whatever language
+# mode the editor guesses (often Angular), which then chokes on legitimate
+# ZPT markup. Format these with the redhat.vscode-xml extension instead
+# (see .vscode/settings.json).
+*.pt

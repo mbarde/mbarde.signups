@@ -49,9 +49,7 @@
           <ul>
             <li tal:repeat="person context/getPersons">
               <a tal:attributes="href person/absolute_url">
-                <span tal:replace="person/Title" />
-                (<span tal:replace="person/id" />)
-              </a>
+                <span tal:replace="person/Title" /> (<span tal:replace="person/id" />) </a>
             </li>
           </ul>
         </tal:persons>

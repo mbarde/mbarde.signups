@@ -1,6 +1,9 @@
 <html
   xmlns="http://www.w3.org/1999/xhtml"
   xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   metal:use-macro="here/main_template/macros/master"
   i18n:domain="mbarde.signups"
 >
@@ -37,16 +40,17 @@
               </a>
             </td>
             <td tal:condition="showSlotNames">
-              <strong><span tal:content="timeSlot/name" /></strong>
+              <strong>
+                <span tal:content="timeSlot/name" />
+              </strong>
             </td>
             <td tal:condition="not: hideDateTime">
               <span tal:content="timeSlot/getTimeRange" />
             </td>
             <td tal:condition="not: hideAvailability">
               <span tal:content="timeSlot/getNumberOfAvailableSlots" />
-              <span tal:condition="timeSlot/allowWaitingList">
-                + <span i18n:translate="">Waiting List</span></span
-              >
+              <span tal:condition="timeSlot/allowWaitingList"> + <span i18n:translate="">Waiting
+                  List</span></span>
             </td>
             <td
               align="center"
@@ -55,43 +59,32 @@
               <tal:block
                 tal:condition="python: state in ['unconfirmed', 'signedup', 'signedoff']"
               >
-                <em
-                  ><strong>
-                    &rarr;
-                    <a
+                <em>
+                  <strong> &#8594; <a
                       tal:attributes="href string:${context/absolute_url}/@@view-my-signups"
                       i18n:translate=""
-                      >Your Slot</a
-                    >
-                    <span tal:condition="python: state == 'unconfirmed'">
-                      (<span i18n:translate="unconfirmed" />)
-                    </span>
+                    >Your Slot</a>
+                    <span
+                      tal:condition="python: state == 'unconfirmed'"> (<span
+                        i18n:translate="unconfirmed" />) </span>
                     <span
                       tal:condition="python: state == 'signedoff'"
                       i18n:attributes="title"
                       title="Your registration has been canceled"
-                    >
-                      (
-                      <tal:icon
+                    > ( <tal:icon
                         replace="structure python: icons.tag('plone-error')"
                       />
-                      <span i18n:translate="signedoff" /> )
-                    </span>
-                    &larr;
-                  </strong></em
-                >
+                      <span
+                        i18n:translate="signedoff" /> ) </span> &#8592; </strong>
+                </em>
               </tal:block>
               <tal:block tal:condition="python: state == 'waiting'">
-                <em
-                  ><strong
-                    >&rarr;
-                    <a
+                <em>
+                  <strong>&#8594; <a
                       tal:attributes="href string:${context/absolute_url}/@@view-my-signups"
                       i18n:translate="on_waiting_list"
-                    ></a>
-                    &larr;</strong
-                  ></em
-                >
+                    ></a> &#8592;</strong>
+                </em>
               </tal:block>
 
               <tal:block tal:condition="not:state">
@@ -104,7 +97,7 @@
                       type="radio"
                       name="slotSelection"
                       tal:attributes="value timeSlot/getIDLabel"
-                      checked
+                      checked="true"
                     />
                     <input
                       tal:condition="python: not isSingleTimeSlot and allowSignupForMultipleSlots"
@@ -126,8 +119,7 @@
                   i18n:translate=""
                   i18n:attributes="title"
                   title="Registration expired"
-                  >(expired)</span
-                >
+                >(expired)</span>
               </tal:block>
             </td>
           </tr>
@@ -175,23 +167,22 @@
           />
           <strong i18n:translate="">Info:</strong>
           <span class="content" i18n:translate=""
-            >You are already signed up for a slot in this signup sheet and
-            multiple signups are not allowed.</span
-          >
+          >You are already signed up for a slot in this signup
+            sheet and
+            multiple signups are not allowed.</span>
         </div>
 
         <br />
 
         <tal:block tal:condition="context/contactInfo">
           <span i18n:translate=""
-            >If you have any questions please contact:</span
-          >
+          >If you have any questions please contact:</span>
           <a
             tal:attributes="href python: 'mailto:' + context.contactInfo"
             tal:content="python: context.getContactInfoAsSentence()"
-            >mailto</a
-          >
-          <br /><br />
+          >mailto</a>
+          <br />
+          <br />
         </tal:block>
 
         <form
@@ -233,7 +224,7 @@
                         tal:define="index repeat/day/index;
                                curMonth python: day.date.strftime('%b');
                                bodyId python: str(mIndex) + '-' + str(index) + '-body';
-                               isOpen python: len(days) <= 1"
+                               isOpen python: len(days) &lt;= 1"
                       >
                         <h4 class="accordion-header d-flex align-items-center">
                           <button
@@ -370,8 +361,7 @@
               />
               <strong i18n:translate="">Info:</strong>
               <span class="content" i18n:translate=""
-                >Select a timeslot to proceed</span
-              >
+              >Select a timeslot to proceed</span>
             </div>
 
             <div id="personalInfoFields" style="display: none">
@@ -382,7 +372,7 @@
                     class="required"
                     i18n:attributes="title"
                     title="Required"
-                  ></span>
+                  >&#160;</span>
                 </label>
                 <br />
                 <input
@@ -403,7 +393,7 @@
                     class="required"
                     i18n:attributes="title"
                     title="Required"
-                  ></span>
+                  >&#160;</span>
                 </label>
                 <br />
                 <input
@@ -424,7 +414,7 @@
                     class="required"
                     i18n:attributes="title"
                     title="Required"
-                  ></span>
+                  >&#160;</span>
                 </label>
                 <br />
                 <input
@@ -447,8 +437,7 @@
                 tal:condition="python: context.dataUsageDeclaration and context.dataUsageDeclarationConsentRequired"
               >
                 <label class="form-label" i18n:translate=""
-                  >Data usage declaration</label
-                >
+                >Data usage declaration</label>
                 <tal:block
                   tal:replace="structure view/w/dataUsageDeclaration/render"
                 />
@@ -467,14 +456,12 @@
                 />
                 <label class="form-check-label" for="agreeDataUsage">
                   <span i18n:translate=""
-                    >I agree to the data usage declaration above</span
-                  >
+                  >I agree to the data usage declaration above</span>
                   <span
                     class="required"
                     i18n:attributes="title"
                     title="Required"
-                    >&nbsp;</span
-                  >
+                  >&#160;</span>
                 </label>
               </div>
 
@@ -500,16 +487,14 @@
             <tal:icon
               replace="structure python: icons.tag('plone-statusmessage-error', tag_alt='Error:', tag_class='statusmessage-icon mb-1 me-2')"
             />
-            <strong i18n:translate="">Warning</strong>:
-            <span class="content" i18n:translate=""
-              >Signups are only allowed for authenticated users</span
-            >:
-            <a
+            <strong
+              i18n:translate="">Warning</strong>: <span class="content" i18n:translate=""
+            >Signups are
+            only allowed for authenticated users</span>: <a
               tal:attributes="href string:${context/@@plone_portal_state/portal_url}/login_form?came_from=${context/absolute_url}"
               class="alert-link"
               i18n:translate=""
-              >Login now</a
-            >
+            >Login now</a>
           </div>
         </form>
       </tal:main-macro>

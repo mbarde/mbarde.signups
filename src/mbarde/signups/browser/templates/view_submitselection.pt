@@ -2,6 +2,9 @@
   xmlns="http://www.w3.org/1999/xhtml"
   xml:lang="en"
   lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   metal:use-macro="here/main_template/macros/master"
   i18n:domain="mbarde.signups"
 >
@@ -12,8 +15,8 @@
         tal:define="icons python: context.restrictedTraverse('@@iconresolver')"
       >
         <h2>
-          <span tal:content="string:${context/Title}"></span> -
-          <span i18n:translate="">Sign Up Results</span>
+          <span tal:content="string:${context/Title}"></span> - <span i18n:translate="">Sign Up
+          Results</span>
         </h2>
 
         <div
@@ -55,15 +58,14 @@
               <div class="content pt-3">
                 <p>
                   <span i18n:translate=""
-                    >You have been successfully signed up for:</span
-                  ><br /> <b tal:content="result/slotLabel" />
+                  >You have been successfully signed up for:</span>
+                  <br />
+                  <b tal:content="result/slotLabel" />
                 </p>
                 <p tal:condition="view/isEmailValid">
                   <span i18n:translate=""
-                    >A confirmation email has been sent to you</span
-                  >
-                  (<b tal:content="view/email"></b>).
-                </p>
+                  >A confirmation email has been sent to you</span> (<b
+                    tal:content="view/email"></b>). </p>
               </div>
             </div>
           </tal:block>
@@ -80,8 +82,9 @@
               <div class="content">
                 <p>
                   <span i18n:translate=""
-                    >Your preliminary signup has been received:</span
-                  ><br /> <span tal:content="result/slotLabel" />
+                  >Your preliminary signup has been received:</span>
+                  <br />
+                  <span tal:content="result/slotLabel" />
                 </p>
                 <p tal:condition="view/isEmailValid" i18n:translate="">
                   You will receive a confirmation email now and a second one
@@ -103,9 +106,10 @@
               <div class="content">
                 <p>
                   <span i18n:translate=""
-                    >You have been successfully added to the waiting list
-                    for:</span
-                  ><br /> <span tal:content="result/slotLabel" />
+                  >You have been successfully added to the waiting list
+                    for:</span>
+                  <br />
+                  <span tal:content="result/slotLabel" />
                 </p>
                 <p tal:condition="view/isEmailValid" i18n:translate="">
                   You will receive a confirmation email now and second one when

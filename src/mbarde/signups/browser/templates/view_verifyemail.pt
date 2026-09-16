@@ -2,6 +2,9 @@
   xmlns="http://www.w3.org/1999/xhtml"
   xml:lang="en"
   lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   metal:use-macro="here/main_template/macros/master"
   i18n:domain="mbarde.signups"
 >
@@ -13,8 +16,8 @@
                      otpError python: getattr(view, 'otpError', None)"
       >
         <h2>
-          <span tal:content="string:${context/Title}"></span> -
-          <span i18n:translate="">Verify Your Email</span>
+          <span tal:content="string:${context/Title}"></span> - <span i18n:translate="">Verify Your
+          Email</span>
         </h2>
 
         <div
@@ -50,8 +53,8 @@
             />
             <div class="field mb-3">
               <label for="inputOtpCode" class="form-label" i18n:translate=""
-                >Verification code</label
-              ><br />
+              >Verification code</label>
+              <br />
               <input
                 id="inputOtpCode"
                 name="code"

@@ -2,6 +2,9 @@
   xmlns="http://www.w3.org/1999/xhtml"
   xml:lang="en"
   lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   metal:use-macro="here/main_template/macros/master"
   i18n:domain="mbarde.signups"
 >
@@ -42,20 +45,17 @@
                   >
                     <td>
                       <span tal:content="label" />
-                      <span tal:condition="python: state == 'unconfirmed'">
-                        (<span i18n:translate="unconfirmed" />)
-                      </span>
+                      <span tal:condition="python: state == 'unconfirmed'"> (<span
+                          i18n:translate="unconfirmed" />) </span>
                       <span
                         tal:condition="python: state == 'signedoff'"
                         i18n:attributes="title"
                         title="Your registration has been canceled"
-                      >
-                        (
-                        <tal:icon
+                      > ( <tal:icon
                           replace="structure python: icons.tag('plone-error')"
                         />
-                        <span i18n:translate="signedoff" /> )
-                      </span>
+                        <span
+                          i18n:translate="signedoff" /> ) </span>
                     </td>
                     <td tal:condition="selectable">
                       <input

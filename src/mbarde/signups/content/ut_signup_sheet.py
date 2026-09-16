@@ -142,7 +142,7 @@ class IUTSignupSheet(model.Schema):
         description=_(
             "data_usage_declaration_description",
             default="Describe here specifically what happens with the collected "
-            "personal data and what it is used for.",
+            "personal data, what it is used for and how long will it be stored.",
         ),
         required=False,
     )

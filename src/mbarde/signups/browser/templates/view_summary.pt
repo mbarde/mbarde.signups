@@ -1,144 +1,176 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      lang="en"
-      metal:use-macro="here/main_template/macros/master"
-      i18n:domain="mbarde.signups">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="here/main_template/macros/master"
+  i18n:domain="mbarde.signups">
 
-<body>
-  <div metal:fill-slot="main">
-    <tal:main-macro metal:define-macro="main"
+  <body>
+    <div metal:fill-slot="main">
+      <tal:main-macro metal:define-macro="main"
         tal:define="icons python: context.restrictedTraverse('@@iconresolver')">
 
-      <h2>
-        <span tal:replace="string:${context/Title}"/> -
-        <span i18n:translate="">Manager Summary</span>
-      </h2>
-      <hr/>
+        <h2>
+          <span tal:replace="string:${context/Title}" /> - <span i18n:translate="">Manager Summary</span>
+        </h2>
+        <hr />
 
-      <form tal:attributes="action string:${context/absolute_url}/@@export-to-csv">
-        <h3 i18n:translate="">Export</h3>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exportEmptySlots" name="emptyslots" value="True">
-          <label class="form-check-label" for="exportEmptySlots" i18n:translate="">With empty slots</label>
+        <form tal:attributes="action string:${context/absolute_url}/@@export-to-csv">
+          <h3 i18n:translate="">Export</h3>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exportEmptySlots" name="emptyslots"
+              value="True" />
+            <label class="form-check-label" for="exportEmptySlots"
+              i18n:translate="">With empty
+              slots</label>
+          </div>
+
+          <label i18n:translate="">Include persons with following states:</label>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exportStatusUnconfirmed"
+              name="status" value="unconfirmed" />
+            <label class="form-check-label"
+              for="exportStatusUnconfirmed" i18n:translate="">
+              Unconfirmed</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exportStatusSignedup" name="status"
+              value="signedup" checked="true" />
+            <label class="form-check-label" for="exportStatusSignedup" i18n:translate="">Signed up</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exportStatusSignedoff" name="status"
+              value="signedoff" />
+            <label class="form-check-label" for="exportStatusSignedoff" i18n:translate="">Signed off</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exportStatusWaiting" name="status"
+              value="waiting" />
+            <label class="form-check-label" for="exportStatusWaiting" i18n:translate="">Waitinglist</label>
+          </div>
+
+          <div class="field">
+            <label for="exportSeparator" i18n:translate="">Separator</label>
+            <select class="form-select" id="exportSeparator" name="separator">
+              <option value="," selected="true" i18n:translate="">Comma (,)</option>
+              <option value=";" i18n:translate="">Semicolon (;)</option>
+              <option value="&#9;" i18n:translate="">Tab</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary" type="submit"><tal:icon
+              replace="structure python: icons.tag('download', tag_class='me-1')" /> Export</button>
+        </form>
+
+        <hr />
+
+        <a class="btn btn-danger pat-plone-modal" href="#modalRemoveAll"
+          data-pat-plone-modal="width: 400; buttons: .modal-btn;"
+          i18n:translate="">Remove all persons</a>
+
+        <div id="modalRemoveAll" style="display: none">
+          <h1 i18n:translate="">Remove all persons?</h1>
+          <p i18n:translate="">Would you really like to remove all the people from this signup
+            sheet?</p>
+          <p i18n:translate="">All persons, regardless of their signup status, will be deleted. No
+            notification e-mails are sent.</p>
+          <a class="btn btn-danger modal-btn"
+            i18n:translate=""
+            style="margin-right: .5rem"
+            tal:attributes="href view/getRemoveAllUrl">
+            Remove all persons</a>
+          <a href="#" class="btn btn-warning modal-btn" i18n:translate=""
+            onclick="window.location=location.pathname">Cancel</a>
         </div>
+        <hr />
 
-        <label i18n:translate="">Include persons with following states:</label>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exportStatusUnconfirmed" name="status" value="unconfirmed">
-          <label class="form-check-label" for="exportStatusUnconfirmed" i18n:translate="">Unconfirmed</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exportStatusSignedup" name="status" value="signedup" checked>
-          <label class="form-check-label" for="exportStatusSignedup" i18n:translate="">Signed up</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exportStatusSignedoff" name="status" value="signedoff">
-          <label class="form-check-label" for="exportStatusSignedoff" i18n:translate="">Signed off</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exportStatusWaiting" name="status" value="waiting">
-          <label class="form-check-label" for="exportStatusWaiting" i18n:translate="">Waitinglist</label>
-        </div>
+        <tal:block define="days python: context.getDays(False)">
+          <h3 tal:condition="not: days"
+            i18n:translate="timeslot_label_noUpcomingDays">There are no upcoming days for this
+            signup sheet.</h3>
 
-        <div class="field">
-          <label for="exportSeparator" i18n:translate="">Separator</label>
-          <select class="form-select" id="exportSeparator" name="separator">
-            <option value="," selected i18n:translate="">Comma (,)</option>
-            <option value=";" i18n:translate="">Semicolon (;)</option>
-            <option value="&#9;" i18n:translate="">Tab</option>
-          </select>
-        </div>
-
-        <button class="btn btn-primary" type="submit"><tal:icon replace="structure python: icons.tag('download', tag_class='me-1')" /> Export</button>
-      </form>
-
-      <hr/>
-
-      <a class="btn btn-danger pat-plone-modal" href="#modalRemoveAll"
-         data-pat-plone-modal="width: 400; buttons: .modal-btn;"
-         i18n:translate="">Remove all persons</a>
-
-      <div id="modalRemoveAll" style="display: none">
-        <h1 i18n:translate="">Remove all persons?</h1>
-        <p i18n:translate="">Would you really like to remove all the people from this signup sheet?</p>
-        <p i18n:translate="">All persons, regardless of their signup status, will be deleted. No notification e-mails are sent.</p>
-        <a class="btn btn-danger modal-btn"
-           tal:attributes="href view/getRemoveAllUrl">
-          Remove all persons</a>
-        <a href="#" class="btn btn-warning modal-btn"
-           onclick="window.location=location.pathname">Cancel</a>
-      </div>
-      <hr/>
-
-      <tal:block define="days python: context.getDays(False)">
-      <h3 tal:condition="not: days"
-          i18n:translate="timeslot_label_noUpcomingDays">There are no upcoming days for this signup sheet.</h3>
-
-      <div class="accordion" id="slots-accordion">
-      <tal:block tal:repeat="day days">
-      <tal:days define="dayIndex repeat/day/index;
-                        isOpen python: len(days) <= 1">
-          <tal:slots repeat="timeSlot day/getTimeSlots">
-          <div class="accordion-item"
-               tal:define="slotIndex repeat/timeSlot/index;
+          <div class="accordion" id="slots-accordion">
+            <tal:block tal:repeat="day days">
+              <tal:days
+                define="dayIndex repeat/day/index;
+                        isOpen python: len(days) &lt;= 1">
+                <tal:slots repeat="timeSlot day/getTimeSlots">
+                  <div class="accordion-item"
+                    tal:define="slotIndex repeat/timeSlot/index;
                            peopleCount python: len(timeSlot.getPeople());
                            bodyId python: str(dayIndex) + '-' + str(slotIndex) + '-body'">
-            <h4 class="accordion-header"
-                 tal:define="countSignedUp python: len(timeSlot.getPeople(False, 'signedup'));
+                    <h4 class="accordion-header"
+                      tal:define="countSignedUp python: len(timeSlot.getPeople(False, 'signedup'));
                              countUnconfirmed python: len(timeSlot.getPeople(False, 'unconfirmed'));
                              countWaiting python: len(timeSlot.getPeople(False, 'waiting'));
                              countSignedOff python: len(timeSlot.getPeople(False, 'signedoff'));">
-              <button type="button" data-bs-toggle="collapse"
-                tal:attributes="data-bs-target string:#${bodyId};
+                      <button type="button" data-bs-toggle="collapse"
+                        tal:attributes="data-bs-target string:#${bodyId};
                                  aria-controls bodyId;
                                  aria-expanded python: 'true' if isOpen else 'false';
                                  class python: 'accordion-button' if isOpen else 'accordion-button collapsed'">
-                <tal:icon replace="structure python: icons.tag('plone-calendar', tag_class='me-1')" />
-                <tal:item tal:replace="python: day.Title() + ' ' + timeSlot.Title()"/>
-                <span class="badge bg-success ms-1" style="color: white"
-                      tal:condition="python: countSignedUp > 0"
-                      tal:content="python: str(countSignedUp) + ' / ' + str(timeSlot.maxCapacity)"
-                      title="Signed Up" i18n:attributes="title"
-                />
-                <span class="badge bg-warning ms-1" style="color: white"
-                      tal:condition="python: countUnconfirmed > 0"
-                      tal:content="python: str(countUnconfirmed)"
-                      title="Waiting for confirmation" i18n:attributes="title"
-                />
-                <span class="badge bg-info ms-1" style="color: white"
-                      tal:condition="python: countWaiting > 0"
-                      tal:content="python: str(countWaiting)"
-                      title="Waiting List" i18n:attributes="title"
-                />
-                <span class="badge bg-danger ms-1" style="color: white"
-                      tal:condition="python: countSignedOff > 0"
-                      tal:content="python: str(countSignedOff)"
-                      title="Signed off" i18n:attributes="title"
-                />
-              </button>
-            </h4>
-            <div data-bs-parent="#slots-accordion"
-                 tal:attributes="id bodyId;
+                        <tal:icon
+                          replace="structure python: icons.tag('plone-calendar', tag_class='me-1')" />
+                        <tal:item tal:replace="python: day.Title() + ' ' + timeSlot.Title()" />
+                        <span class="badge bg-success ms-1" style="color: white"
+                          tal:condition="python: countSignedUp > 0"
+                          tal:content="python: str(countSignedUp) + ' / ' + str(timeSlot.maxCapacity)"
+                          title="Signed Up" i18n:attributes="title"
+                        />
+                        <span class="badge bg-warning ms-1" style="color: white"
+                          tal:condition="python: countUnconfirmed > 0"
+                          tal:content="python: str(countUnconfirmed)"
+                          title="Waiting for confirmation" i18n:attributes="title"
+                        />
+                        <span class="badge bg-info ms-1" style="color: white"
+                          tal:condition="python: countWaiting > 0"
+                          tal:content="python: str(countWaiting)"
+                          title="Waiting List" i18n:attributes="title"
+                        />
+                        <span class="badge bg-danger ms-1" style="color: white"
+                          tal:condition="python: countSignedOff > 0"
+                          tal:content="python: str(countSignedOff)"
+                          title="Signed off" i18n:attributes="title"
+                        />
+                      </button>
+                    </h4>
+                    <div data-bs-parent="#slots-accordion"
+                      tal:attributes="id bodyId;
                                  class python: 'accordion-collapse collapse show' if isOpen else 'accordion-collapse collapse'">
-              <div class="accordion-body">
-              <table class="listing table table-bordered" tal:define="dictReviewStateClass python: {'signedoff': 'table-danger', 'signedup': 'table-success', 'unconfirmed': 'table-warning', 'waiting': 'table-info'}">
-              <tr tal:repeat="person python: timeSlot.getPeople(True)" tal:attributes="class python: dictReviewStateClass.get(view.getReviewState(person), '')" >
-                  <td><a tal:content="person/Title" tal:attributes="href person/absolute_url" /></td>
-                  <td tal:content="person/email" />
-                  <td i18n:translate="" tal:content="python: view.getReviewStateTitle(person)" />
-                  <td><a tal:attributes="href person/absolute_url"
-                         i18n:attributes="title" title="Edit person"><tal:icon replace="structure python: icons.tag('plone-edit', tag_alt='Edit person')" /></a></td>
-              </tr>
-              </table>
-              </div>
-            </div>
+                      <div class="accordion-body">
+                        <table class="listing table table-bordered"
+                          tal:define="dictReviewStateClass python: {'signedoff': 'table-danger', 'signedup': 'table-success', 'unconfirmed': 'table-warning', 'waiting': 'table-info'}">
+                          <tr tal:repeat="person python: timeSlot.getPeople(True)"
+                            tal:attributes="class python: dictReviewStateClass.get(view.getReviewState(person), '')">
+                            <td>
+                              <a tal:content="person/Title"
+                                tal:attributes="href person/absolute_url" />
+                            </td>
+                            <td tal:content="person/email" />
+                            <td i18n:translate=""
+                              tal:content="python: view.getReviewStateTitle(person)" />
+                            <td>
+                              <a tal:attributes="href person/absolute_url"
+                                i18n:attributes="title" title="Edit person">
+                                <tal:icon
+                                  replace="structure python: icons.tag('plone-edit', tag_alt='Edit person')" />
+                              </a>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </tal:slots>
+              </tal:days>
+            </tal:block>
           </div>
-          </tal:slots>
-      </tal:days>
-      </tal:block>
-      </div>
-      </tal:block>
+        </tal:block>
 
-    </tal:main-macro>
-  </div>
-</body>
+      </tal:main-macro>
+    </div>
+  </body>
 </html>

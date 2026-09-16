@@ -62,8 +62,7 @@
           >
             <div class="mb-3">
               <label for="createSequentialTimeslotsStartTime" i18n:translate=""
-                >Starting time</label
-              >
+              >Starting time</label>
               <input
                 type="time"
                 class="form-control"
@@ -74,8 +73,8 @@
             </div>
             <div class="mb-3">
               <label for="createSequentialTimeslotsDuration" i18n:translate=""
-                >Timeslot duration (minutes)</label
-              >
+              >Timeslot duration
+                (minutes)</label>
               <input
                 type="number"
                 class="form-control"
@@ -88,8 +87,7 @@
             </div>
             <div class="mb-3">
               <label for="createSequentialTimeslotsCount" i18n:translate=""
-                >Number of timeslots</label
-              >
+              >Number of timeslots</label>
               <input
                 type="number"
                 class="form-control"
@@ -102,8 +100,7 @@
             </div>
             <div class="mb-3">
               <label for="createSequentialTimeslotsMaxCapacity" i18n:translate=""
-                >Max capacity</label
-              >
+              >Max capacity</label>
               <input
                 type="number"
                 class="form-control"
@@ -126,8 +123,7 @@
                 class="form-check-label"
                 for="createSequentialTimeslotsAllowWaitingList"
                 i18n:translate=""
-                >Allow waiting list</label
-              >
+              >Allow waiting list</label>
             </div>
             <button type="submit" class="btn btn-primary" i18n:translate="">
               Create timeslots
