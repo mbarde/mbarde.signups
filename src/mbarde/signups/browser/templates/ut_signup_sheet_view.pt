@@ -418,7 +418,7 @@
                 />
               </div>
               <div class="field mb-3">
-                <label for="inputEmail">
+                <label for="inputEmail" class="form-label">
                   <span i18n:translate="">Your email address</span>
                   <span
                     class="required"
@@ -442,9 +442,16 @@
 
               <tal:block tal:replace="structure view/renderExtraForm" />
 
-              <div class="field mb-3" tal:condition="context/dataUsageDeclaration">
-                <label class="form-label" i18n:translate="">Data usage declaration</label>
-                <tal:block tal:replace="structure view/w/dataUsageDeclaration/render" />
+              <div
+                class="field mb-3"
+                tal:condition="python: context.dataUsageDeclaration and context.dataUsageDeclarationConsentRequired"
+              >
+                <label class="form-label" i18n:translate=""
+                  >Data usage declaration</label
+                >
+                <tal:block
+                  tal:replace="structure view/w/dataUsageDeclaration/render"
+                />
               </div>
 
               <div

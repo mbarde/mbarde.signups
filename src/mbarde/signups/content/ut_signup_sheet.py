@@ -55,35 +55,6 @@ class IUTSignupSheet(model.Schema):
         required=False,
     )
 
-    model.fieldset(
-        "dataprivacy",
-        label=_("Data usage declaration"),
-        fields=["dataUsageDeclaration", "dataUsageDeclarationConsentRequired"],
-    )
-
-    dataUsageDeclaration = RichText(
-        title=_("Data usage declaration"),
-        description=_(
-            "data_usage_declaration_description",
-            default="Describe here specifically what happens with the collected "
-            "personal data and what it is used for.",
-        ),
-        required=False,
-    )
-
-    dataUsageDeclarationConsentRequired = schema.Bool(
-        title=_(
-            "consent_required_title",
-            default="User has to consent to the data usage declaration in order to sign up",
-        ),
-        description=_(
-            "consent_required_description",
-            default="Whether consent is required can be derived from Art. 6 GDPR.",
-        ),
-        default=True,
-        required=False,
-    )
-
     signupsRequireConfirmation = schema.Bool(
         title=_("Manager has to confirm signups"),
         description=_("Signups have to be confirmed by the manager (can also be rejected)."),
@@ -157,6 +128,35 @@ class IUTSignupSheet(model.Schema):
         title=_("Additional form"),
         description=_("Additional form to be filled in for registration."),
         source=CatalogSource(portal_type=["EasyForm"]),
+        required=False,
+    )
+
+    model.fieldset(
+        "dataprivacy",
+        label=_("Data usage declaration"),
+        fields=["dataUsageDeclaration", "dataUsageDeclarationConsentRequired"],
+    )
+
+    dataUsageDeclaration = RichText(
+        title=_("Data usage declaration"),
+        description=_(
+            "data_usage_declaration_description",
+            default="Describe here specifically what happens with the collected "
+            "personal data and what it is used for.",
+        ),
+        required=False,
+    )
+
+    dataUsageDeclarationConsentRequired = schema.Bool(
+        title=_(
+            "consent_required_title",
+            default="User has to consent to the data usage declaration in order to sign up",
+        ),
+        description=_(
+            "consent_required_description",
+            default="Whether consent is required can be derived from Art. 6 GDPR.",
+        ),
+        default=True,
         required=False,
     )
 
