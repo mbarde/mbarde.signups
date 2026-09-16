@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.easyform.api import get_schema
+from datetime import date
 from mbarde.signups import _
 from plone import api
 from plone.i18n.normalizer.interfaces import IIDNormalizer
@@ -142,3 +143,40 @@ def translateReviewState(state):
     if state not in mappings:
         return state
     return mappings[state]
+
+
+def purgeExpiredPersonalData(dryRun=True):
+    today = date.today()
+    catalog = api.portal.get_tool("portal_catalog")
+    results = []
+
+    sheetBrains = catalog.unrestrictedSearchResults(portal_type="UTSignupSheet")
+    for sheetBrain in sheetBrains:
+        sheet = sheetBrain.getObject()
+        afterDays = sheet.autoDeletePersonalDataAfterDays
+        if afterDays is None:
+            continue
+
+        for day in sheet.getDays(onlyIncludeUpcomingDays=False):
+            if (today - day.date).days < afterDays:
+                continue
+
+            personBrains = catalog.unrestrictedSearchResults(
+                portal_type="UTPerson", path="/".join(day.getPhysicalPath())
+            )
+            if not personBrains:
+                continue
+
+            if not dryRun:
+                for personBrain in personBrains:
+                    api.content.delete(obj=personBrain.getObject(), check_linkintegrity=False)
+
+            results.append(
+                {
+                    "sheet": sheet.absolute_url(1),
+                    "day": day.id,
+                    "count": len(personBrains),
+                }
+            )
+
+    return results

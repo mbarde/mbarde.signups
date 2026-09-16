@@ -24,6 +24,9 @@ dependencies = [
 [project.entry-points."z3c.autoinclude.plugin"]
 target = "plone"
 
+[project.scripts]
+mbarde_signups_purge_expired_persons = "mbarde.signups.scripts.purge_expired_persons:main"
+
 [build-system]
 requires = ["setuptools>=65"]
 build-backend = "setuptools.build_meta"

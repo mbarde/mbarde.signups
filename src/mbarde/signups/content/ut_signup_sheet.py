@@ -133,8 +133,12 @@ class IUTSignupSheet(model.Schema):
 
     model.fieldset(
         "dataprivacy",
-        label=_("Data usage declaration"),
-        fields=["dataUsageDeclaration", "dataUsageDeclarationConsentRequired"],
+        label=_("data_privacy_fieldset_label", default="Data privacy"),
+        fields=[
+            "dataUsageDeclaration",
+            "dataUsageDeclarationConsentRequired",
+            "autoDeletePersonalDataAfterDays",
+        ],
     )
 
     dataUsageDeclaration = RichText(
@@ -158,6 +162,21 @@ class IUTSignupSheet(model.Schema):
         ),
         default=True,
         required=False,
+    )
+
+    autoDeletePersonalDataAfterDays = schema.Int(
+        title=_(
+            "auto_delete_personal_data_title",
+            default="Automatically delete personal data after (days)",
+        ),
+        description=_(
+            "auto_delete_personal_data_description",
+            default="Number of days after a day's date (see UTDay) after which the "
+            "personal data (UTPerson objects) of that day's signups is automatically "
+            "deleted. Leave empty to disable automatic deletion for this signup sheet.",
+        ),
+        required=False,
+        min=0,
     )
 
     model.fieldset(

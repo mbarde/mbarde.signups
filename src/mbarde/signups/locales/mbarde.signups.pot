@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-16 11:38+0000\n"
+"POT-Creation-Date: 2026-09-16 12:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: mbarde.signups\n"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:124
+#: ../browser/templates/ut_signup_sheet_view.pt:117
 msgid "(expired)"
 msgstr ""
 
-#: ../browser/templates/view_submitselection.pt:62
+#: ../browser/templates/view_submitselection.pt:66
 msgid "A confirmation email has been sent to you"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgstr ""
 msgid "Allow the user to signup for more than one slot."
 msgstr ""
 
-#: ../browser/templates/ut_day_view.pt:125
+#: ../browser/templates/ut_day_view.pt:122
 #: ../content/ut_timeslot.py:30
 msgid "Allow waiting list"
 msgstr ""
@@ -84,7 +84,7 @@ msgstr ""
 msgid "Anyone who is not currently logged in has to verify their email address with a one-time code before their signup is completed."
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:338
+#: ../content/ut_signup_sheet.py:357
 msgid "Appended to the emails above, but only for signups made by a logged-in user (not for anonymous/external ones). Leave empty to append nothing."
 msgstr ""
 
@@ -92,7 +92,7 @@ msgstr ""
 msgid "Automatic move up from waiting list"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:293
+#: ../browser/templates/ut_signup_sheet_view.pt:284
 msgid "Available"
 msgstr ""
 
@@ -108,11 +108,11 @@ msgstr ""
 msgid "Cancellation Notification"
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:320
+#: ../content/ut_signup_sheet.py:339
 msgid "Cancellation email content"
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:308
+#: ../content/ut_signup_sheet.py:327
 msgid "Cancellation email subject"
 msgstr ""
 
@@ -124,11 +124,11 @@ msgstr ""
 msgid "Comma (,)"
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:228
+#: ../content/ut_signup_sheet.py:247
 msgid "Confirmation Email Content"
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:216
+#: ../content/ut_signup_sheet.py:235
 msgid "Confirmation email subject"
 msgstr ""
 
@@ -148,12 +148,12 @@ msgstr ""
 msgid "Create multiple timeslots"
 msgstr ""
 
-#: ../browser/templates/ut_day_view.pt:132
+#: ../browser/templates/ut_day_view.pt:128
 msgid "Create timeslots"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:449
-#: ../content/ut_signup_sheet.py:136
+#: ../browser/templates/ut_signup_sheet_view.pt:439
+#: ../content/ut_signup_sheet.py:145
 msgid "Data usage declaration"
 msgstr ""
 
@@ -182,7 +182,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:253
+#: ../browser/templates/ut_signup_sheet_view.pt:244
 msgid "Edit day"
 msgstr ""
 
@@ -190,15 +190,15 @@ msgstr ""
 msgid "Edit person"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:20
+#: ../browser/templates/ut_signup_sheet_view.pt:23
 msgid "Edit timeslot"
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:198
+#: ../content/ut_signup_sheet.py:217
 msgid "Email Verification Email Content"
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:186
+#: ../content/ut_signup_sheet.py:205
 msgid "Email verification email subject"
 msgstr ""
 
@@ -214,12 +214,12 @@ msgstr ""
 msgid "Export"
 msgstr ""
 
-#: ../browser/templates/view_submitselection.pt:27
-#: ../browser/templates/view_verifyemail.pt:28
+#: ../browser/templates/view_submitselection.pt:30
+#: ../browser/templates/view_verifyemail.pt:31
 msgid "Failure"
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:166
+#: ../content/ut_signup_sheet.py:185
 msgid "Following placeholders can be used:<br/>$$name$$ -> Full name of user<br/>$$title$$ -> Title of the signup sheet<br/>$$url$$ -> URL of the signup sheet<br/>$$user_url$$ -> URL to view/manage your own registration(s) (not available for the email verification email)<br/>$$slot$$ -> Date and time of slot (name of slot if date and time hid)<br/>$$data$$ -> Additional data (see 'additional form')<br/>$$code$$ -> One-time verification code (only available for the email verification email)"
 msgstr ""
 
@@ -231,7 +231,7 @@ msgstr ""
 msgid "For signups that are not bound to a certain time slot."
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:122
+#: ../browser/templates/ut_signup_sheet_view.pt:115
 msgid "Full"
 msgstr ""
 
@@ -253,7 +253,7 @@ msgstr ""
 msgid "Hide how many persons can sign up for a slot."
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:469
+#: ../browser/templates/ut_signup_sheet_view.pt:458
 msgid "I agree to the data usage declaration above"
 msgstr ""
 
@@ -261,7 +261,7 @@ msgstr ""
 msgid "If a signup is cancelled, the first person on the waiting list (sorted by date) is automatically signed up."
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:186
+#: ../browser/templates/ut_signup_sheet_view.pt:178
 #: ../browser/view_submitselection.py:147
 msgid "If you have any questions please contact:"
 msgstr ""
@@ -274,7 +274,7 @@ msgstr ""
 msgid "Incorrect code. Please try again."
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:176
+#: ../browser/templates/ut_signup_sheet_view.pt:168
 msgid "Info:"
 msgstr ""
 
@@ -286,11 +286,11 @@ msgstr ""
 msgid "Lock personal data"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:507
+#: ../browser/templates/ut_signup_sheet_view.pt:493
 msgid "Login now"
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:165
+#: ../content/ut_signup_sheet.py:184
 msgid "Mail settings"
 msgstr ""
 
@@ -303,7 +303,7 @@ msgstr ""
 msgid "Manager has to confirm signups"
 msgstr ""
 
-#: ../browser/templates/ut_day_view.pt:104
+#: ../browser/templates/ut_day_view.pt:102
 #: ../content/ut_timeslot.py:26
 msgid "Max capacity"
 msgstr ""
@@ -320,13 +320,13 @@ msgstr ""
 msgid "Member property for surname"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:286
+#: ../browser/templates/ut_signup_sheet_view.pt:277
 #: ../browser/view_cancelreservation.py:60
 #: ../browser/view_submitselection.py:368
 msgid "Name"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:309
+#: ../browser/templates/ut_signup_sheet_view.pt:300
 msgid "No slots have been made available for this day yet."
 msgstr ""
 
@@ -338,7 +338,7 @@ msgstr ""
 msgid "Note"
 msgstr ""
 
-#: ../browser/templates/ut_day_view.pt:90
+#: ../browser/templates/ut_day_view.pt:89
 msgid "Number of timeslots"
 msgstr ""
 
@@ -354,7 +354,7 @@ msgstr ""
 msgid "Person for mbarde.signups"
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:355
+#: ../content/ut_signup_sheet.py:374
 msgid "Personal data can only be locked if signup for external users is disabled."
 msgstr ""
 
@@ -370,7 +370,7 @@ msgstr ""
 msgid "Please use the following code to verify your email address and complete your signup:"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:388
+#: ../browser/templates/ut_signup_sheet_view.pt:378
 #: ../content/ut_person.py:20
 msgid "Prename"
 msgstr ""
@@ -383,7 +383,7 @@ msgstr ""
 msgid "Registration Notification"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:124
+#: ../browser/templates/ut_signup_sheet_view.pt:117
 msgid "Registration expired"
 msgstr ""
 
@@ -395,21 +395,21 @@ msgstr ""
 msgid "Remove all persons?"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:381
+#: ../browser/templates/ut_signup_sheet_view.pt:371
 msgid "Required"
 msgstr ""
 
 #: ../browser/templates/view_mysignups.pt:126
-#: ../browser/templates/view_submitselection.pt:143
-#: ../browser/templates/view_verifyemail.pt:89
+#: ../browser/templates/view_submitselection.pt:147
+#: ../browser/templates/view_verifyemail.pt:92
 msgid "Return to the signup sheet"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:299
+#: ../browser/templates/ut_signup_sheet_view.pt:290
 msgid "Select"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:372
+#: ../browser/templates/ut_signup_sheet_view.pt:363
 msgid "Select a timeslot to proceed"
 msgstr ""
 
@@ -433,21 +433,21 @@ msgstr ""
 msgid "Show individual time slot names"
 msgstr ""
 
-#: ../browser/templates/view_submitselection.pt:16
+#: ../browser/templates/view_submitselection.pt:18
 msgid "Sign Up Results"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:482
+#: ../browser/templates/ut_signup_sheet_view.pt:469
 msgid "Sign up"
 msgstr ""
 
-#: ../utils.py:138
+#: ../utils.py:139
 msgid "Signed Off"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:118
 #: ../browser/views.py:252
-#: ../utils.py:137
+#: ../utils.py:138
 msgid "Signed Up"
 msgstr ""
 
@@ -468,7 +468,7 @@ msgstr ""
 msgid "Signup sheet with timeslot support"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:504
+#: ../browser/templates/ut_signup_sheet_view.pt:491
 msgid "Signups are only allowed for authenticated users"
 msgstr ""
 
@@ -493,7 +493,7 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-#: ../browser/templates/view_submitselection.pt:54
+#: ../browser/templates/view_submitselection.pt:57
 msgid "Success"
 msgstr ""
 
@@ -505,11 +505,11 @@ msgstr ""
 msgid "Successfully removed ${count} persons."
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:337
+#: ../content/ut_signup_sheet.py:356
 msgid "Suffix for authenticated users"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:409
+#: ../browser/templates/ut_signup_sheet_view.pt:399
 #: ../content/ut_person.py:22
 msgid "Surname"
 msgstr ""
@@ -530,11 +530,11 @@ msgstr ""
 msgid "The slot you selected is already full. Please select a different one."
 msgstr ""
 
-#: ../browser/templates/view_submitselection.pt:128
+#: ../browser/templates/view_submitselection.pt:132
 msgid "The system was unable to register you."
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:225
+#: ../browser/templates/ut_signup_sheet_view.pt:216
 msgid "There are no upcoming days for this signup sheet."
 msgstr ""
 
@@ -550,23 +550,23 @@ msgstr ""
 msgid "This code is valid for 15 minutes."
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:309
+#: ../content/ut_signup_sheet.py:328
 msgid "This email will be send on a registration cancellation."
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:279
+#: ../content/ut_signup_sheet.py:298
 msgid "This email will be send on registration for the waitinglist."
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:217
+#: ../content/ut_signup_sheet.py:236
 msgid "This email will be send on successful registration."
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:187
+#: ../content/ut_signup_sheet.py:206
 msgid "This email will be send to verify the email address of a user who is not logged in (if field 'Email verification for external users' is set)."
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:246
+#: ../content/ut_signup_sheet.py:265
 msgid "This email will be send when user registered for a timeslot and a confirmation is required (if field \"Manager has to confirm signups\" is set)."
 msgstr ""
 
@@ -574,12 +574,12 @@ msgstr ""
 msgid "This message is to notify you that someone signed up for:"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:292
+#: ../browser/templates/ut_signup_sheet_view.pt:283
 #: ../browser/views.py:155
 msgid "Time"
 msgstr ""
 
-#: ../browser/templates/ut_day_view.pt:76
+#: ../browser/templates/ut_day_view.pt:75
 msgid "Timeslot duration (minutes)"
 msgstr ""
 
@@ -595,7 +595,7 @@ msgstr ""
 msgid "Timeslots"
 msgstr ""
 
-#: ../browser/templates/view_mysignups.pt:17
+#: ../browser/templates/view_mysignups.pt:20
 msgid "To cancel, select one or more of your reserved slots and click the \"Cancel Selected Slots\" button."
 msgstr ""
 
@@ -627,15 +627,15 @@ msgstr ""
 msgid "Uninstalls the mbarde.signups add-on."
 msgstr ""
 
-#: ../browser/templates/view_verifyemail.pt:52
+#: ../browser/templates/view_verifyemail.pt:55
 msgid "Verification code"
 msgstr ""
 
-#: ../browser/templates/view_verifyemail.pt:68
+#: ../browser/templates/view_verifyemail.pt:71
 msgid "Verify"
 msgstr ""
 
-#: ../browser/templates/view_verifyemail.pt:17
+#: ../browser/templates/view_verifyemail.pt:19
 msgid "Verify Your Email"
 msgstr ""
 
@@ -645,16 +645,16 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:159
-#: ../browser/templates/view_submitselection.pt:163
+#: ../browser/templates/ut_signup_sheet_view.pt:151
+#: ../browser/templates/view_submitselection.pt:167
 msgid "View My Reservations"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:263
+#: ../browser/templates/ut_signup_sheet_view.pt:254
 msgid "View day"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:29
+#: ../browser/templates/ut_signup_sheet_view.pt:32
 msgid "View timeslot"
 msgstr ""
 
@@ -662,15 +662,15 @@ msgstr ""
 msgid "Wait For Confirmation"
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:259
+#: ../content/ut_signup_sheet.py:278
 msgid "Wait for confirmation email content"
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:245
+#: ../content/ut_signup_sheet.py:264
 msgid "Wait for confirmation email subject"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:48
+#: ../browser/templates/ut_signup_sheet_view.pt:52
 #: ../browser/templates/view_summary.pt:128
 #: ../browser/views.py:258
 msgid "Waiting List"
@@ -682,7 +682,7 @@ msgstr ""
 
 #: ../browser/templates/view_summary.pt:123
 #: ../browser/views.py:254
-#: ../utils.py:139
+#: ../utils.py:140
 msgid "Waiting for confirmation"
 msgstr ""
 
@@ -690,19 +690,19 @@ msgstr ""
 msgid "Waitinglist"
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:290
+#: ../content/ut_signup_sheet.py:309
 msgid "Waitinglist Email Content"
 msgstr ""
 
-#: ../content/ut_signup_sheet.py:278
+#: ../content/ut_signup_sheet.py:297
 msgid "Waitinglist email subject"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:503
+#: ../browser/templates/ut_signup_sheet_view.pt:490
 msgid "Warning"
 msgstr ""
 
-#: ../browser/templates/view_verifyemail.pt:33
+#: ../browser/templates/view_verifyemail.pt:36
 msgid "We sent a verification code to the email address below. Please enter it to complete your signup."
 msgstr ""
 
@@ -726,7 +726,7 @@ msgstr ""
 msgid "Would you really like to remove all the people from this signup sheet?"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:177
+#: ../browser/templates/ut_signup_sheet_view.pt:169
 msgid "You are already signed up for a slot in this signup sheet and multiple signups are not allowed."
 msgstr ""
 
@@ -742,56 +742,56 @@ msgstr ""
 msgid "You are on a waiting list for the following slots:"
 msgstr ""
 
-#: ../browser/templates/view_submitselection.pt:33
+#: ../browser/templates/view_submitselection.pt:36
 msgid "You did not complete the following fields:"
 msgstr ""
 
-#: ../browser/templates/view_submitselection.pt:105
+#: ../browser/templates/view_submitselection.pt:108
 msgid "You have been successfully added to the waiting list for:"
 msgstr ""
 
-#: ../browser/templates/view_submitselection.pt:57
+#: ../browser/templates/view_submitselection.pt:60
 msgid "You have been successfully signed up for:"
 msgstr ""
 
-#: ../browser/templates/view_submitselection.pt:30
+#: ../browser/templates/view_submitselection.pt:33
 msgid "You need to select at least one slot."
 msgstr ""
 
-#: ../browser/templates/view_mysignups.pt:31
+#: ../browser/templates/view_mysignups.pt:34
 msgid "You signed up for the following slots:"
 msgstr ""
 
-#: ../browser/templates/view_submitselection.pt:86
+#: ../browser/templates/view_submitselection.pt:89
 msgid "You will receive a confirmation email now and a second one when your signup has been confirmed (or rejected)."
 msgstr ""
 
-#: ../browser/templates/view_submitselection.pt:110
+#: ../browser/templates/view_submitselection.pt:114
 msgid "You will receive a confirmation email now and second one when a spot opens up."
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:61
+#: ../browser/templates/ut_signup_sheet_view.pt:63
 msgid "Your Slot"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:422
+#: ../browser/templates/ut_signup_sheet_view.pt:412
 msgid "Your email address"
 msgstr ""
 
-#: ../browser/templates/view_submitselection.pt:82
+#: ../browser/templates/view_submitselection.pt:84
 msgid "Your preliminary signup has been received:"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:380
+#: ../browser/templates/ut_signup_sheet_view.pt:370
 msgid "Your prename"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:69
-#: ../browser/templates/view_mysignups.pt:48
+#: ../browser/templates/ut_signup_sheet_view.pt:70
+#: ../browser/templates/view_mysignups.pt:50
 msgid "Your registration has been canceled"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:401
+#: ../browser/templates/ut_signup_sheet_view.pt:391
 msgid "Your surname"
 msgstr ""
 
@@ -799,73 +799,88 @@ msgstr ""
 msgid "Your verification code"
 msgstr ""
 
+#. Default: "Number of days after a day's date (see UTDay) after which the personal data (UTPerson objects) of that day's signups is automatically deleted. Leave empty to disable automatic deletion for this signup sheet."
+#: ../content/ut_signup_sheet.py:172
+msgid "auto_delete_personal_data_description"
+msgstr ""
+
+#. Default: "Automatically delete personal data after (days)"
+#: ../content/ut_signup_sheet.py:168
+msgid "auto_delete_personal_data_title"
+msgstr ""
+
 #. Default: "Whether consent is required can be derived from Art. 6 GDPR."
-#: ../content/ut_signup_sheet.py:155
+#: ../content/ut_signup_sheet.py:159
 msgid "consent_required_description"
 msgstr ""
 
 #. Default: "User has to consent to the data usage declaration in order to sign up"
-#: ../content/ut_signup_sheet.py:151
+#: ../content/ut_signup_sheet.py:155
 msgid "consent_required_title"
 msgstr ""
 
+#. Default: "Data privacy"
+#: ../content/ut_signup_sheet.py:136
+msgid "data_privacy_fieldset_label"
+msgstr ""
+
 #. Default: "Describe here specifically what happens with the collected personal data, what it is used for and how long will it be stored."
-#: ../content/ut_signup_sheet.py:142
+#: ../content/ut_signup_sheet.py:146
 msgid "data_usage_declaration_description"
 msgstr ""
 
 #. Default: "Hello $$name$$,\n\nFollowing slot has been cancelled:\n$$slot$$\n\n$$data$$"
-#: ../content/ut_signup_sheet.py:323
+#: ../content/ut_signup_sheet.py:342
 msgid "email_cancel_content_default"
 msgstr ""
 
 #. Default: "$$title$$ - Cancellation Notification"
-#: ../content/ut_signup_sheet.py:312
+#: ../content/ut_signup_sheet.py:331
 msgid "email_cancel_subject_default"
 msgstr ""
 
 #. Default: "Hello $$name$$,\n\nThis message is to confirm that you have been signed up for:\n$$slot$$\n\n$$data$$"
-#: ../content/ut_signup_sheet.py:231
+#: ../content/ut_signup_sheet.py:250
 msgid "email_confirmation_content_default"
 msgstr ""
 
 #. Default: "$$title$$ - Registration Confirmation"
-#: ../content/ut_signup_sheet.py:220
+#: ../content/ut_signup_sheet.py:239
 msgid "email_confirmation_subject_default"
 msgstr ""
 
 #. Default: "Hello $$name$$,\n\nPlease use the following code to verify your email address and complete your signup:\n\n$$code$$\n\nThis code is valid for 15 minutes."
-#: ../content/ut_signup_sheet.py:201
+#: ../content/ut_signup_sheet.py:220
 msgid "email_otp_content_default"
 msgstr ""
 
 #. Default: "$$title$$ - Your verification code"
-#: ../content/ut_signup_sheet.py:193
+#: ../content/ut_signup_sheet.py:212
 msgid "email_otp_subject_default"
 msgstr ""
 
 #. Default: "You can view your registration here: $$user_url$$"
-#: ../content/ut_signup_sheet.py:344
+#: ../content/ut_signup_sheet.py:363
 msgid "email_suffix_authenticated_default"
 msgstr ""
 
 #. Default: "Hello $$name$$,\n\nYou signed up for following slot:\n$$slot$$\nYou will receive another email as soon as your registration has been confirmed (or rejected).\n\n$$data$$"
-#: ../content/ut_signup_sheet.py:262
+#: ../content/ut_signup_sheet.py:281
 msgid "email_wait_for_confirmation_content_default"
 msgstr ""
 
 #. Default: "$$title$$ - Wait For Confirmation"
-#: ../content/ut_signup_sheet.py:251
+#: ../content/ut_signup_sheet.py:270
 msgid "email_wait_for_confirmation_subject_default"
 msgstr ""
 
 #. Default: "Hello $$name$$,\n\nThis message is to confirm that you have been added to the waiting list for:\n$$slot$$\n\n$$data$$"
-#: ../content/ut_signup_sheet.py:293
+#: ../content/ut_signup_sheet.py:312
 msgid "email_waitinglist_content_default"
 msgstr ""
 
 #. Default: "$$title$$ - Waiting List Confirmation"
-#: ../content/ut_signup_sheet.py:282
+#: ../content/ut_signup_sheet.py:301
 msgid "email_waitinglist_subject_default"
 msgstr ""
 
@@ -905,11 +920,11 @@ msgstr ""
 msgid "member_property_surname_description"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:88
+#: ../browser/templates/ut_signup_sheet_view.pt:83
 msgid "on_waiting_list"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:78
+#: ../browser/templates/ut_signup_sheet_view.pt:77
 #: ../browser/templates/view_mysignups.pt:57
 msgid "signedoff"
 msgstr ""
@@ -919,7 +934,7 @@ msgstr ""
 msgid "timeslot_label_noUpcomingDays"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:67
-#: ../browser/templates/view_mysignups.pt:46
+#: ../browser/templates/ut_signup_sheet_view.pt:68
+#: ../browser/templates/view_mysignups.pt:48
 msgid "unconfirmed"
 msgstr ""

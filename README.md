@@ -50,6 +50,18 @@ Optional: Create `EasyForm` and set as additional form in `UTSignupSheet` settin
 
 **Important**: Ensure MailHost is configured properly (https://docs.plone.org/adapt-and-extend/config/mail.html).
 
+## Automatic deletion of personal data
+
+Managers can set "Automatically delete personal data after (days)" for each signup sheet. To have any effect a cronjob needs to be deployed to run `purge_expired_persons.py` regulary.
+
+For example like this:
+
+```
+0 3 * * * cd /path/to/instance && venv/bin/zconsole run etc/zope.conf venv/bin/mbarde_signups_purge_expired_persons --no-dryrun --site-id Plone
+```
+
+(see `[project.scripts]` in `pyproject.toml`)
+
 ## Contribute
 
 - Issue Tracker: https://github.com/mbarde/unikold.timeslots/issues
