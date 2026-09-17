@@ -65,8 +65,8 @@ For example like this:
 
 ## Contribute
 
-- Issue Tracker: https://github.com/mbarde/unikold.timeslots/issues
-- Source Code: https://github.com/mbarde/unikold.timeslots
+- Issue Tracker: https://github.com/mbarde/mbarde.signups/issues
+- Source Code: https://github.com/mbarde/mbarde.signups
 
 ## Development
 

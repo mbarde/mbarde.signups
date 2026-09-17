@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-17 09:02+0000\n"
+"POT-Creation-Date: 2026-09-17 09:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgstr ""
 msgid "Automatic move up from waiting list"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:303
+#: ../browser/templates/ut_signup_sheet_view.pt:301
 msgid "Available"
 msgstr ""
 
@@ -162,7 +162,7 @@ msgstr ""
 msgid "Create timeslots"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:460
+#: ../browser/templates/ut_signup_sheet_view.pt:458
 #: ../content/ut_signup_sheet.py:146
 msgid "Data usage declaration"
 msgstr ""
@@ -196,7 +196,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:263
+#: ../browser/templates/ut_signup_sheet_view.pt:261
 msgid "Edit day"
 msgstr ""
 
@@ -271,7 +271,7 @@ msgstr ""
 msgid "Hide how many persons can sign up for a slot."
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:479
+#: ../browser/templates/ut_signup_sheet_view.pt:477
 msgid "I agree to the data usage declaration above"
 msgstr ""
 
@@ -311,7 +311,7 @@ msgstr ""
 msgid "Lock personal data"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:514
+#: ../browser/templates/ut_signup_sheet_view.pt:512
 msgid "Login now"
 msgstr ""
 
@@ -353,13 +353,13 @@ msgstr ""
 msgid "Member property for surname"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:296
+#: ../browser/templates/ut_signup_sheet_view.pt:294
 #: ../browser/view_cancelreservation.py:60
 #: ../browser/view_submitselection.py:381
 msgid "Name"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:320
+#: ../browser/templates/ut_signup_sheet_view.pt:318
 msgid "No slots have been made available for this day yet."
 msgstr ""
 
@@ -412,7 +412,7 @@ msgid "Please use the following code to verify your email address and complete y
 msgstr ""
 
 #. Default: "Your prename <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:399
+#: ../browser/templates/ut_signup_sheet_view.pt:397
 #: ../content/ut_person.py:20
 msgid "Prename"
 msgstr ""
@@ -437,7 +437,7 @@ msgstr ""
 msgid "Remove all persons?"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:392
+#: ../browser/templates/ut_signup_sheet_view.pt:390
 msgid "Required"
 msgstr ""
 
@@ -447,11 +447,11 @@ msgstr ""
 msgid "Return to the signup sheet"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:309
+#: ../browser/templates/ut_signup_sheet_view.pt:307
 msgid "Select"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:384
+#: ../browser/templates/ut_signup_sheet_view.pt:382
 msgid "Select a timeslot to proceed"
 msgstr ""
 
@@ -483,7 +483,7 @@ msgstr ""
 msgid "Sign Up Results"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:490
+#: ../browser/templates/ut_signup_sheet_view.pt:488
 msgid "Sign up"
 msgstr ""
 
@@ -522,7 +522,7 @@ msgstr ""
 msgid "Signup sheet with timeslot support"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:512
+#: ../browser/templates/ut_signup_sheet_view.pt:510
 msgid "Signups are only allowed for authenticated users"
 msgstr ""
 
@@ -563,7 +563,7 @@ msgstr ""
 msgid "Suffix for authenticated users"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:420
+#: ../browser/templates/ut_signup_sheet_view.pt:418
 #: ../content/ut_person.py:22
 msgid "Surname"
 msgstr ""
@@ -588,7 +588,7 @@ msgstr ""
 msgid "The system was unable to register you."
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:235
+#: ../browser/templates/ut_signup_sheet_view.pt:233
 msgid "There are no upcoming days for this signup sheet."
 msgstr ""
 
@@ -632,7 +632,7 @@ msgstr ""
 msgid "This slot is not currently open for signups."
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:302
+#: ../browser/templates/ut_signup_sheet_view.pt:300
 #: ../browser/views.py:155
 msgid "Time"
 msgstr ""
@@ -708,7 +708,7 @@ msgstr ""
 msgid "View My Reservations"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:273
+#: ../browser/templates/ut_signup_sheet_view.pt:271
 msgid "View day"
 msgstr ""
 
@@ -756,7 +756,7 @@ msgstr ""
 msgid "Waitinglist email subject"
 msgstr ""
 
-#: ../browser/templates/ut_signup_sheet_view.pt:511
+#: ../browser/templates/ut_signup_sheet_view.pt:509
 msgid "Warning"
 msgstr ""
 
@@ -833,7 +833,7 @@ msgid "Your Slot"
 msgstr ""
 
 #. Default: "Your email address <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:433
+#: ../browser/templates/ut_signup_sheet_view.pt:431
 msgid "Your email address"
 msgstr ""
 
@@ -842,7 +842,7 @@ msgid "Your preliminary signup has been received:"
 msgstr ""
 
 #. Default: "Your prename <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:391
+#: ../browser/templates/ut_signup_sheet_view.pt:389
 msgid "Your prename"
 msgstr ""
 
@@ -852,7 +852,7 @@ msgid "Your registration has been canceled"
 msgstr ""
 
 #. Default: "Your surname <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:412
+#: ../browser/templates/ut_signup_sheet_view.pt:410
 msgid "Your surname"
 msgstr ""
 

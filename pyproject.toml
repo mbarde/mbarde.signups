@@ -1,11 +1,11 @@
 [project]
 name = "mbarde.signups"
-version = "1.0.0"
+version = "1.0.0rc1"
 description = "Plone-Addon for dynamic event sign-ups"
 authors = [{ name = "Matthias Barde" }]
 readme = "README.md"
 license = "GPL-2.0-only"
-license-files = ["LICENSE.GPL", "LICENSE.rst"]
+license-files = ["LICENSE.GPL"]
 requires-python = ">=3.12"
 classifiers = [
     "Environment :: Web Environment",
@@ -42,6 +42,9 @@ include = ["mbarde.signups*"]
 
 [tool.setuptools.package-data]
 "mbarde.signups" = ["**/*"]
+
+[tool.setuptools.exclude-package-data]
+"mbarde.signups" = ["**/__pycache__/*", "**/*.pyc"]
 
 [tool.black]
 line-length = 100

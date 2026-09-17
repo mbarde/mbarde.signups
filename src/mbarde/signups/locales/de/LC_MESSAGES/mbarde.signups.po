@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-17 09:02+0000\n"
+"POT-Creation-Date: 2026-09-17 09:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <de@li.org>\n"
@@ -98,7 +98,7 @@ msgstr "August"
 msgid "Automatic move up from waiting list"
 msgstr "Automatisches Nachrücken von der Warteliste"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:303
+#: ../browser/templates/ut_signup_sheet_view.pt:301
 msgid "Available"
 msgstr "Verfügbar"
 
@@ -163,7 +163,7 @@ msgstr "Mehrere Termine anlegen"
 msgid "Create timeslots"
 msgstr "Termine anlegen"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:460
+#: ../browser/templates/ut_signup_sheet_view.pt:458
 #: ../content/ut_signup_sheet.py:146
 msgid "Data usage declaration"
 msgstr "Datennutzungserklärung"
@@ -197,7 +197,7 @@ msgstr "E-Mail"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:263
+#: ../browser/templates/ut_signup_sheet_view.pt:261
 msgid "Edit day"
 msgstr "Tag bearbeiten"
 
@@ -272,7 +272,7 @@ msgstr "Datum und Uhrzeit ausblenden"
 msgid "Hide how many persons can sign up for a slot."
 msgstr "Blendet aus, wie viele Personen sich für einen Termin anmelden können."
 
-#: ../browser/templates/ut_signup_sheet_view.pt:479
+#: ../browser/templates/ut_signup_sheet_view.pt:477
 msgid "I agree to the data usage declaration above"
 msgstr "Ich stimme der obigen Datennutzungserklärung zu"
 
@@ -312,7 +312,7 @@ msgstr "Juni"
 msgid "Lock personal data"
 msgstr "Persönliche Daten sperren"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:514
+#: ../browser/templates/ut_signup_sheet_view.pt:512
 msgid "Login now"
 msgstr "Jetzt einloggen"
 
@@ -354,13 +354,13 @@ msgstr "Mitgliedseigenschaft für Vorname"
 msgid "Member property for surname"
 msgstr "Mitgliedseigenschaft für Nachname"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:296
+#: ../browser/templates/ut_signup_sheet_view.pt:294
 #: ../browser/view_cancelreservation.py:60
 #: ../browser/view_submitselection.py:381
 msgid "Name"
 msgstr "Name"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:320
+#: ../browser/templates/ut_signup_sheet_view.pt:318
 msgid "No slots have been made available for this day yet."
 msgstr "Für diesen Tag wurden noch keine Termine freigegeben."
 
@@ -413,7 +413,7 @@ msgid "Please use the following code to verify your email address and complete y
 msgstr "Bitte verwenden Sie den folgenden Code, um Ihre E-Mail-Adresse zu bestätigen und Ihre Anmeldung abzuschließen:"
 
 #. Default: "Your prename <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:399
+#: ../browser/templates/ut_signup_sheet_view.pt:397
 #: ../content/ut_person.py:20
 msgid "Prename"
 msgstr "Vorname"
@@ -438,7 +438,7 @@ msgstr "Alle Personen entfernen"
 msgid "Remove all persons?"
 msgstr "Alle Personen entfernen?"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:392
+#: ../browser/templates/ut_signup_sheet_view.pt:390
 msgid "Required"
 msgstr "Erforderlich"
 
@@ -448,11 +448,11 @@ msgstr "Erforderlich"
 msgid "Return to the signup sheet"
 msgstr "Zurück zur Anmeldeliste"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:309
+#: ../browser/templates/ut_signup_sheet_view.pt:307
 msgid "Select"
 msgstr "Auswählen"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:384
+#: ../browser/templates/ut_signup_sheet_view.pt:382
 msgid "Select a timeslot to proceed"
 msgstr "Wählen Sie einen Termin aus, um fortzufahren"
 
@@ -484,7 +484,7 @@ msgstr "Namen der einzelnen Termine anzeigen"
 msgid "Sign Up Results"
 msgstr "Anmeldeergebnisse"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:490
+#: ../browser/templates/ut_signup_sheet_view.pt:488
 msgid "Sign up"
 msgstr "Anmelden"
 
@@ -523,7 +523,7 @@ msgstr "Anmeldung möglich ab"
 msgid "Signup sheet with timeslot support"
 msgstr "Anmeldeliste mit Terminunterstützung"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:512
+#: ../browser/templates/ut_signup_sheet_view.pt:510
 msgid "Signups are only allowed for authenticated users"
 msgstr "Anmeldung ist nur nach Login möglich"
 
@@ -564,7 +564,7 @@ msgstr "${count} Personen erfolgreich entfernt."
 msgid "Suffix for authenticated users"
 msgstr "Zusatz für angemeldete Nutzer"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:420
+#: ../browser/templates/ut_signup_sheet_view.pt:418
 #: ../content/ut_person.py:22
 msgid "Surname"
 msgstr "Nachname"
@@ -589,7 +589,7 @@ msgstr "Der ausgewählte Termin ist bereits ausgebucht. Bitte wählen Sie einen 
 msgid "The system was unable to register you."
 msgstr "Das System konnte Sie nicht anmelden."
 
-#: ../browser/templates/ut_signup_sheet_view.pt:235
+#: ../browser/templates/ut_signup_sheet_view.pt:233
 msgid "There are no upcoming days for this signup sheet."
 msgstr "Es gibt keine bevorstehenden Tage für diese Anmeldeliste."
 
@@ -633,7 +633,7 @@ msgstr "Diese Nachricht informiert Sie darüber, dass sich jemand angemeldet hat
 msgid "This slot is not currently open for signups."
 msgstr "Für diesen Termin ist die Anmeldung derzeit nicht möglich."
 
-#: ../browser/templates/ut_signup_sheet_view.pt:302
+#: ../browser/templates/ut_signup_sheet_view.pt:300
 #: ../browser/views.py:155
 msgid "Time"
 msgstr "Uhrzeit"
@@ -709,7 +709,7 @@ msgstr "Ansehen"
 msgid "View My Reservations"
 msgstr "Meine Reservierungen ansehen"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:273
+#: ../browser/templates/ut_signup_sheet_view.pt:271
 msgid "View day"
 msgstr "Tag ansehen"
 
@@ -757,7 +757,7 @@ msgstr "Inhalt der Warteliste-E-Mail"
 msgid "Waitinglist email subject"
 msgstr "Betreff der Warteliste-E-Mail"
 
-#: ../browser/templates/ut_signup_sheet_view.pt:511
+#: ../browser/templates/ut_signup_sheet_view.pt:509
 msgid "Warning"
 msgstr "Warnung"
 
@@ -835,7 +835,7 @@ msgstr "Ihr Termin"
 
 #. Default: "Your email address <span class=\"required\"
 #. title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:433
+#: ../browser/templates/ut_signup_sheet_view.pt:431
 msgid "Your email address"
 msgstr "Ihre E-Mail-Adresse"
 
@@ -844,7 +844,7 @@ msgid "Your preliminary signup has been received:"
 msgstr "Ihre vorläufige Anmeldung wurde empfangen:"
 
 #. Default: "Your prename <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:391
+#: ../browser/templates/ut_signup_sheet_view.pt:389
 msgid "Your prename"
 msgstr "Ihr Vorname"
 
@@ -854,7 +854,7 @@ msgid "Your registration has been canceled"
 msgstr "Ihre Anmeldung wurde storniert"
 
 #. Default: "Your surname <span class=\"required\" title=\"x\">&nbsp;</span>"
-#: ../browser/templates/ut_signup_sheet_view.pt:412
+#: ../browser/templates/ut_signup_sheet_view.pt:410
 msgid "Your surname"
 msgstr "Ihr Nachname"
 
