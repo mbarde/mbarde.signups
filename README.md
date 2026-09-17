@@ -12,6 +12,7 @@ Originally inspired by https://github.com/collective/uwosh.timeslot (content-typ
 - Define date based timeslots users can sign up to
 - Logged in users can watch and manage their signups
 - Timeslots can have capacities (waiting list and automatically moving up included)
+- Timeslots can have effective and expires date (for example to realize registration periods)
 - Customizable notification emails
 - Dynamically extend signup form with EasyForm ([https://github.com/collective/collective.easyform](https://github.com/collective/collective.easyform))
 - External mail validation via OTP
