@@ -92,6 +92,7 @@ class UTTimeslotIntegrationTest(unittest.TestCase):
             title="Signup sheet",
             contactInfo="manager@example.org",
             hideDateTime=True,
+            showSlotNames=True,
         )
         day = createContentInContainer(
             signupSheet,
