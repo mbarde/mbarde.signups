@@ -144,10 +144,7 @@ class SubmitSelection(BrowserView):
 
             if len(contactInfo) > 0:
                 message += (
-                    translate(_("Contact:"), target_language=lang)
-                    + " "
-                    + contactInfo
-                    + "\n\n"
+                    translate(_("Contact:"), target_language=lang) + " " + contactInfo + "\n\n"
                 )
 
         api.portal.send_email(
