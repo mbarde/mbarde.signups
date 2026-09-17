@@ -106,7 +106,7 @@ class IUTSignupSheet(model.Schema):
     showSlotNames = schema.Bool(
         title=_("Show individual time slot names"),
         description=_("Whether or not to show individual slot names."),
-        default=True,
+        default=False,
         required=False,
     )
 

@@ -49,9 +49,12 @@
           data-bs-target="#createSequentialTimeslotsForm"
           aria-expanded="false"
           aria-controls="createSequentialTimeslotsForm"
-          i18n:translate=""
         >
-          Create multiple timeslots
+          <tal:icon
+            replace="structure python: icons.tag('plone-plus', tag_alt='Create multiple timeslots')"
+          />
+          <span
+            i18n:translate="">Create multiple timeslots</span>
         </button>
 
         <div class="collapse mt-2" id="createSequentialTimeslotsForm">
