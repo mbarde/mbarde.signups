@@ -220,7 +220,20 @@ class SubmitSelection(BrowserView):
 
         date, time = slotIDLabel.split(" @ ")
         day = self.context.getDay(date)
-        timeSlot = day.getTimeSlot(time, True)
+
+        try:
+            timeSlot = day.getTimeSlot(time, checkRegistrationWindow=True)
+        except ValueError:
+            # not found or not effective
+            self.results.append(
+                {
+                    "slotLabel": slotIDLabel,
+                    "status": "error",
+                    "error": _("This slot is not currently open for signups."),
+                }
+            )
+            return
+
         slotTitleLabel = timeSlot.getLabel()
         allowWaitingList = timeSlot.allowWaitingList
         numberOfAvailableSlots = timeSlot.getNumberOfAvailableSlots()

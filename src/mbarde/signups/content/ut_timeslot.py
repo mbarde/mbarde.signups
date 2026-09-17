@@ -110,6 +110,24 @@ class UTTimeslot(Container):
         now = DateTime()
         return self.expires() <= now
 
+    def isRegistrationNotYetOpen(self):
+        now = DateTime()
+        return self.effective() > now
+
+    def isRegistrationOpen(self):
+        now = DateTime()
+        return self.effective() <= now <= self.expires()
+
+    def getRegistrationEffectiveLabel(self):
+        if self.effective_date is None:
+            return ""
+        return self.effective_date.strftime("%d.%m.%Y %H:%M")
+
+    def getRegistrationExpiresLabel(self):
+        if self.expiration_date is None:
+            return ""
+        return self.expiration_date.strftime("%d.%m.%Y %H:%M")
+
     def getPath(self):
         return "/".join(self.getPhysicalPath())
 

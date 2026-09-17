@@ -15,7 +15,8 @@
             tal:define="rowState timeSlot/getCurrentUserSignUpState;
                       rowFull timeSlot/isFull;
                       rowExpired timeSlot/isRegistrationExpired;
-                      selectable python: not rowState and not rowExpired and not rowFull and isSignupAllowed"
+                      rowNotYetOpen timeSlot/isRegistrationNotYetOpen;
+                      selectable python: not rowState and not rowExpired and not rowNotYetOpen and not rowFull and isSignupAllowed"
             tal:attributes="class python: 'slot-row' if selectable else None;
                           style python: 'cursor: pointer' if selectable else None"
           >
@@ -88,7 +89,20 @@
               </tal:block>
 
               <tal:block tal:condition="not:state">
-                <tal:block tal:condition="not:timeSlot/isRegistrationExpired">
+                <span tal:condition="timeSlot/isRegistrationNotYetOpen">
+                  <span i18n:translate="">Signup opens on</span>
+                  <span tal:content="timeSlot/getRegistrationEffectiveLabel"></span>
+                </span>
+                <span
+                  tal:condition="timeSlot/isRegistrationExpired"
+                  i18n:translate=""
+                  i18n:attributes="title"
+                  title="Registration expired"
+                >(expired)</span>
+
+                <tal:block
+                  tal:condition="python: not timeSlot.isRegistrationNotYetOpen() and not timeSlot.isRegistrationExpired()"
+                >
                   <tal:block
                     tal:condition="python: not full and isSignupAllowed"
                   >
@@ -114,13 +128,18 @@
                   </tal:block>
                   <span tal:condition="full" i18n:translate="">Full</span>
                 </tal:block>
-                <span
-                  tal:condition="timeSlot/isRegistrationExpired"
-                  i18n:translate=""
-                  i18n:attributes="title"
-                  title="Registration expired"
-                >(expired)</span>
               </tal:block>
+            </td>
+            <td
+              align="center"
+              tal:define="state timeSlot/getCurrentUserSignUpState"
+            >
+              <span
+                tal:condition="python: not state and not timeSlot.isRegistrationNotYetOpen() and not timeSlot.isRegistrationExpired() and timeSlot.expiration_date is not None"
+              >
+                <span i18n:translate="">Signup open until</span>
+                <span tal:content="timeSlot/getRegistrationExpiresLabel"></span>
+              </span>
             </td>
           </tr>
         </tal:block>
@@ -290,6 +309,7 @@
                                   <th i18n:translate="" class="text-center">
                                     Select
                                   </th>
+                                  <th></th>
                                 </tr>
                               </thead>
 
@@ -297,7 +317,7 @@
                                 tal:define="timeSlots day/getTimeSlots"
                               >
                                 <tr tal:condition="not:timeSlots">
-                                  <td colspan="4" i18n:translate="">
+                                  <td colspan="5" i18n:translate="">
                                     No slots have been made available for this
                                     day yet.
                                   </td>
@@ -334,6 +354,7 @@
                     <th tal:condition="not: hideAvailability" i18n:translate="">
                       Available
                     </th>
+                    <th></th>
                     <th class="text-center" i18n:translate="">Select</th>
                   </tr>
                 </thead>

@@ -35,14 +35,15 @@ class UTDay(Container):
 
         return timeSlots
 
-    def getTimeSlot(self, timeslotId, checkExpirationDate=False):
+    def getTimeSlot(self, timeslotId, checkRegistrationWindow=False):
         brains = api.content.find(context=self, portal_type="UTTimeslot", depth=1, id=timeslotId)
         if len(brains) == 0:
             raise ValueError("The TimeSlot {0} was not found.".format(timeslotId))
 
-        if checkExpirationDate:
+        if checkRegistrationWindow:
             now = DateTime()
-            if not brains[0].expires > now:
+            brain = brains[0]
+            if not (brain.effective <= now <= brain.expires):
                 raise ValueError("The TimeSlot {0} was not found.".format(timeslotId))
 
         timeSlot = brains[0].getObject()
