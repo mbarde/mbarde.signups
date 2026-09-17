@@ -30,6 +30,10 @@ User states:
 
 ## Installation
 
+`uv pip install mbarde.signups`
+
+### Setup
+
 Datasets of signups are identified by the email address of the registrant.
 So in order to do a proper matching you need to either
 
