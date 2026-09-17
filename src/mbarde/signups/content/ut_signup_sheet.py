@@ -5,6 +5,7 @@ from mbarde.signups.utils import emailToPersonId
 from mbarde.signups.utils import getAllExtraFields
 from mbarde.signups.utils import ploneUserToPersonId
 from plone import api
+from plone import schema as ploneSchema
 from plone.app.textfield import RichText
 from plone.app.vocabularies.catalog import CatalogSource
 from plone.dexterity.content import Container
@@ -40,7 +41,7 @@ class IUTSignupSheet(model.Schema):
         required=False,
     )
 
-    contactInfo = schema.TextLine(
+    contactInfo = ploneSchema.Email(
         title=_("Contact information"),
         description=_("Contact information for the manager of the signup sheet."),
         required=True,

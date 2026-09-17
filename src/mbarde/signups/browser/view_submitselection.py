@@ -144,7 +144,7 @@ class SubmitSelection(BrowserView):
 
             if len(contactInfo) > 0:
                 message += (
-                    translate(_("If you have any questions please contact:"), target_language=lang)
+                    translate(_("Contact:"), target_language=lang)
                     + " "
                     + contactInfo
                     + "\n\n"
