@@ -10,6 +10,7 @@ from plone.dexterity.interfaces import IDexterityFTI
 from zope.component import createObject
 from zope.component import queryUtility
 from zope.i18n import translate
+from zope.i18nmessageid import Message
 from zope.interface import Invalid
 
 import unittest
@@ -112,6 +113,16 @@ class UTSignupSheetIntegrationTest(unittest.TestCase):
         IUTSignupSheet.validateInvariants(obj)
 
     def test_getDaysGroupedByMonth_month_name_is_translatable(self):
+        # a real translation (e.g. into German) needs a compiled .mo
+        # catalog, which - unlike the site's own runtime, where
+        # zope_i18n_compile_mo_files handles it - isn't built as part of
+        # running the tests (.mo files are gitignored build artifacts, see
+        # README). So rather than asserting an actual translated string
+        # (which would only pass locally if a stale compiled catalog
+        # happens to already be lying around), assert the message is
+        # correctly *shaped* to be translated: this is what guards against
+        # a regression back to strftime()'s untranslatable raw string,
+        # which is what this method used to return.
         sheet = api.content.create(
             container=self.portal,
             type="UTSignupSheet",
@@ -125,5 +136,8 @@ class UTSignupSheetIntegrationTest(unittest.TestCase):
         _days, keys, monthNames = sheet.getDaysGroupedByMonth()
         monthName = monthNames[keys[0]]
 
+        self.assertIsInstance(monthName, Message)
+        self.assertEqual(monthName.domain, "mbarde.signups")
+        self.assertEqual(monthName, "March")
+        # falls back to the msgid itself when no catalog/translation is found
         self.assertEqual(translate(monthName, target_language="en"), "March")
-        self.assertEqual(translate(monthName, target_language="de"), "März")
