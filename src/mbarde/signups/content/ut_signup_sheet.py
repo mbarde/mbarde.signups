@@ -454,11 +454,24 @@ class UTSignupSheet(Container):
     # Returns tuple with three elements:
     # [0] -> dictionary where key is month and value is list of days in this month
     # [1] -> sorted list of keys (to make sure that March is displayed before April etc.)
-    # [2] -> dictionary containing the (untranslated) abbreviated month name, e.g. 'Mar'
-    #        (wrapping this in `_()` cannot be picked up by i18ndude, since it can only
-    #        extract literal strings passed to `_()`, not the runtime result of
-    #        strftime() - so it would never actually be translatable)
+    # [2] -> dictionary containing the translated full month name, e.g. 'March'
     def getDaysGroupedByMonth(self):
+        # to do proper i18n with i18ndude
+        monthNames = {
+            1: _("January"),
+            2: _("February"),
+            3: _("March"),
+            4: _("April"),
+            5: _("May"),
+            6: _("June"),
+            7: _("July"),
+            8: _("August"),
+            9: _("September"),
+            10: _("October"),
+            11: _("November"),
+            12: _("December"),
+        }
+
         days = self.getDays()
         result = dict()
         mTrans = dict()
@@ -476,8 +489,7 @@ class UTSignupSheet(Container):
                 result[key].append(day)
             else:
                 result[key] = [day]
-                # abbreviated month name, e.g. 'Mar' (see note above)
-                mTrans[key] = day.date.strftime("%b")
+                mTrans[key] = monthNames[day.date.month]
 
         keys = sorted(result.keys())
 

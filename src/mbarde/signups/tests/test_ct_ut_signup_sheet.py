@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import date
 from mbarde.signups.content.ut_signup_sheet import IUTSignupSheet  # NOQA E501
 from mbarde.signups.testing import MBARDE_SIGNUPS_INTEGRATION_TESTING  # noqa
 from plone import api
@@ -8,6 +9,7 @@ from plone.app.testing import TEST_USER_ID
 from plone.dexterity.interfaces import IDexterityFTI
 from zope.component import createObject
 from zope.component import queryUtility
+from zope.i18n import translate
 from zope.interface import Invalid
 
 import unittest
@@ -108,3 +110,20 @@ class UTSignupSheetIntegrationTest(unittest.TestCase):
         )
         # should not raise
         IUTSignupSheet.validateInvariants(obj)
+
+    def test_getDaysGroupedByMonth_month_name_is_translatable(self):
+        sheet = api.content.create(
+            container=self.portal,
+            type="UTSignupSheet",
+            id="ut_signup_sheet",
+            contactInfo="",
+        )
+        portal_types = self.portal.portal_types
+        day_id = portal_types.constructContent("UTDay", sheet, "d1", title="Day 1")
+        sheet[day_id].date = date(2027, 3, 15)
+
+        _days, keys, monthNames = sheet.getDaysGroupedByMonth()
+        monthName = monthNames[keys[0]]
+
+        self.assertEqual(translate(monthName, target_language="en"), "March")
+        self.assertEqual(translate(monthName, target_language="de"), "März")

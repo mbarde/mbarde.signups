@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-16 12:49+0000\n"
+"POT-Creation-Date: 2026-09-17 06:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <de@li.org>\n"
@@ -83,7 +83,7 @@ msgstr "Erlaubt die Anmeldung für Nutzer, die keinen Account haben."
 msgid "Allow the user to signup for more than one slot."
 msgstr "Erlaubt es Nutzern, sich für mehr als einen Termin anzumelden."
 
-#: ../browser/templates/ut_day_view.pt:122 ../content/ut_timeslot.py:30
+#: ../browser/templates/ut_day_view.pt:125 ../content/ut_timeslot.py:30
 msgid "Allow waiting list"
 msgstr "Warteliste erlauben"
 
@@ -103,6 +103,14 @@ msgstr ""
 "Wird an die obigen E-Mails angehängt, aber nur bei Anmeldungen von "
 "angemeldeten Nutzern (nicht bei anonymen/externen Anmeldungen). Leer lassen,"
 " um nichts anzuhängen."
+
+#: ../content/ut_signup_sheet.py:468
+msgid "April"
+msgstr "April"
+
+#: ../content/ut_signup_sheet.py:472
+msgid "August"
+msgstr "August"
 
 #: ../content/ut_signup_sheet.py:98
 msgid "Automatic move up from waiting list"
@@ -164,11 +172,11 @@ msgstr "Kontaktinformationen"
 msgid "Contact information for the manager of the signup sheet."
 msgstr "Kontaktinformationen für die verantwortliche Person der Anmeldeliste."
 
-#: ../browser/templates/ut_day_view.pt:45
+#: ../browser/templates/ut_day_view.pt:56
 msgid "Create multiple timeslots"
 msgstr "Mehrere Termine anlegen"
 
-#: ../browser/templates/ut_day_view.pt:128
+#: ../browser/templates/ut_day_view.pt:131
 msgid "Create timeslots"
 msgstr "Termine anlegen"
 
@@ -188,6 +196,10 @@ msgstr "Datum"
 #: ../profiles/default/types/UTDay.xml
 msgid "Day for mbarde.signups"
 msgstr "Tag für mbarde.signups"
+
+#: ../content/ut_signup_sheet.py:476
+msgid "December"
+msgstr "Dezember"
 
 #: ../browser/view_cancelreservation.py:61
 #: ../browser/view_submitselection.py:369 ../browser/views.py:157
@@ -235,6 +247,10 @@ msgstr "Exportieren"
 #: ../browser/templates/view_verifyemail.pt:31
 msgid "Failure"
 msgstr "Fehlgeschlagen"
+
+#: ../content/ut_signup_sheet.py:466
+msgid "February"
+msgstr "Februar"
 
 #: ../content/ut_signup_sheet.py:185
 msgid ""
@@ -319,6 +335,18 @@ msgstr "Info:"
 msgid "Installs the mbarde.signups add-on."
 msgstr "Installiert das Add-on mbarde.signups."
 
+#: ../content/ut_signup_sheet.py:465
+msgid "January"
+msgstr "Januar"
+
+#: ../content/ut_signup_sheet.py:471
+msgid "July"
+msgstr "Juli"
+
+#: ../content/ut_signup_sheet.py:470
+msgid "June"
+msgstr "Juni"
+
 #: ../content/ut_signup_sheet.py:82
 msgid "Lock personal data"
 msgstr "Persönliche Daten sperren"
@@ -340,9 +368,17 @@ msgstr "Verwaltungsübersicht"
 msgid "Manager has to confirm signups"
 msgstr "Anmeldungen müssen von der verantwortlichen Person bestätigt werden"
 
-#: ../browser/templates/ut_day_view.pt:102 ../content/ut_timeslot.py:26
+#: ../content/ut_signup_sheet.py:467
+msgid "March"
+msgstr "März"
+
+#: ../browser/templates/ut_day_view.pt:105 ../content/ut_timeslot.py:26
 msgid "Max capacity"
 msgstr "Maximale Kapazität"
+
+#: ../content/ut_signup_sheet.py:469
+msgid "May"
+msgstr "Mai"
 
 #: ../browser/controlpanel.py:35
 msgid "Member property for email address"
@@ -374,13 +410,21 @@ msgstr "Keine"
 msgid "Note"
 msgstr "Notiz"
 
-#: ../browser/templates/ut_day_view.pt:89
+#: ../content/ut_signup_sheet.py:475
+msgid "November"
+msgstr "November"
+
+#: ../browser/templates/ut_day_view.pt:92
 msgid "Number of timeslots"
 msgstr "Anzahl der Termine"
 
 #: ../content/ut_day.py:72
 msgid "Number of timeslots must be at least 1."
 msgstr "Die Anzahl der Termine muss mindestens 1 betragen."
+
+#: ../content/ut_signup_sheet.py:474
+msgid "October"
+msgstr "Oktober"
 
 #: ../content/ut_timeslot.py:23
 msgid "Optional name"
@@ -486,6 +530,10 @@ msgstr ""
 msgid "Separator"
 msgstr "Trennzeichen"
 
+#: ../content/ut_signup_sheet.py:473
+msgid "September"
+msgstr "September"
+
 #: ../content/ut_signup_sheet.py:107
 msgid "Show individual time slot names"
 msgstr "Namen der einzelnen Termine anzeigen"
@@ -541,7 +589,7 @@ msgstr "Etwas ist schiefgelaufen. Bitte melden Sie sich erneut an."
 msgid "Start Time"
 msgstr "Startzeit"
 
-#: ../browser/templates/ut_day_view.pt:64
+#: ../browser/templates/ut_day_view.pt:67
 msgid "Starting time"
 msgstr "Startzeit"
 
@@ -648,7 +696,7 @@ msgstr ""
 msgid "Time"
 msgstr "Uhrzeit"
 
-#: ../browser/templates/ut_day_view.pt:75
+#: ../browser/templates/ut_day_view.pt:78
 msgid "Timeslot duration (minutes)"
 msgstr "Termindauer (Minuten)"
 
@@ -897,10 +945,13 @@ msgstr "Ihr Nachname"
 msgid "Your verification code"
 msgstr "Ihr Verifizierungscode"
 
+#. personal data (UTPerson objects) of that day's signups is automatically
+#. deleted. Leave empty to disable automatic deletion for this signup sheet."
 #. Default: "Number of days after a day's date (see UTDay) after which the
 #. personal data (UTPerson objects) of that day's signups is automatically
 #. deleted. Leave empty to disable automatic deletion for this signup sheet."
 #: ../content/ut_signup_sheet.py:172
+#, fuzzy
 msgid "auto_delete_personal_data_description"
 msgstr ""
 "Anzahl der Tage nach dem Datum eines Termins (siehe UTDay), nach denen die "
@@ -936,6 +987,7 @@ msgid "data_privacy_fieldset_label"
 msgstr "Datenschutz"
 
 #. personal data and what it is used for."
+#. personal data, what it is used for and how long will it be stored."
 #. Default: "Describe here specifically what happens with the collected
 #. personal data, what it is used for and how long will it be stored."
 #: ../content/ut_signup_sheet.py:146

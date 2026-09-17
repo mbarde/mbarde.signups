@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-16 12:49+0000\n"
+"POT-Creation-Date: 2026-09-17 06:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,7 +72,7 @@ msgstr ""
 msgid "Allow the user to signup for more than one slot."
 msgstr ""
 
-#: ../browser/templates/ut_day_view.pt:122
+#: ../browser/templates/ut_day_view.pt:125
 #: ../content/ut_timeslot.py:30
 msgid "Allow waiting list"
 msgstr ""
@@ -83,6 +83,14 @@ msgstr ""
 
 #: ../content/ut_signup_sheet.py:357
 msgid "Appended to the emails above, but only for signups made by a logged-in user (not for anonymous/external ones). Leave empty to append nothing."
+msgstr ""
+
+#: ../content/ut_signup_sheet.py:468
+msgid "April"
+msgstr ""
+
+#: ../content/ut_signup_sheet.py:472
+msgid "August"
 msgstr ""
 
 #: ../content/ut_signup_sheet.py:98
@@ -141,11 +149,11 @@ msgstr ""
 msgid "Contact information for the manager of the signup sheet."
 msgstr ""
 
-#: ../browser/templates/ut_day_view.pt:45
+#: ../browser/templates/ut_day_view.pt:56
 msgid "Create multiple timeslots"
 msgstr ""
 
-#: ../browser/templates/ut_day_view.pt:128
+#: ../browser/templates/ut_day_view.pt:131
 msgid "Create timeslots"
 msgstr ""
 
@@ -165,6 +173,10 @@ msgstr ""
 
 #: ../profiles/default/types/UTDay.xml
 msgid "Day for mbarde.signups"
+msgstr ""
+
+#: ../content/ut_signup_sheet.py:476
+msgid "December"
 msgstr ""
 
 #: ../browser/view_cancelreservation.py:61
@@ -214,6 +226,10 @@ msgstr ""
 #: ../browser/templates/view_submitselection.pt:30
 #: ../browser/templates/view_verifyemail.pt:31
 msgid "Failure"
+msgstr ""
+
+#: ../content/ut_signup_sheet.py:466
+msgid "February"
 msgstr ""
 
 #: ../content/ut_signup_sheet.py:185
@@ -279,6 +295,18 @@ msgstr ""
 msgid "Installs the mbarde.signups add-on."
 msgstr ""
 
+#: ../content/ut_signup_sheet.py:465
+msgid "January"
+msgstr ""
+
+#: ../content/ut_signup_sheet.py:471
+msgid "July"
+msgstr ""
+
+#: ../content/ut_signup_sheet.py:470
+msgid "June"
+msgstr ""
+
 #: ../content/ut_signup_sheet.py:82
 msgid "Lock personal data"
 msgstr ""
@@ -300,9 +328,17 @@ msgstr ""
 msgid "Manager has to confirm signups"
 msgstr ""
 
-#: ../browser/templates/ut_day_view.pt:102
+#: ../content/ut_signup_sheet.py:467
+msgid "March"
+msgstr ""
+
+#: ../browser/templates/ut_day_view.pt:105
 #: ../content/ut_timeslot.py:26
 msgid "Max capacity"
+msgstr ""
+
+#: ../content/ut_signup_sheet.py:469
+msgid "May"
 msgstr ""
 
 #: ../browser/controlpanel.py:35
@@ -335,12 +371,20 @@ msgstr ""
 msgid "Note"
 msgstr ""
 
-#: ../browser/templates/ut_day_view.pt:89
+#: ../content/ut_signup_sheet.py:475
+msgid "November"
+msgstr ""
+
+#: ../browser/templates/ut_day_view.pt:92
 msgid "Number of timeslots"
 msgstr ""
 
 #: ../content/ut_day.py:72
 msgid "Number of timeslots must be at least 1."
+msgstr ""
+
+#: ../content/ut_signup_sheet.py:474
+msgid "October"
 msgstr ""
 
 #: ../content/ut_timeslot.py:23
@@ -427,6 +471,10 @@ msgstr ""
 msgid "Separator"
 msgstr ""
 
+#: ../content/ut_signup_sheet.py:473
+msgid "September"
+msgstr ""
+
 #: ../content/ut_signup_sheet.py:107
 msgid "Show individual time slot names"
 msgstr ""
@@ -482,7 +530,7 @@ msgstr ""
 msgid "Start Time"
 msgstr ""
 
-#: ../browser/templates/ut_day_view.pt:64
+#: ../browser/templates/ut_day_view.pt:67
 msgid "Starting time"
 msgstr ""
 
@@ -577,7 +625,7 @@ msgstr ""
 msgid "Time"
 msgstr ""
 
-#: ../browser/templates/ut_day_view.pt:75
+#: ../browser/templates/ut_day_view.pt:78
 msgid "Timeslot duration (minutes)"
 msgstr ""
 
