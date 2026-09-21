@@ -38,6 +38,24 @@
               </tr>
             </tal:widgets>
 
+            <tal:consent
+              tal:define="
+                consentGivenAt python: getattr(context.aq_base, 'dataUsageConsentGivenAt', None);
+                declarationSnapshot python: getattr(context.aq_base, 'dataUsageDeclarationTextSnapshot', None);
+              "
+            >
+              <tr tal:condition="consentGivenAt">
+                <td i18n:translate="">Consent to data usage declaration given at</td>
+                <td
+                  tal:content="python: context.restrictedTraverse('@@plone').toLocalizedTime(consentGivenAt, long_format=True)"
+                />
+              </tr>
+              <tr tal:condition="declarationSnapshot">
+                <td i18n:translate="">Data usage declaration text (at time of consent)</td>
+                <td tal:content="structure declarationSnapshot" />
+              </tr>
+            </tal:consent>
+
             <tal:dynamicFields tal:define="fields here/getExtraInfo">
               <tr tal:repeat="field fields">
                 <td i18n:translate="" tal:content="python: field[0]" />
