@@ -144,6 +144,30 @@ text no matter which language is negotiated:
 </environment>
 ```
 
+### Publish to PyPI
+
+1. Bump `version` in `pyproject.toml` (a version can never be uploaded twice), commit and push.
+2. Run tests: `venv/bin/pytest`
+3. Build fresh (clear `dist/` first, it may contain older versions):
+
+```
+rm -rf dist build src/*.egg-info
+uv build
+uvx twine check dist/*
+```
+
+4. Upload with an API token from pypi.org (_Account settings > API tokens_):
+
+```
+uv publish --token pypi-...
+```
+
+5. Tag the release: `git tag vX.Y.Z && git push --tags`
+6. Verify in a clean environment: `uv pip install --pre mbarde.signups` (`--pre` is only needed for pre-releases like `1.0.0rc2`).
+
+Optional dry run against TestPyPI (separate account and token):
+`uv publish --publish-url https://test.pypi.org/legacy/ --token pypi-...`
+
 ### VS Code setup
 
 Plugins:
