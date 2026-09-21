@@ -21,6 +21,11 @@ dependencies = [
     "collective.easyform",
 ]
 
+[project.urls]
+Homepage = "https://github.com/mbarde/mbarde.signups"
+Repository = "https://github.com/mbarde/mbarde.signups"
+Issues = "https://github.com/mbarde/mbarde.signups/issues"
+
 [project.entry-points."z3c.autoinclude.plugin"]
 target = "plone"
 
