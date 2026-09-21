@@ -14,7 +14,7 @@
 
   <property name="allow_discussion">False</property>
   <property name="factory">UTTimeslot</property>
-  <property name="icon_expr"></property>
+  <property name="icon_expr">string:calendar-heart</property>
   <property name="link_target"></property>
 
   <!-- Hierarchy control -->
