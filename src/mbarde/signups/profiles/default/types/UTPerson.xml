@@ -7,7 +7,7 @@
   <!-- Basic properties -->
   <property
     i18n:translate=""
-    name="title">UTPerson</property>
+    name="title">Person</property>
   <property
     i18n:translate=""
     name="description">Person for mbarde.signups</property>

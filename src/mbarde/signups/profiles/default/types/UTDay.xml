@@ -7,7 +7,7 @@
   <!-- Basic properties -->
   <property
     i18n:translate=""
-    name="title">UTDay</property>
+    name="title">Day</property>
   <property
     i18n:translate=""
     name="description">Day for mbarde.signups</property>

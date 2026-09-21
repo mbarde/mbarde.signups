@@ -7,7 +7,7 @@
   <!-- Basic properties -->
   <property
     i18n:translate=""
-    name="title">UTSignupSheet</property>
+    name="title">Signup Sheet</property>
   <property
     i18n:translate=""
     name="description">Signup sheet with timeslot support</property>

@@ -7,7 +7,7 @@
   <!-- Basic properties -->
   <property
     i18n:translate=""
-    name="title">UTTimeslot</property>
+    name="title">Timeslot</property>
   <property
     i18n:translate=""
     name="description">Timeslot for mbarde.signups</property>
