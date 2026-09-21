@@ -1,6 +1,6 @@
 [project]
 name = "mbarde.signups"
-version = "1.0.0rc2"
+version = "1.0.0"
 description = "Plone-Addon for dynamic event sign-ups"
 authors = [{ name = "Matthias Barde" }]
 readme = "README.md"
