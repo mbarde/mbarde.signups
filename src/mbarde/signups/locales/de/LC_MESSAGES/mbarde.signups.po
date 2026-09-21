@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-17 09:17+0000\n"
+"POT-Creation-Date: 2026-09-21 09:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <de@li.org>\n"
@@ -31,7 +31,7 @@ msgstr "Eine Kopie der Datennutzungserklärung, wie sie zum Zeitpunkt der Einwil
 msgid "A new signup has been added to the waiting list for:"
 msgstr "Eine neue Anmeldung wurde der Warteliste hinzugefügt für:"
 
-#: ../browser/view_submitselection.py:375
+#: ../browser/view_submitselection.py:372
 msgid "A new signup is waiting for confirmation"
 msgstr "Eine neue Anmeldung wartet auf Bestätigung"
 
@@ -48,7 +48,7 @@ msgid "Additional form to be filled in for registration."
 msgstr "Zusätzliches Formular, das bei der Anmeldung ausgefüllt werden soll."
 
 #: ../browser/view_cancelreservation.py:64
-#: ../browser/view_submitselection.py:386
+#: ../browser/view_submitselection.py:383
 #: ../subscribers.py:81
 msgid "Additional information"
 msgstr "Zusätzliche Informationen"
@@ -186,7 +186,7 @@ msgid "December"
 msgstr "Dezember"
 
 #: ../browser/view_cancelreservation.py:61
-#: ../browser/view_submitselection.py:382
+#: ../browser/view_submitselection.py:379
 #: ../browser/views.py:157
 msgid "E-Mail"
 msgstr "E-Mail"
@@ -356,7 +356,7 @@ msgstr "Mitgliedseigenschaft für Nachname"
 
 #: ../browser/templates/ut_signup_sheet_view.pt:294
 #: ../browser/view_cancelreservation.py:60
-#: ../browser/view_submitselection.py:381
+#: ../browser/view_submitselection.py:378
 msgid "Name"
 msgstr "Name"
 
@@ -581,7 +581,7 @@ msgstr "Text"
 msgid "The max number of people"
 msgstr "Die maximale Anzahl an Personen"
 
-#: ../browser/view_submitselection.py:267
+#: ../browser/view_submitselection.py:264
 msgid "The slot you selected is already full. Please select a different one."
 msgstr "Der ausgewählte Termin ist bereits ausgebucht. Bitte wählen Sie einen anderen aus."
 
@@ -629,7 +629,7 @@ msgstr "Diese E-Mail wird versendet, wenn sich ein Nutzer für einen Termin ange
 msgid "This message is to notify you that someone signed up for:"
 msgstr "Diese Nachricht informiert Sie darüber, dass sich jemand angemeldet hat für:"
 
-#: ../browser/view_submitselection.py:232
+#: ../browser/view_submitselection.py:229
 msgid "This slot is not currently open for signups."
 msgstr "Für diesen Termin ist die Anmeldung derzeit nicht möglich."
 
@@ -717,7 +717,7 @@ msgstr "Tag ansehen"
 msgid "View timeslot"
 msgstr "Termin ansehen"
 
-#: ../browser/view_submitselection.py:370
+#: ../browser/view_submitselection.py:367
 msgid "Wait For Confirmation"
 msgstr "Warten auf Bestätigung"
 
@@ -789,11 +789,11 @@ msgstr "Möchten Sie wirklich alle Personen von dieser Anmeldeliste entfernen?"
 msgid "You are already signed up for a slot in this signup sheet and multiple signups are not allowed."
 msgstr "Sie sind bereits für einen Termin in dieser Anmeldeliste angemeldet und Mehrfachanmeldungen sind nicht erlaubt."
 
-#: ../browser/view_submitselection.py:242
+#: ../browser/view_submitselection.py:239
 msgid "You are already signed up for a slot in this signup sheet."
 msgstr "Sie sind bereits für einen Termin in dieser Anmeldeliste angemeldet."
 
-#: ../browser/view_submitselection.py:245
+#: ../browser/view_submitselection.py:242
 msgid "You are already signed up for this slot."
 msgstr "Sie sind bereits für diesen Termin angemeldet."
 
@@ -866,7 +866,6 @@ msgstr "Ihr Verifizierungscode"
 #. deleted. Leave empty to disable automatic deletion for this signup sheet."
 #. Default: "Number of days after a day's date (see UTDay) after which the personal data (UTPerson objects) of that day's signups is automatically deleted. Leave empty to disable automatic deletion for this signup sheet."
 #: ../content/ut_signup_sheet.py:173
-#, fuzzy
 msgid "auto_delete_personal_data_description"
 msgstr "Anzahl der Tage nach dem Datum eines Termins (siehe UTDay), nach denen die personenbezogenen Daten (UTPerson-Objekte) der Anmeldungen dieses Termins automatisch gelöscht werden. Leer lassen, um die automatische Löschung für diese Anmeldeliste zu deaktivieren."
 
@@ -883,7 +882,6 @@ msgstr "Ob eine Einwilligung notwendig ist, können Sie Art. 6 der EU-DSGVO entn
 #. sign up"
 #. Default: "User has to consent to the data usage declaration in order to sign up"
 #: ../content/ut_signup_sheet.py:156
-#, fuzzy
 msgid "consent_required_title"
 msgstr "Benutzer muss in die Datennutzungserklärung einwilligen, damit er sich anmelden kann"
 
@@ -896,14 +894,12 @@ msgstr "Datenschutz"
 #. personal data, what it is used for and how long will it be stored."
 #. Default: "Describe here specifically what happens with the collected personal data, what it is used for and how long will it be stored."
 #: ../content/ut_signup_sheet.py:147
-#, fuzzy
 msgid "data_usage_declaration_description"
 msgstr "Beschreiben Sie hier konkret was mit den erhobenen personenbezogenen Daten geschieht, wofür diese genutzt und wie lange sie gespeichert werden."
 
 #. cancelled:\n$$slot$$\n\n$$data$$"
 #. Default: "Hello $$name$$,\n\nFollowing slot has been cancelled:\n$$slot$$\n\n$$data$$"
 #: ../content/ut_signup_sheet.py:343
-#, fuzzy
 msgid "email_cancel_content_default"
 msgstr ""
 "Hallo $$name$$,\n"
@@ -921,7 +917,6 @@ msgstr "$$title$$ - Stornierungsbenachrichtigung"
 #. signed up for:\n$$slot$$\n\n$$data$$"
 #. Default: "Hello $$name$$,\n\nThis message is to confirm that you have been signed up for:\n$$slot$$\n\n$$data$$"
 #: ../content/ut_signup_sheet.py:251
-#, fuzzy
 msgid "email_confirmation_content_default"
 msgstr ""
 "Hallo $$name$$,\n"
@@ -940,7 +935,6 @@ msgstr "$$title$$ - Anmeldebestätigung"
 #. for 15 minutes."
 #. Default: "Hello $$name$$,\n\nPlease use the following code to verify your email address and complete your signup:\n\n$$code$$\n\nThis code is valid for 15 minutes."
 #: ../content/ut_signup_sheet.py:221
-#, fuzzy
 msgid "email_otp_content_default"
 msgstr ""
 "Hallo $$name$$,\n"
@@ -958,7 +952,6 @@ msgstr "$$title$$ - Ihr Verifizierungscode"
 
 #. Default: "You can view your registration here: $$user_url$$"
 #: ../content/ut_signup_sheet.py:364
-#, fuzzy
 msgid "email_suffix_authenticated_default"
 msgstr "Sie können Ihre Anmeldung hier einsehen: $$user_url$$"
 
@@ -966,7 +959,6 @@ msgstr "Sie können Ihre Anmeldung hier einsehen: $$user_url$$"
 #. registration has been confirmed (or rejected).\n\n$$data$$"
 #. Default: "Hello $$name$$,\n\nYou signed up for following slot:\n$$slot$$\nYou will receive another email as soon as your registration has been confirmed (or rejected).\n\n$$data$$"
 #: ../content/ut_signup_sheet.py:282
-#, fuzzy
 msgid "email_wait_for_confirmation_content_default"
 msgstr ""
 "Hallo $$name$$,\n"
@@ -985,7 +977,6 @@ msgstr "$$title$$ - Warten auf Bestätigung"
 #. added to the waiting list for:\n$$slot$$\n\n$$data$$"
 #. Default: "Hello $$name$$,\n\nThis message is to confirm that you have been added to the waiting list for:\n$$slot$$\n\n$$data$$"
 #: ../content/ut_signup_sheet.py:313
-#, fuzzy
 msgid "email_waitinglist_content_default"
 msgstr ""
 "Hallo $$name$$,\n"
@@ -1000,7 +991,7 @@ msgstr ""
 msgid "email_waitinglist_subject_default"
 msgstr "$$title$$ - Bestätigung der Warteliste"
 
-#: ../browser/view_submitselection.py:201
+#: ../browser/view_submitselection.py:198
 msgid "fieldName_agreeDataUsageDeclaration"
 msgstr "Einverständniserklärung zur Datennutzung"
 
@@ -1022,7 +1013,6 @@ msgstr "mbarde.signups-Einstellungen"
 #. it."
 #. Default: "Name of the member property to pre-fill a logged-in user's email address with. Also used to recognize a logged-in user's own reservations (unless the site is configured to use the email address as login name, in which case the login name is used instead). Leave empty to not pre-fill it."
 #: ../browser/controlpanel.py:36
-#, fuzzy
 msgid "member_property_email_description"
 msgstr "Name der Mitgliedseigenschaft, mit der die E-Mail-Adresse eines angemeldeten Nutzers vorausgefüllt werden soll. Wird außerdem verwendet, um die eigenen Anmeldungen eines angemeldeten Nutzers zu erkennen (außer die Website ist so konfiguriert, dass die E-Mail-Adresse als Anmeldename verwendet wird - dann wird stattdessen der Anmeldename verwendet). Leer lassen, um sie nicht vorauszufüllen."
 
@@ -1030,21 +1020,18 @@ msgstr "Name der Mitgliedseigenschaft, mit der die E-Mail-Adresse eines angemeld
 #. data is used to pre-fill those fields by default."
 #. Default: "Map Plone member properties to the personal info fields of the signup form (prename, surname, email address), so a logged-in user's own data is used to pre-fill those fields by default."
 #: ../browser/controlpanel.py:54
-#, fuzzy
 msgid "member_property_mapping_description"
 msgstr "Ordnet Mitgliedseigenschaften den persönlichen Angaben im Anmeldeformular zu (Vorname, Nachname, E-Mail-Adresse), damit die eigenen Daten eines angemeldeten Nutzers diese Felder standardmäßig vorausfüllen."
 
 #. prename with. Leave empty to not pre-fill it."
 #. Default: "Name of the member property to pre-fill a logged-in user's prename with. Leave empty to not pre-fill it."
 #: ../browser/controlpanel.py:14
-#, fuzzy
 msgid "member_property_prename_description"
 msgstr "Name der Mitgliedseigenschaft, mit der der Vorname eines angemeldeten Nutzers vorausgefüllt werden soll. Leer lassen, um ihn nicht vorauszufüllen."
 
 #. surname with. Leave empty to not pre-fill it."
 #. Default: "Name of the member property to pre-fill a logged-in user's surname with. Leave empty to not pre-fill it."
 #: ../browser/controlpanel.py:25
-#, fuzzy
 msgid "member_property_surname_description"
 msgstr "Name der Mitgliedseigenschaft, mit der der Nachname eines angemeldeten Nutzers vorausgefüllt werden soll. Leer lassen, um ihn nicht vorauszufüllen."
 

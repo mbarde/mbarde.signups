@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-09-17 09:17+0000\n"
+"POT-Creation-Date: 2026-09-21 09:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr ""
 msgid "A new signup has been added to the waiting list for:"
 msgstr ""
 
-#: ../browser/view_submitselection.py:375
+#: ../browser/view_submitselection.py:372
 msgid "A new signup is waiting for confirmation"
 msgstr ""
 
@@ -47,7 +47,7 @@ msgid "Additional form to be filled in for registration."
 msgstr ""
 
 #: ../browser/view_cancelreservation.py:64
-#: ../browser/view_submitselection.py:386
+#: ../browser/view_submitselection.py:383
 #: ../subscribers.py:81
 msgid "Additional information"
 msgstr ""
@@ -185,7 +185,7 @@ msgid "December"
 msgstr ""
 
 #: ../browser/view_cancelreservation.py:61
-#: ../browser/view_submitselection.py:382
+#: ../browser/view_submitselection.py:379
 #: ../browser/views.py:157
 msgid "E-Mail"
 msgstr ""
@@ -355,7 +355,7 @@ msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:294
 #: ../browser/view_cancelreservation.py:60
-#: ../browser/view_submitselection.py:381
+#: ../browser/view_submitselection.py:378
 msgid "Name"
 msgstr ""
 
@@ -580,7 +580,7 @@ msgstr ""
 msgid "The max number of people"
 msgstr ""
 
-#: ../browser/view_submitselection.py:267
+#: ../browser/view_submitselection.py:264
 msgid "The slot you selected is already full. Please select a different one."
 msgstr ""
 
@@ -628,7 +628,7 @@ msgstr ""
 msgid "This message is to notify you that someone signed up for:"
 msgstr ""
 
-#: ../browser/view_submitselection.py:232
+#: ../browser/view_submitselection.py:229
 msgid "This slot is not currently open for signups."
 msgstr ""
 
@@ -716,7 +716,7 @@ msgstr ""
 msgid "View timeslot"
 msgstr ""
 
-#: ../browser/view_submitselection.py:370
+#: ../browser/view_submitselection.py:367
 msgid "Wait For Confirmation"
 msgstr ""
 
@@ -788,11 +788,11 @@ msgstr ""
 msgid "You are already signed up for a slot in this signup sheet and multiple signups are not allowed."
 msgstr ""
 
-#: ../browser/view_submitselection.py:242
+#: ../browser/view_submitselection.py:239
 msgid "You are already signed up for a slot in this signup sheet."
 msgstr ""
 
-#: ../browser/view_submitselection.py:245
+#: ../browser/view_submitselection.py:242
 msgid "You are already signed up for this slot."
 msgstr ""
 
@@ -945,7 +945,7 @@ msgstr ""
 msgid "email_waitinglist_subject_default"
 msgstr ""
 
-#: ../browser/view_submitselection.py:201
+#: ../browser/view_submitselection.py:198
 msgid "fieldName_agreeDataUsageDeclaration"
 msgstr ""
 
