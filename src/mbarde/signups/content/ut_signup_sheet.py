@@ -25,8 +25,14 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 def _mailDefaultFactory(message):
     @provider(IContextAwareDefaultFactory)
     def factory(context):
-        lang = ILanguage(context).get_language()
-        if len(lang) == 0:
+        # context is not always adaptable (e.g. TypeSchemaContext when editing the
+        # fields in the dexterity types control panel) -> fall back to current language
+        languageAdapter = ILanguage(context, None)
+        if languageAdapter is not None:
+            lang = languageAdapter.get_language()
+        else:
+            lang = api.portal.get_current_language()
+        if not lang:
             lang = "en"
         return translate(message, target_language=lang)
 
