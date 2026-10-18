@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_base
 from collective.easyform.api import get_schema
 from datetime import date
 from mbarde.signups import _
@@ -6,7 +7,13 @@ from plone import api
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from zope.component import getUtility
 
+import re
 import transaction
+
+
+# matches the "-1", "-2", ... suffix `api.content.rename(..., safe_id=True)`
+# appends to disambiguate an id that is already taken by another object
+_SAFE_ID_SUFFIX = re.compile(r"^-[0-9]+$")
 
 
 def replaceCustomMailPlaceholders(
@@ -129,7 +136,29 @@ def deferRename(obj, newId):
 def _renameNow(obj, newId):
     if obj.getId() == newId:
         return
-    api.content.rename(obj=obj, new_id=newId, safe_id=True)
+
+    currentId = obj.getId()
+    occupant = obj.aq_parent._getOb(newId, None)
+    if occupant is not None and aq_base(occupant) is not aq_base(obj):
+        # `newId` already belongs to a *different* sibling - e.g. two
+        # UTTimeslots/UTDays that still have the exact same start/end time
+        # or date (most commonly: a slot/day was just duplicated and its
+        # time/date has not been changed yet). If `obj` already went
+        # through this exact disambiguation before (its id is `newId`
+        # plus a numeric suffix), there is nothing new to resolve here -
+        # retrying the rename on every future edit would just hit the
+        # same collision again and again, so stop instead of scheduling
+        # this rename forever.
+        suffix = currentId[len(newId) :]
+        if currentId.startswith(newId) and _SAFE_ID_SUFFIX.match(suffix):
+            return
+
+    # IObjectModifiedEvent is also triggered when a child is created.
+    # So when a user signs up for a slot and the slots needs to be renamed here,
+    # this might result correctly in `CopyError: Insufficient privileges`,
+    # when the user is not a manager of the signup sheet
+    with api.env.adopt_roles(["Manager"]):
+        api.content.rename(obj=obj, new_id=newId, safe_id=True)
     obj.reindexObject()
 
 
