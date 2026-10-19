@@ -10,14 +10,20 @@ from zope.component import getUtility
 import re
 import transaction
 
-
 # matches the "-1", "-2", ... suffix `api.content.rename(..., safe_id=True)`
 # appends to disambiguate an id that is already taken by another object
 _SAFE_ID_SUFFIX = re.compile(r"^-[0-9]+$")
 
 
 def replaceCustomMailPlaceholders(
-    text, personName, signupSheetTitle, signupSheetURL, slotTitle, extraInfoStr, userURL=""
+    text,
+    personName,
+    signupSheetTitle,
+    signupSheetURL,
+    slotTitle,
+    extraInfoStr,
+    userURL="",
+    signOffUrl="",
 ):
     return (
         text.replace("$$name$$", personName)
@@ -26,6 +32,7 @@ def replaceCustomMailPlaceholders(
         .replace("$$slot$$", slotTitle)
         .replace("$$data$$", extraInfoStr)
         .replace("$$user_url$$", userURL)
+        .replace("$$sign_off_url$$", signOffUrl)
     )
 
 

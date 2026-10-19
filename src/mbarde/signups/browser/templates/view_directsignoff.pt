@@ -1,0 +1,93 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xml:lang="en"
+  lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  metal:use-macro="here/main_template/macros/master"
+  i18n:domain="mbarde.signups"
+>
+  <body>
+    <div metal:fill-slot="main">
+      <tal:main-macro
+        metal:define-macro="main"
+        tal:define="icons python: context.restrictedTraverse('@@iconresolver')"
+      >
+        <h2>
+          <span tal:content="string:${context/Title}"></span> - <span i18n:translate="">Cancel
+          Registration</span>
+        </h2>
+
+        <div
+          tal:condition="view/error"
+          class="portalMessage statusmessage-error alert alert-danger"
+          role="alert"
+        >
+          <tal:icon
+            replace="structure python: icons.tag('plone-statusmessage-error', tag_alt='Failure', tag_class='statusmessage-icon mb-1 me-2')"
+          />
+          <strong i18n:translate="">Failure</strong>
+          <span class="content" tal:content="view/error" />
+        </div>
+
+        <tal:block tal:condition="python: not view.error and view.alreadySignedOff">
+          <div
+            class="portalMessage statusmessage-info alert alert-info"
+            role="alert"
+          >
+            <tal:icon
+              replace="structure python: icons.tag('plone-statusmessage-info', tag_alt='Info', tag_class='statusmessage-icon mb-1 me-2')"
+            />
+            <strong i18n:translate="">Info</strong>
+            <div class="content">
+              <p i18n:translate="">This registration has already been cancelled.</p>
+            </div>
+          </div>
+        </tal:block>
+
+        <tal:block tal:condition="python: not view.error and not view.alreadySignedOff">
+          <p i18n:translate="">Do you want to cancel the following registration?</p>
+          <p>
+            <b tal:content="view/getSlotLabel" />
+          </p>
+
+          <form
+            method="post"
+            id="formDirectSignOff"
+            tal:attributes="action string:${context/absolute_url}/@@direct-signoff"
+          >
+            <input
+              type="hidden"
+              name="token"
+              tal:attributes="value python: view.request.get('token', '')"
+            />
+            <div class="d-grid gap-2">
+              <button
+                id="form-buttons-cancel"
+                name="form.buttons.cancel"
+                class="submit-widget button-field btn btn-danger"
+                type="submit"
+                i18n:translate=""
+              >
+                Cancel my registration
+              </button>
+            </div>
+          </form>
+        </tal:block>
+
+        <p>
+          <a
+            tal:attributes="href string:${context/absolute_url}"
+            class="btn btn-secondary mt-3"
+          >
+            <tal:icon
+              replace="structure python: icons.tag('arrow-left-circle', tag_class='me-1')"
+            />
+            <span i18n:translate="">Return to the signup sheet</span>
+          </a>
+        </p>
+      </tal:main-macro>
+    </div>
+  </body>
+</html>

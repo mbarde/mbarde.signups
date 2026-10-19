@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from mbarde.signups import _
+from mbarde.signups import signoff
 from mbarde.signups.utils import appendAuthenticatedSuffix
 from mbarde.signups.utils import replaceCustomMailPlaceholders
 from plone import api
@@ -30,6 +31,7 @@ def sendSignupNotificationEmail(person):
 
     url = signupSheet.absolute_url()
     toEmail = person.email
+    signOffUrl = signoff.buildSignOffUrl(signupSheet, person)
 
     subject = replaceCustomMailPlaceholders(
         signupSheet.emailConfirmationSubject,
@@ -39,6 +41,7 @@ def sendSignupNotificationEmail(person):
         timeSlot.getLabel(),
         extraInfoStr,
         url + "/@@view-my-signups",
+        signOffUrl,
     )
     message = replaceCustomMailPlaceholders(
         signupSheet.emailConfirmationContent,
@@ -48,6 +51,7 @@ def sendSignupNotificationEmail(person):
         timeSlot.getLabel(),
         extraInfoStr,
         url + "/@@view-my-signups",
+        signOffUrl,
     )
     message = appendAuthenticatedSuffix(
         message, person, signupSheet, timeSlot.getLabel(), extraInfoStr
@@ -107,6 +111,7 @@ def sendWaitingListConfirmationEmail(person):
 
     url = signupSheet.absolute_url()
     toEmail = person.email
+    signOffUrl = signoff.buildSignOffUrl(signupSheet, person)
 
     subject = replaceCustomMailPlaceholders(
         signupSheet.emailWaitinglistSubject,
@@ -116,6 +121,7 @@ def sendWaitingListConfirmationEmail(person):
         timeSlot.getLabel(),
         extraInfoStr,
         url + "/@@view-my-signups",
+        signOffUrl,
     )
     message = replaceCustomMailPlaceholders(
         signupSheet.emailWaitinglistContent,
@@ -125,6 +131,7 @@ def sendWaitingListConfirmationEmail(person):
         timeSlot.getLabel(),
         extraInfoStr,
         url + "/@@view-my-signups",
+        signOffUrl,
     )
     message = appendAuthenticatedSuffix(
         message, person, signupSheet, timeSlot.getLabel(), extraInfoStr

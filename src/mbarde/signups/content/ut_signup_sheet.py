@@ -190,7 +190,7 @@ class IUTSignupSheet(model.Schema):
         "mailsettings",
         label=_("Mail settings"),
         description=_(
-            "Following placeholders can be used:<br/>$$name$$ -> Full name of user<br/>$$title$$ -> Title of the signup sheet<br/>$$url$$ -> URL of the signup sheet<br/>$$user_url$$ -> URL to view/manage your own registration(s) (not available for the email verification email)<br/>$$slot$$ -> Date and time of slot (name of slot if date and time hid)<br/>$$data$$ -> Additional data (see 'additional form')<br/>$$code$$ -> One-time verification code (only available for the email verification email)"  # noqa: E501
+            "Following placeholders can be used:<br/>$$name$$ -> Full name of user<br/>$$title$$ -> Title of the signup sheet<br/>$$url$$ -> URL of the signup sheet<br/>$$user_url$$ -> URL to view/manage your own registration(s) (not available for the email verification email)<br/>$$sign_off_url$$ -> URL to directly sign off from this registration without having to log in (only available for the confirmation, wait-for-confirmation and waiting-list emails)<br/>$$slot$$ -> Date and time of slot (name of slot if date and time hid)<br/>$$data$$ -> Additional data (see 'additional form')<br/>$$code$$ -> One-time verification code (only available for the email verification email)"  # noqa: E501
         ),
         fields=[
             "emailOtpSubject",
@@ -260,7 +260,10 @@ class IUTSignupSheet(model.Schema):
                     "Hello $$name$$,\n\n"
                     "This message is to confirm that you have been signed up for:\n"
                     "$$slot$$\n\n"
-                    "$$data$$"
+                    "You provided following data:\n"
+                    "$$data$$\n\n"
+                    "To cancel your sign-up follow this link:\n"
+                    "$$sign_off_url$$"
                 ),
             )
         ),
@@ -290,10 +293,13 @@ class IUTSignupSheet(model.Schema):
                 default=(
                     "Hello $$name$$,\n\n"
                     "You signed up for following slot:\n"
-                    "$$slot$$\n"
+                    "$$slot$$\n\n"
                     "You will receive another email as soon as your registration has "
                     "been confirmed (or rejected).\n\n"
-                    "$$data$$"
+                    "You provided following data:\n"
+                    "$$data$$\n\n"
+                    "To cancel your sign-up follow this link:\n"
+                    "$$sign_off_url$$"
                 ),
             )
         ),
@@ -323,7 +329,10 @@ class IUTSignupSheet(model.Schema):
                     "This message is to confirm that you have been added to the "
                     "waiting list for:\n"
                     "$$slot$$\n\n"
-                    "$$data$$"
+                    "You provided following data:\n"
+                    "$$data$$\n\n"
+                    "To cancel your sign-up follow this link:\n"
+                    "$$sign_off_url$$"
                 ),
             )
         ),
@@ -352,6 +361,7 @@ class IUTSignupSheet(model.Schema):
                     "Hello $$name$$,\n\n"
                     "Following slot has been cancelled:\n"
                     "$$slot$$\n\n"
+                    "You provided following data:\n"
                     "$$data$$"
                 ),
             )
