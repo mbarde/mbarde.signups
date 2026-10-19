@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from DateTime import DateTime
 from mbarde.signups import _
+from mbarde.signups.utils import ACTIVE_REVIEW_STATES
 from mbarde.signups.utils import deferRename
 from mbarde.signups.utils import emailToPersonId
 from mbarde.signups.utils import ploneUserToPersonId
@@ -102,7 +103,10 @@ class UTTimeslot(Container):
     def isUserSignedUpForThisSlot(self, email):
         personId = emailToPersonId(email)
         brains = self.portal_catalog.unrestrictedSearchResults(
-            portal_type="UTPerson", review_state="signedup", id=personId, path=self.getPath()
+            portal_type="UTPerson",
+            review_state=ACTIVE_REVIEW_STATES,
+            id=personId,
+            path=self.getPath(),
         )
         return len(brains) != 0
 

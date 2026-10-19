@@ -14,6 +14,11 @@ import transaction
 # appends to disambiguate an id that is already taken by another object
 _SAFE_ID_SUFFIX = re.compile(r"^-[0-9]+$")
 
+# UTPerson review states that mean "actively holding a spot" - as opposed
+# to "signedoff", which leaves the UTPerson object around (for history/
+# reporting) but frees up whatever slot it referred to
+ACTIVE_REVIEW_STATES = ("signedup", "unconfirmed", "waiting")
+
 
 def replaceCustomMailPlaceholders(
     text,

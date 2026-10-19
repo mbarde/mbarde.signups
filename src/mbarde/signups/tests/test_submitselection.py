@@ -17,6 +17,7 @@ from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.registry.interfaces import IRegistry
+from plone.uuid.interfaces import IUUID
 from zope.component import getUtility
 
 import transaction
@@ -332,3 +333,130 @@ class DuplicateTimeslotSignupTest(unittest.TestCase):
         original = self.day[self.timeslot.getId()]
         self.assertEqual(original.getId(), "10-00-12-00")
         self.assertEqual(list(original.objectIds()), [])
+
+
+class SameSlotResubmissionTest(unittest.TestCase):
+    """Regression test: resubmitting for a slot the same person is still
+    unconfirmed/waiting on must be rejected, not silently replace their
+    existing (pending) UTPerson object.
+
+    `createPersonObject` constructs the new UTPerson via
+    `container._setObject(id, obj)`, and `OFS.ObjectManager._setObject`
+    deletes any existing object at that id first - so without this check,
+    a second submission for the same slot would quietly destroy whatever
+    state (unconfirmed/waiting, any extra field data) the first one had.
+    """
+
+    layer = MBARDE_SIGNUPS_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+
+        self.sheet = api.content.create(
+            container=self.portal,
+            type="UTSignupSheet",
+            id="sheet1",
+            allowSignupForExternals=True,
+            # allowSignupForMultipleSlots=True is what skips the broader
+            # "already signed up for a slot in this signup sheet" check
+            # and relies specifically on isUserSignedUpForThisSlot to
+            # catch a resubmission for *this* slot
+            allowSignupForMultipleSlots=True,
+            signupsRequireConfirmation=True,
+            contactInfo="",
+        )
+        portal_types = self.portal.portal_types
+        day_id = portal_types.constructContent("UTDay", self.sheet, "d1", title="Day 1")
+        day = self.sheet[day_id]
+        day.date = date.today() + timedelta(days=1)
+        ts_id = portal_types.constructContent(
+            "UTTimeslot",
+            day,
+            "t1",
+            title="T1",
+            startTime=time(10, 0),
+            endTime=time(12, 0),
+            maxCapacity=5,
+        )
+        self.timeslot = day[ts_id]
+
+    def _submit(self, email):
+        self.request.form.update(
+            {
+                "inputPrename": "Jane",
+                "inputSurname": "Doe",
+                "inputEmail": email,
+                "slotSelection": self.timeslot.getIDLabel(),
+            }
+        )
+        view = self.sheet.unrestrictedTraverse("@@submit-user-selection")
+        view()
+        return view
+
+    def test_resubmission_while_unconfirmed_is_rejected_and_person_preserved(self):
+        self._submit("jane@example.org")
+        person = self.timeslot["jane-example-org"]
+        self.assertEqual(api.content.get_state(person), "unconfirmed")
+
+        view = self._submit("jane@example.org")
+        self.assertEqual(view.results[0]["status"], "error")
+        self.assertIn("already signed up", str(view.results[0]["error"]))
+
+        # the original UTPerson object must still be *the same object*,
+        # not a freshly-created one that replaced it (compare by UID,
+        # since each `self.timeslot[...]` access returns a fresh
+        # acquisition wrapper around the same underlying object)
+        self.assertEqual(IUUID(self.timeslot["jane-example-org"]), IUUID(person))
+        self.assertEqual(api.content.get_state(person), "unconfirmed")
+
+    def test_resubmission_while_on_waiting_list_is_rejected_and_person_preserved(self):
+        self.timeslot.maxCapacity = 1
+        self.timeslot.allowWaitingList = True
+        self.sheet.signupsRequireConfirmation = False
+        other = api.content.create(
+            container=self.timeslot,
+            type="UTPerson",
+            id="other-example-org",
+            email="other@example.org",
+            prename="Other",
+            surname="Person",
+        )
+        api.content.transition(obj=other, transition="signup")
+
+        self._submit("jane@example.org")
+        person = self.timeslot["jane-example-org"]
+        self.assertEqual(api.content.get_state(person), "waiting")
+
+        view = self._submit("jane@example.org")
+        self.assertEqual(view.results[0]["status"], "error")
+
+        self.assertEqual(IUUID(self.timeslot["jane-example-org"]), IUUID(person))
+        self.assertEqual(api.content.get_state(person), "waiting")
+
+    @unittest.expectedFailure
+    def test_resubmission_after_signoff_is_allowed(self):
+        # KNOWN BUG, not introduced by the isUserSignedUpForThisSlot fix
+        # above (it never counted "signedoff" either, before or after):
+        # isUserSignedUpForThisSlot correctly returns False once the
+        # person is signed off, so createPersonObject proceeds to
+        # construct a new UTPerson at the same id - but
+        # OFS.ObjectManager._setObject's own _checkId() unconditionally
+        # rejects re-using an existing (non-"__replaceable__") id with
+        # `BadRequest: The id "..." is invalid - it is already in use.`,
+        # *before* _setObject's "delete the existing object, then add
+        # the new one" logic ever runs. So signing off and trying to
+        # sign up again for the *same* slot currently crashes instead of
+        # either succeeding or giving a clean error. See the discussion
+        # around GitHub issue #29 for what the intended fix should be.
+        self._submit("jane@example.org")
+        person = self.timeslot["jane-example-org"]
+        api.content.transition(obj=person, transition="signoff")
+        self.assertEqual(api.content.get_state(person), "signedoff")
+
+        view = self._submit("jane@example.org")
+        self.assertEqual(view.results[0]["status"], "unconfirmed")
+        # the old, signed-off object was replaced by a fresh pending one -
+        # both are legitimate historical records of the same person
+        self.assertEqual(api.content.get_state(self.timeslot["jane-example-org"]), "unconfirmed")
