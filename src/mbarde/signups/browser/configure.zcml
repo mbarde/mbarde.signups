@@ -42,6 +42,16 @@
         permission="mbarde.signups.ManageSchedule"
     />
 
+    <!-- overrides plone.dexterity's generic edit view, to force
+         confirmation before reducing capacity below the number
+         already signed ups -->
+    <browser:page
+        name="edit"
+        for="mbarde.signups.content.ut_timeslot.IUTTimeslot"
+        class=".edit_timeslot.UTTimeslotEditView"
+        permission="cmf.ModifyPortalContent"
+    />
+
     <browser:page
         name="view"
         for="mbarde.signups.content.ut_person.IUTPerson"

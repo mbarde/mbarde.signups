@@ -11,6 +11,7 @@
   <state state_id="signedup" title="Signed Up">
     <description>This person is signed up for the time slot</description>
     <exit-transition transition_id="signoff" />
+    <exit-transition transition_id="putOnWaitingList" />
     <permission-map name="Access contents information"
       acquired="False">
       <permission-role>Owner</permission-role>

@@ -64,11 +64,25 @@ class UTTimeslot(Container):
         return [brain.getObject() for brain in brains]
 
     def getNumberOfAvailableSlots(self):
+        return max(0, self.maxCapacity - self.getNumberOfSignedUpPersons())
+
+    def getNumberOfSignedUpPersons(self):
         brains = self.portal_catalog.unrestrictedSearchResults(
             portal_type="UTPerson", review_state="signedup", path=self.getPath()
         )
-        numberOfPeopleSignedUp = len(brains)
-        return max(0, self.maxCapacity - numberOfPeopleSignedUp)
+        return len(brains)
+
+    def getMostRecentlySignedUpPersons(self, count):
+        if count <= 0:
+            return []
+        brains = self.portal_catalog.unrestrictedSearchResults(
+            portal_type="UTPerson",
+            review_state="signedup",
+            path=self.getPath(),
+            sort_on="created",
+            sort_order="descending",
+        )
+        return [brain._unrestrictedGetObject() for brain in brains[:count]]
 
     def getCurrentUserSignUpState(self):
         curUser = api.user.get_current()
