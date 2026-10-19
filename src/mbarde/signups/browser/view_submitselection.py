@@ -4,6 +4,7 @@ from datetime import datetime
 from mbarde.signups import _
 from mbarde.signups import otp
 from mbarde.signups import signoff
+from mbarde.signups.utils import ACTIVE_REVIEW_STATES
 from mbarde.signups.utils import appendAuthenticatedSuffix
 from mbarde.signups.utils import emailToPersonId
 from mbarde.signups.utils import getEmailOfPloneUser
@@ -236,7 +237,9 @@ class SubmitSelection(BrowserView):
         allowWaitingList = timeSlot.allowWaitingList
         numberOfAvailableSlots = timeSlot.getNumberOfAvailableSlots()
 
-        if (not allowSignupForMultipleSlots) and self.context.countSlotsByEmail(self.email) > 0:
+        if (not allowSignupForMultipleSlots) and self.context.countSlotsByEmail(
+            self.email, ACTIVE_REVIEW_STATES
+        ) > 0:
             error = _("You are already signed up for a slot in this signup sheet.")
 
         elif timeSlot.isUserSignedUpForThisSlot(self.email):

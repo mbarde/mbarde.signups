@@ -567,3 +567,116 @@ class SameSlotResubmissionTest(unittest.TestCase):
         finally:
             logout()
             login(self.portal, TEST_USER_NAME)
+
+
+class SignUpAfterSignOffFromOtherSlotTest(unittest.TestCase):
+    """GitHub issue #29: even on a signup sheet that disallows multiple
+    simultaneous signups, a person must be able to sign up for a
+    *different* slot once they've signed off their first one.
+
+    countSlotsByEmail used to count every UTPerson regardless of review
+    state, including "signedoff" ones, so once someone had ever signed up
+    once they were permanently locked out of the whole sheet - even after
+    cancelling.
+    """
+
+    layer = MBARDE_SIGNUPS_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+
+        self.sheet = api.content.create(
+            container=self.portal,
+            type="UTSignupSheet",
+            id="sheet1",
+            allowSignupForExternals=True,
+            allowSignupForMultipleSlots=False,
+            signupsRequireConfirmation=False,
+            contactInfo="",
+        )
+        portal_types = self.portal.portal_types
+        day_id = portal_types.constructContent("UTDay", self.sheet, "d1", title="Day 1")
+        day = self.sheet[day_id]
+        day.date = date.today() + timedelta(days=1)
+        self.slotA = day[
+            portal_types.constructContent(
+                "UTTimeslot",
+                day,
+                "a",
+                title="Slot A",
+                startTime=time(10, 0),
+                endTime=time(12, 0),
+                maxCapacity=5,
+            )
+        ]
+        self.slotB = day[
+            portal_types.constructContent(
+                "UTTimeslot",
+                day,
+                "b",
+                title="Slot B",
+                startTime=time(14, 0),
+                endTime=time(16, 0),
+                maxCapacity=5,
+            )
+        ]
+
+    def _submit(self, emailAddress, slot):
+        self.request.form.update(
+            {
+                "inputPrename": "Jane",
+                "inputSurname": "Doe",
+                "inputEmail": emailAddress,
+                "slotSelection": slot.getIDLabel(),
+            }
+        )
+        view = self.sheet.unrestrictedTraverse("@@submit-user-selection")
+        view()
+        return view
+
+    def test_signup_for_other_slot_allowed_after_signing_off_first_one(self):
+        self._submit("jane@example.org", self.slotA)
+        personA = self.slotA["jane-example-org"]
+        self.assertEqual(api.content.get_state(personA), "signedup")
+
+        api.content.transition(obj=personA, transition="signoff")
+        self.assertEqual(api.content.get_state(personA), "signedoff")
+
+        view = self._submit("jane@example.org", self.slotB)
+        self.assertEqual(view.results[0]["status"], "signedup")
+
+        personB = self.slotB["jane-example-org"]
+        self.assertEqual(api.content.get_state(personB), "signedup")
+
+        # both records coexist - the signed-off one from slot A is not
+        # touched or removed by signing up for slot B
+        self.assertEqual(api.content.get_state(personA), "signedoff")
+        self.assertNotEqual(IUUID(personA), IUUID(personB))
+
+    def test_signup_for_other_slot_still_blocked_while_still_active(self):
+        self._submit("jane@example.org", self.slotA)
+        self.assertEqual(api.content.get_state(self.slotA["jane-example-org"]), "signedup")
+
+        # no signoff this time - jane is still actively signed up for A
+        view = self._submit("jane@example.org", self.slotB)
+        self.assertEqual(view.results[0]["status"], "error")
+        self.assertIn("already signed up", str(view.results[0]["error"]))
+        self.assertNotIn("jane-example-org", self.slotB.objectIds())
+
+    def test_multiple_signed_off_records_across_different_slots_coexist(self):
+        self._submit("jane@example.org", self.slotA)
+        api.content.transition(obj=self.slotA["jane-example-org"], transition="signoff")
+
+        self._submit("jane@example.org", self.slotB)
+        api.content.transition(obj=self.slotB["jane-example-org"], transition="signoff")
+
+        self.assertEqual(api.content.get_state(self.slotA["jane-example-org"]), "signedoff")
+        self.assertEqual(api.content.get_state(self.slotB["jane-example-org"]), "signedoff")
+
+        # countSlotsByEmail with no explicit state filter still reports
+        # every historical record (used elsewhere e.g. for reporting) -
+        # only the *active*-only call site in getSlotAndSignUserUpForIt
+        # was the bug
+        self.assertEqual(self.sheet.countSlotsByEmail("jane@example.org"), 2)
