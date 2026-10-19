@@ -260,7 +260,10 @@ class IUTSignupSheet(model.Schema):
                     "Hello $$name$$,\n\n"
                     "This message is to confirm that you have been signed up for:\n"
                     "$$slot$$\n\n"
-                    "$$data$$"
+                    "You provided following data:\n"
+                    "$$data$$\n\n"
+                    "To cancel your sign-up follow this link:\n"
+                    "$$sign_off_url$$"
                 ),
             )
         ),
@@ -290,10 +293,13 @@ class IUTSignupSheet(model.Schema):
                 default=(
                     "Hello $$name$$,\n\n"
                     "You signed up for following slot:\n"
-                    "$$slot$$\n"
+                    "$$slot$$\n\n"
                     "You will receive another email as soon as your registration has "
                     "been confirmed (or rejected).\n\n"
-                    "$$data$$"
+                    "You provided following data:\n"
+                    "$$data$$\n\n"
+                    "To cancel your sign-up follow this link:\n"
+                    "$$sign_off_url$$"
                 ),
             )
         ),
@@ -323,7 +329,10 @@ class IUTSignupSheet(model.Schema):
                     "This message is to confirm that you have been added to the "
                     "waiting list for:\n"
                     "$$slot$$\n\n"
-                    "$$data$$"
+                    "You provided following data:\n"
+                    "$$data$$\n\n"
+                    "To cancel your sign-up follow this link:\n"
+                    "$$sign_off_url$$"
                 ),
             )
         ),
@@ -352,6 +361,7 @@ class IUTSignupSheet(model.Schema):
                     "Hello $$name$$,\n\n"
                     "Following slot has been cancelled:\n"
                     "$$slot$$\n\n"
+                    "You provided following data:\n"
                     "$$data$$"
                 ),
             )
