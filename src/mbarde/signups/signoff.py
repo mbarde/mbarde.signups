@@ -129,7 +129,7 @@ def resolvePersonFromSignOffToken(token):
     if len(brains) == 0:
         return None
     if len(brains) > 1:
-        # UIDs are supposed to be unique - more than one hit means a 
+        # UIDs are supposed to be unique - more than one hit means a
         # catalog/data integrity problem
         logger.error(
             "Multiple UTPerson objects share UID %r - refusing to resolve "
