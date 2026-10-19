@@ -33,12 +33,26 @@ import base64
 import hashlib
 import hmac
 import json
+import logging
+import re
 import urllib.parse
+
+logger = logging.getLogger(__name__)
 
 # "to be used with anonymous users" (see plone.keyring.keymanager.
 # KeyManager) - kept separate from the "_forms" ring plone.protect uses
 # for session-bound CSRF tokens, since these tokens outlive any session.
 _RING = "_anon"
+
+# a real token is always small (base64 of a one-field JSON payload, a
+# ".", and a 64-char hex HMAC digest - well under 200 characters); cap
+# it generously below so an absurdly large value is rejected on a plain
+# length check, before it is ever fed into base64/HMAC processing.
+_MAX_TOKEN_LENGTH = 512
+
+# plone.uuid.generator always produces `uuid.uuid4().hex` - 32 lowercase
+# hex characters, no dashes.
+_UID_SHAPE = re.compile(r"^[0-9a-f]{32}$")
 
 
 class InvalidSignOffToken(Exception):
@@ -79,6 +93,9 @@ def resolvePersonFromSignOffToken(token):
     ut_person_workflow's permission-maps), so a restricted lookup
     would incorrectly fail for exactly the people this is meant for.
     """
+    if not isinstance(token, str) or not token or len(token) > _MAX_TOKEN_LENGTH:
+        raise InvalidSignOffToken("Malformed token.")
+
     try:
         bodyB64, signature = token.encode("utf-8").split(b".", 1)
     except (ValueError, AttributeError):
@@ -100,9 +117,25 @@ def resolvePersonFromSignOffToken(token):
     except (ValueError, TypeError, KeyError):
         raise InvalidSignOffToken("Malformed token.")
 
+    if not isinstance(personUID, str) or not _UID_SHAPE.match(personUID):
+        # the signature checked out, so this token really was issued by
+        # us - but its payload is not even shaped like a UID, which
+        # should never happen for a genuine token. Treat it as invalid
+        # rather than silently falling through to "not found".
+        raise InvalidSignOffToken("Malformed UID.")
+
     catalog = api.portal.get_tool("portal_catalog")
     brains = catalog.unrestrictedSearchResults(portal_type="UTPerson", UID=personUID)
-    if len(brains) != 1:
+    if len(brains) == 0:
+        return None
+    if len(brains) > 1:
+        # UIDs are supposed to be unique - more than one hit means a 
+        # catalog/data integrity problem
+        logger.error(
+            "Multiple UTPerson objects share UID %r - refusing to resolve "
+            "a sign-off token for it.",
+            personUID,
+        )
         return None
     return brains[0]._unrestrictedGetObject()
 
