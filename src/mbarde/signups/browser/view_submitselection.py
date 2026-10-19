@@ -270,13 +270,32 @@ class SubmitSelection(BrowserView):
         result["error"] = error
         self.results.append(result)
 
+    def _reactivatePersonObject(self, existing):
+        state = api.content.get_state(obj=existing)
+        if state != "signedoff":
+            raise ValueError(
+                "Expected an existing UTPerson here to be 'signedoff', "
+                "found '{0}' instead - refusing to reactivate it.".format(state)
+            )
+
+        # "reactivate" is Manager-guarded on purpose (see the comment
+        # above the "signup" transition in ut_person_workflow)
+        with api.env.adopt_roles(["Manager"]):
+            api.content.transition(obj=existing, transition="reactivate")
+        return existing
+
     def createPersonObject(self, container):
-        # do not use api.content.create() since we bypass security here
-        # to avoid permitting any permissions for anonymous
-        portal_types = api.portal.get_tool("portal_types")
-        type_info = portal_types.getTypeInfo("UTPerson")
         personId = emailToPersonId(self.email)
-        newPerson = type_info._constructInstance(container, personId)
+        existing = container._getOb(personId, None)
+
+        if existing is not None:
+            newPerson = self._reactivatePersonObject(existing)
+        else:
+            # do not use api.content.create() since we bypass security
+            # here to avoid permitting any permissions for anonymous
+            portal_types = api.portal.get_tool("portal_types")
+            type_info = portal_types.getTypeInfo("UTPerson")
+            newPerson = type_info._constructInstance(container, personId)
 
         newPerson.email = self.email
         newPerson.title = "{0} {1}".format(self.prename, self.surname)

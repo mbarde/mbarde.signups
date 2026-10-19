@@ -63,6 +63,7 @@
     <description>This person has been signed off</description>
     <exit-transition transition_id="signup" />
     <exit-transition transition_id="putOnWaitingList" />
+    <exit-transition transition_id="reactivate" />
     <permission-map name="Access contents information"
       acquired="False">
       <permission-role>Owner</permission-role>
@@ -141,6 +142,14 @@
     this workflow, so any *new* call site added in the future gets no
     enforcement from the workflow layer and must uphold this discipline
     itself.
+
+    The "reactivate" transition below is the one deliberate exception, and
+    it *is* guarded (Manager role only): it lets view_submitselection.py
+    reuse (rather than id-collide with) a signedoff UTPerson when the same
+    person signs up again for the same slot - see createPersonObject's
+    reactivation branch, which wraps the transition call in
+    api.env.adopt_roles(["Manager"]) precisely because an anonymous caller
+    must never be able to invoke it directly on their own.
   -->
 
   <transition transition_id="signup"
@@ -171,6 +180,23 @@
     <action url="%(content_url)s/content_status_modify?workflow_action=putOnWaitingList"
       category="workflow">Put on waiting list</action>
     <guard></guard>
+  </transition>
+
+  <transition transition_id="reactivate"
+    title="Reactivate after sign-off"
+    new_state="unconfirmed" trigger="USER"
+    before_script="" after_script="">
+    <description>
+      Re-enters a signed-off person back into the normal signup flow (as
+      "unconfirmed", same as a brand new signup) so it can be reused
+      instead of colliding on id with a fresh UTPerson. Manager-only on
+      purpose - see the comment above the "signup" transition.
+    </description>
+    <action url="%(content_url)s/content_status_modify?workflow_action=reactivate"
+      category="workflow">Reactivate</action>
+    <guard>
+      <guard-role>Manager</guard-role>
+    </guard>
   </transition>
 
   <variable variable_id="action" for_catalog="False"
