@@ -3,6 +3,7 @@ from AccessControl.unauthorized import Unauthorized
 from datetime import datetime
 from mbarde.signups import _
 from mbarde.signups import otp
+from mbarde.signups import signoff
 from mbarde.signups.utils import appendAuthenticatedSuffix
 from mbarde.signups.utils import emailToPersonId
 from mbarde.signups.utils import getEmailOfPloneUser
@@ -332,6 +333,7 @@ class SubmitSelection(BrowserView):
         contactInfo = signupSheet.contactInfo
         toEmail = self.email
         fromEmail = signupSheet.contactInfo
+        signOffUrl = signoff.buildSignOffUrl(signupSheet, person)
 
         subject = replaceCustomMailPlaceholders(
             signupSheet.emailWaitForConfirmationSubject,
@@ -341,6 +343,7 @@ class SubmitSelection(BrowserView):
             slotTitleLabel,
             extraInfoStr,
             url + "/@@view-my-signups",
+            signOffUrl,
         )
         message = replaceCustomMailPlaceholders(
             signupSheet.emailWaitForConfirmationContent,
@@ -350,6 +353,7 @@ class SubmitSelection(BrowserView):
             slotTitleLabel,
             extraInfoStr,
             url + "/@@view-my-signups",
+            signOffUrl,
         )
         message = appendAuthenticatedSuffix(
             message, person, signupSheet, slotTitleLabel, extraInfoStr

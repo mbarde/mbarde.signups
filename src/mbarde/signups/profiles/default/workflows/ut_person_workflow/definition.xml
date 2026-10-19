@@ -130,11 +130,14 @@
 
     Instead, authorization is enforced entirely in application code: every
     call site that triggers these transitions (view_cancelreservation.py,
-    view_submitselection.py, subscribers.py) resolves its target person
-    either from the caller's own session identity or from a business rule
-    (oldest waiting person) - never from a client-supplied person id - so
-    there is currently no path for a user to change another person's state.
-    That protection lives entirely in that application code though, not in
+    view_submitselection.py, subscribers.py, view_directsignoff.py)
+    resolves its target person either from the caller's own session
+    identity, from a business rule (oldest waiting person), or from an
+    unforgeable, HMAC-signed token mailed to that one person (see
+    signoff.py and the $$sign_off_url$$ placeholder) - never from a bare,
+    client-supplied person id - so there is currently no path for a user
+    to change another person's state. That protection lives entirely in
+    this application code though, not in
     this workflow, so any *new* call site added in the future gets no
     enforcement from the workflow layer and must uphold this discipline
     itself.
