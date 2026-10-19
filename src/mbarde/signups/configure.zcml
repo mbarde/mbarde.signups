@@ -90,4 +90,12 @@
     handler=".subscribers.sendNotification"
   />
 
+  <!-- if editing a timeslot frees up capacity (e.g. maxCapacity raised),
+       promote as many waiting-list people as now fit -->
+  <subscriber
+    for=".content.ut_timeslot.IUTTimeslot
+         zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+    handler=".subscribers.promoteFromWaitingListOnTimeslotEdit"
+  />
+
 </configure>

@@ -6,6 +6,7 @@ from mbarde.signups.utils import replaceCustomMailPlaceholders
 from plone import api
 from Products.CMFPlone.interfaces import ILanguage
 from Products.validation import validation
+from zope.container.interfaces import IContainerModifiedEvent
 from zope.i18n import translate
 
 
@@ -211,6 +212,27 @@ def sendSignOffNotification(person):
     api.portal.send_email(recipient=toEmail, sender=fromEmail, subject=subject, body=message)
 
 
+def _promoteFromWaitingList(timeSlot, count):
+    """Transition up to `count` of the longest-waiting UTPerson objects
+    in `timeSlot` from "waiting" to "signedup", oldest first (using "created")
+    """
+    if count <= 0:
+        return
+
+    portal_catalog = api.portal.get_tool("portal_catalog")
+    query = {
+        "portal_type": "UTPerson",
+        "review_state": "waiting",
+        "sort_on": "created",
+        "sort_order": "ascending",
+    }
+    brains = portal_catalog.unrestrictedSearchResults(query, path=timeSlot.getPath())
+    for brain in brains[:count]:
+        person = brain._unrestrictedGetObject()
+        api.content.transition(obj=person, transition="signup")
+        person.reindexObject()
+
+
 def attemptToFillEmptySpot(obj):
     timeSlot = obj.aq_parent
     day = timeSlot.aq_parent
@@ -219,20 +241,26 @@ def attemptToFillEmptySpot(obj):
     if signupSheet.enableAutoMovingUpFromWaitingList:
         # to make sure timeslot.getNumberOfAvailableSlots() returns current value
         obj.reindexObject()
+        _promoteFromWaitingList(timeSlot, timeSlot.getNumberOfAvailableSlots())
 
-        if timeSlot.getNumberOfAvailableSlots() > 0:
-            portal_catalog = api.portal.get_tool("portal_catalog")
-            query = {
-                "portal_type": "UTPerson",
-                "review_state": "waiting",
-                "sort_on": "Date",
-                "sort_order": "ascending",
-            }
-            brains = portal_catalog.unrestrictedSearchResults(query, path=timeSlot.getPath())
-            if len(brains) > 0:
-                person = brains[0]._unrestrictedGetObject()
-                api.content.transition(obj=person, transition="signup")
-                person.reindexObject()
+
+# capacity was raised (or a slot was otherwise freed up some other way
+# than a signoff, e.g. a person being deleted outright) - promote as
+# many waiting-list people as now fit, oldest first
+def promoteFromWaitingListOnTimeslotEdit(timeSlot, event):
+    # IContainerModifiedEvent is a *subtype* of IObjectModifiedEvent and
+    # fires on the timeslot too, e.g. on every single signup/signoff.
+    # That case is already handled by attemptToFillEmptySpot (triggered off the
+    # workflow transition itself, where the *previous* state is known) -
+    # only react here to genuine edits of the timeslot's own fields.
+    if IContainerModifiedEvent.providedBy(event):
+        return
+
+    day = timeSlot.aq_parent
+    signupSheet = day.aq_parent
+
+    if signupSheet.enableAutoMovingUpFromWaitingList:
+        _promoteFromWaitingList(timeSlot, timeSlot.getNumberOfAvailableSlots())
 
 
 # send out a notification based on workflow transition event
