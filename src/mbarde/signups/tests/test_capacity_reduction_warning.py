@@ -162,15 +162,73 @@ class CapacityReductionWarningTest(unittest.TestCase):
         self.assertEqual(self.timeslot.maxCapacity, 2)
         self.assertEqual(api.content.get_state(waiting), "signedup")
 
-    def test_reducing_capacity_without_waiting_list_is_not_touched_here(self):
-        # case B.2 (sign off instead, when no waiting list is allowed)
-        # is a separate change - for now this combination must behave
-        # exactly as it always has: the edit goes through, nobody moves
+    def test_reducing_capacity_without_waiting_list_warns_about_signoff(self):
         self._signUp("a", -2)
         self._signUp("b", -1)
 
-        self._submitEdit(maxCapacity=1, allowWaitingList=False, confirm=False)
+        form = self._submitEdit(maxCapacity=1, allowWaitingList=False, confirm=False)
 
-        self.assertEqual(self.timeslot.maxCapacity, 1)
+        self.assertEqual(self.timeslot.maxCapacity, 5, "capacity must not have been changed yet")
+        status = translate(form.status, context=self.request)
+        self.assertIn("sign off", status)
+        self.assertIn("1", status)  # new capacity
+        self.assertIn("2", status)  # how many would be affected
         self.assertEqual(api.content.get_state(self.timeslot["a"]), "signedup")
         self.assertEqual(api.content.get_state(self.timeslot["b"]), "signedup")
+
+    def test_confirmed_reduction_without_waiting_list_signs_off_newest_first(self):
+        older = self._signUp("older", -2)
+        newer = self._signUp("newer", -1)
+
+        self._submitEdit(maxCapacity=1, allowWaitingList=False, confirm=True)
+
+        self.assertEqual(self.timeslot.maxCapacity, 1)
+        self.assertEqual(self.timeslot.allowWaitingList, False)
+        self.assertEqual(api.content.get_state(older), "signedup")
+        self.assertEqual(api.content.get_state(newer), "signedoff")
+
+    def test_confirmed_reduction_without_waiting_list_signs_off_exactly_the_excess(self):
+        a = self._signUp("a", -4)
+        b = self._signUp("b", -3)
+        c = self._signUp("c", -2)
+        d = self._signUp("d", -1)
+
+        self._submitEdit(maxCapacity=2, allowWaitingList=False, confirm=True)
+
+        self.assertEqual(api.content.get_state(a), "signedup")
+        self.assertEqual(api.content.get_state(b), "signedup")
+        self.assertEqual(api.content.get_state(c), "signedoff")
+        self.assertEqual(api.content.get_state(d), "signedoff")
+
+    def test_signed_off_people_are_notified(self):
+        self.sheet.contactInfo = "manager@example.org"
+        self.sheet.notifyContactInfo = True
+        newer = self._signUp("newer", -1)
+        self._signUp("older", -2)
+
+        self._submitEdit(maxCapacity=1, allowWaitingList=False, confirm=True)
+
+        bodies = []
+        for raw in self.portal.MailHost.messages:
+            if isinstance(raw, bytes):
+                raw = raw.decode("utf-8")
+            bodies.append(raw)
+        # one cancellation email to "newer" (the one signed off), plus
+        # the manager notification sendSignOffNotification/the generic
+        # IAfterTransitionEvent subscriber already sends - no new
+        # notification code was needed for this at all
+        self.assertTrue(any("To: " + newer.email in body for body in bodies))
+
+    def test_switching_off_waiting_list_while_reducing_capacity_signs_off_not_waits(self):
+        # the manager toggles *both* allowWaitingList (on -> off) and
+        # maxCapacity down in the same edit - the warning/outcome must
+        # follow the *new* (submitted) allowWaitingList value, not the
+        # slot's current one
+        self.assertTrue(self.timeslot.allowWaitingList)
+        older = self._signUp("older", -2)
+        newer = self._signUp("newer", -1)
+
+        self._submitEdit(maxCapacity=1, allowWaitingList=False, confirm=True)
+
+        self.assertEqual(api.content.get_state(older), "signedup")
+        self.assertEqual(api.content.get_state(newer), "signedoff")

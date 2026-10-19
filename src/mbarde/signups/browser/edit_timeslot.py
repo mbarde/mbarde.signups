@@ -34,6 +34,12 @@ def _moveExcessToWaitingList(timeSlot, excess):
         person.reindexObject()
 
 
+def _signOffExcess(timeSlot, excess):
+    for person in timeSlot.getMostRecentlySignedUpPersons(excess):
+        api.content.transition(obj=person, transition="signoff")
+        person.reindexObject()
+
+
 class UTTimeslotEditForm(DefaultEditForm):
     def updateFields(self):
         super().updateFields()
@@ -52,28 +58,47 @@ class UTTimeslotEditForm(DefaultEditForm):
         currentlySignedUp = self.context.getNumberOfSignedUpPersons()
         excess = currentlySignedUp - newCapacity
 
-        if excess > 0 and newAllowWaitingList and not confirmed:
-            self.status = _(
-                "warning_capacity_reduction_to_waiting",
-                default=(
-                    "Reducing the maximum capacity to ${newCapacity} will move "
-                    "${excess} of the ${current} people currently signed up to "
-                    "the waiting list (the most recently signed-up ones). "
-                    "Check the confirmation box below and save again to proceed."
-                ),
-                mapping={
-                    "newCapacity": newCapacity,
-                    "excess": excess,
-                    "current": currentlySignedUp,
-                },
-            )
+        if excess > 0 and not confirmed:
+            mapping = {
+                "newCapacity": newCapacity,
+                "excess": excess,
+                "current": currentlySignedUp,
+            }
+            if newAllowWaitingList:
+                self.status = _(
+                    "warning_capacity_reduction_to_waiting",
+                    default=(
+                        "Reducing the maximum capacity to ${newCapacity} will "
+                        "move ${excess} of the ${current} people currently "
+                        "signed up to the waiting list (the most recently "
+                        "signed-up ones). Check the confirmation box below "
+                        "and save again to proceed."
+                    ),
+                    mapping=mapping,
+                )
+            else:
+                self.status = _(
+                    "warning_capacity_reduction_to_signoff",
+                    default=(
+                        "Reducing the maximum capacity to ${newCapacity} will "
+                        "sign off ${excess} of the ${current} people "
+                        "currently signed up (the most recently signed-up "
+                        "ones), since this slot does not allow a waiting "
+                        "list. They will be notified by email. Check the "
+                        "confirmation box below and save again to proceed."
+                    ),
+                    mapping=mapping,
+                )
             return
 
         self.applyChanges(data)
         IStatusMessage(self.request).addStatusMessage(self.success_message, "info")
 
-        if excess > 0 and newAllowWaitingList:
-            _moveExcessToWaitingList(self.context, excess)
+        if excess > 0:
+            if newAllowWaitingList:
+                _moveExcessToWaitingList(self.context, excess)
+            else:
+                _signOffExcess(self.context, excess)
 
         self.request.response.redirect(self.nextURL())
         notify(EditFinishedEvent(self.context))
