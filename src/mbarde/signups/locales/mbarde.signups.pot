@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-20 06:38+0000\n"
+"POT-Creation-Date: 2026-10-20 06:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -389,6 +389,10 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
+#: ../browser/templates/ut_timeslot_view.pt:75
+msgid "No persons"
+msgstr ""
+
 #: ../browser/templates/ut_signup_sheet_view.pt:318
 msgid "No slots have been made available for this day yet."
 msgstr ""
@@ -431,10 +435,6 @@ msgstr ""
 
 #: ../content/ut_signup_sheet.py:391
 msgid "Personal data can only be locked if signup for external users is disabled."
-msgstr ""
-
-#: ../browser/templates/ut_timeslot_view.pt:48
-msgid "Persons"
 msgstr ""
 
 #: ../browser/views.py:209
@@ -525,13 +525,13 @@ msgid "Signed Off"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:118
-#: ../browser/views.py:252
+#: ../browser/views.py:247
 #: ../utils.py:179
 msgid "Signed Up"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:47
-#: ../browser/views.py:256
+#: ../browser/views.py:250
 msgid "Signed off"
 msgstr ""
 
@@ -763,7 +763,7 @@ msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:53
 #: ../browser/templates/view_summary.pt:128
-#: ../browser/views.py:258
+#: ../browser/views.py:248
 msgid "Waiting List"
 msgstr ""
 
@@ -772,7 +772,7 @@ msgid "Waiting List Notification"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:123
-#: ../browser/views.py:254
+#: ../browser/views.py:249
 #: ../utils.py:181
 msgid "Waiting for confirmation"
 msgstr ""

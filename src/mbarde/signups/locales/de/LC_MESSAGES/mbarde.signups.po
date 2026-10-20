@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-20 06:38+0000\n"
+"POT-Creation-Date: 2026-10-20 06:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <de@li.org>\n"
@@ -387,6 +387,10 @@ msgstr "Mitgliedseigenschaft für Nachname"
 msgid "Name"
 msgstr "Name"
 
+#: ../browser/templates/ut_timeslot_view.pt:75
+msgid "No persons"
+msgstr "Keine Personen"
+
 #: ../browser/templates/ut_signup_sheet_view.pt:318
 msgid "No slots have been made available for this day yet."
 msgstr "Für diesen Tag wurden noch keine Termine freigegeben."
@@ -430,10 +434,6 @@ msgstr "Person für mbarde.signups"
 #: ../content/ut_signup_sheet.py:391
 msgid "Personal data can only be locked if signup for external users is disabled."
 msgstr "Persönliche Daten können nur gesperrt werden, wenn die Anmeldung für externe Nutzer deaktiviert ist."
-
-#: ../browser/templates/ut_timeslot_view.pt:48
-msgid "Persons"
-msgstr "Personen"
 
 #: ../browser/views.py:209
 msgid "Please provide a valid starting time, timeslot duration, number of timeslots and max capacity."
@@ -524,13 +524,13 @@ msgid "Signed Off"
 msgstr "Abgemeldet"
 
 #: ../browser/templates/view_summary.pt:118
-#: ../browser/views.py:252
+#: ../browser/views.py:247
 #: ../utils.py:179
 msgid "Signed Up"
 msgstr "Angemeldet"
 
 #: ../browser/templates/view_summary.pt:47
-#: ../browser/views.py:256
+#: ../browser/views.py:250
 msgid "Signed off"
 msgstr "Abgemeldet"
 
@@ -762,7 +762,7 @@ msgstr "Betreff der E-Mail „Warten auf Bestätigung“"
 
 #: ../browser/templates/ut_signup_sheet_view.pt:53
 #: ../browser/templates/view_summary.pt:128
-#: ../browser/views.py:258
+#: ../browser/views.py:248
 msgid "Waiting List"
 msgstr "Warteliste"
 
@@ -771,7 +771,7 @@ msgid "Waiting List Notification"
 msgstr "Benachrichtigung zur Warteliste"
 
 #: ../browser/templates/view_summary.pt:123
-#: ../browser/views.py:254
+#: ../browser/views.py:249
 #: ../utils.py:181
 msgid "Waiting for confirmation"
 msgstr "Wartet auf Bestätigung"

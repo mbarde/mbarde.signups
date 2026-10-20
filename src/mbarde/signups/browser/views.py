@@ -241,7 +241,22 @@ class CreateSequentialTimeslotsView(BrowserView):
 
 
 class UTTimeslotView(DefaultView):
-    pass
+
+    # (review state, title, bootstrap color) - colors match view_summary.pt
+    PERSON_GROUPS = (
+        ("signedup", _("Signed Up"), "success"),
+        ("waiting", _("Waiting List"), "info"),
+        ("unconfirmed", _("Waiting for confirmation"), "warning"),
+        ("signedoff", _("Signed off"), "danger"),
+    )
+
+    def getPersonGroups(self):
+        groups = []
+        for state, title, color in self.PERSON_GROUPS:
+            persons = self.context.getPeople(filterByStatus=state)
+            persons.sort(key=lambda person: person.created())
+            groups.append({"state": state, "title": title, "color": color, "persons": persons})
+        return groups
 
 
 class UTPersonView(DefaultView):
