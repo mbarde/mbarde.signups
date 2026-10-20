@@ -240,15 +240,18 @@ class CreateSequentialTimeslotsView(BrowserView):
         return request.response.redirect(redirectUrl)
 
 
+# (review state, title, bootstrap color) - colors match view_summary.pt
+PERSON_STATES = (
+    ("signedup", _("Signed Up"), "success"),
+    ("waiting", _("Waiting List"), "info"),
+    ("unconfirmed", _("Waiting for confirmation"), "warning"),
+    ("signedoff", _("Signed off"), "danger"),
+)
+
+
 class UTTimeslotView(DefaultView):
 
-    # (review state, title, bootstrap color) - colors match view_summary.pt
-    PERSON_GROUPS = (
-        ("signedup", _("Signed Up"), "success"),
-        ("waiting", _("Waiting List"), "info"),
-        ("unconfirmed", _("Waiting for confirmation"), "warning"),
-        ("signedoff", _("Signed off"), "danger"),
-    )
+    PERSON_GROUPS = PERSON_STATES
 
     def getPersonGroups(self):
         groups = []
@@ -262,15 +265,12 @@ class UTTimeslotView(DefaultView):
 class UTPersonView(DefaultView):
 
     def getCurrentState(self):
+        """(state title, row css class) of this person's review state"""
         state = api.content.get_state(self.context)
-        if state == "signedup":
-            return (_("Signed Up"), "bg-success")
-        elif state == "unconfirmed":
-            return (_("Waiting for confirmation"), "bg-warning")
-        elif state == "signedoff":
-            return (_("Signed off"), "bg-danger")
-        elif state == "waiting":
-            return (_("Waiting List"), "bg-info")
+        for stateId, title, color in PERSON_STATES:
+            if stateId == state:
+                return (title, "table-" + color)
+        return (state, "")
 
     def canConfirmSignup(self):
         if api.content.get_state(self.context) != "unconfirmed":

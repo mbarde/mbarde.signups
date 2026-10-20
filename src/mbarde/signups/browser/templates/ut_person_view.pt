@@ -23,9 +23,13 @@
 
         <table class="listing table table-striped table-hover">
           <tbody>
-            <tr tal:define="(stateTitle, stateClass) view/getCurrentState">
-              <td tal:attributes="class stateClass" i18n:translate="">State</td>
-              <td tal:attributes="class stateClass">
+            <tr
+              id="person-state"
+              tal:define="(stateTitle, stateClass) view/getCurrentState"
+              tal:attributes="class stateClass"
+            >
+              <td i18n:translate="">State</td>
+              <td>
                 <b tal:content="stateTitle" />
               </td>
             </tr>

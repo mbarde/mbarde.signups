@@ -14,7 +14,7 @@ import re
 import unittest
 
 
-class PersonViewConfirmSignupTest(unittest.TestCase):
+class PersonViewTest(unittest.TestCase):
 
     layer = MBARDE_SIGNUPS_INTEGRATION_TESTING
 
@@ -99,3 +99,22 @@ class PersonViewConfirmSignupTest(unittest.TestCase):
         self.person.restrictedTraverse("content_status_modify")(workflow_action="signup")
 
         self.assertEqual(api.content.get_state(self.person), "signedup")
+
+    def _stateRowClass(self):
+        html = self.person.unrestrictedTraverse("@@view")()
+        match = re.search(r'<tr[^>]*id="person-state"[^>]*>', html)
+        classMatch = re.search(r'class="([^"]*)"', match.group(0))
+        return classMatch.group(1) if classMatch else ""
+
+    def test_state_row_is_colored_like_the_summary(self):
+        # same colors as view_summary.pt / the timeslot view's person lists
+        self.assertEqual(self._stateRowClass(), "table-warning")
+
+        api.content.transition(obj=self.person, transition="signup")
+        self.assertEqual(self._stateRowClass(), "table-success")
+
+        api.content.transition(obj=self.person, transition="putOnWaitingList")
+        self.assertEqual(self._stateRowClass(), "table-info")
+
+        api.content.transition(obj=self.person, transition="signoff")
+        self.assertEqual(self._stateRowClass(), "table-danger")
