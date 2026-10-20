@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-20 06:17+0000\n"
+"POT-Creation-Date: 2026-10-20 06:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,7 +73,7 @@ msgid "Allow the user to signup for more than one slot."
 msgstr ""
 
 #: ../browser/templates/ut_day_view.pt:125
-#: ../content/ut_timeslot.py:33
+#: ../content/ut_timeslot.py:39
 msgid "Allow waiting list"
 msgstr ""
 
@@ -129,7 +129,7 @@ msgstr ""
 msgid "Cancellation email subject"
 msgstr ""
 
-#: ../content/ut_timeslot.py:34
+#: ../content/ut_timeslot.py:40
 msgid "Check if you want to allow signups to waiting list once max capacity is reached."
 msgstr ""
 
@@ -296,6 +296,10 @@ msgstr ""
 
 #: ../content/ut_signup_sheet.py:106
 msgid "If a signup is cancelled, the first person on the waiting list (sorted by date) is automatically signed up."
+msgstr ""
+
+#: ../content/ut_timeslot.py:30
+msgid "If this value is increased and there are already people on the waiting list for this slot, they will automatically fill the new spots."
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:31
@@ -605,10 +609,6 @@ msgstr ""
 
 #: ../content/ut_signup_sheet.py:45
 msgid "Text"
-msgstr ""
-
-#: ../content/ut_timeslot.py:29
-msgid "The max number of people"
 msgstr ""
 
 #: ../browser/view_submitselection.py:268
@@ -977,12 +977,12 @@ msgid "email_waitinglist_subject_default"
 msgstr ""
 
 #. Default: "You can't reduce the capacity to ${newCapacity}, since there are already ${signedUp} signups on this slot. If you want to reduce it, first you need to sign off ${excess} people."
-#: ../content/ut_timeslot.py:72
+#: ../content/ut_timeslot.py:74
 msgid "error_capacity_below_signups"
 msgstr ""
 
 #. Default: "You can't reduce the capacity to ${newCapacity}, since there are already ${signedUp} signups on this slot. If you want to reduce it, first you need to move ${excess} people to the waiting list or sign them off."
-#: ../content/ut_timeslot.py:60
+#: ../content/ut_timeslot.py:62
 msgid "error_capacity_below_signups_waiting_list"
 msgstr ""
 

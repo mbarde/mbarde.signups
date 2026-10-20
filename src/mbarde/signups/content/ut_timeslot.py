@@ -26,7 +26,13 @@ class IUTTimeslot(model.Schema):
     name = schema.TextLine(title=_("Name"), description=_("Optional name"), required=False)
 
     maxCapacity = schema.Int(
-        title=_("Max capacity"), description=_("The max number of people"), required=True, default=1
+        title=_("Max capacity"),
+        description=_(
+            "If this value is increased and there are already people on the waiting list "
+            "for this slot, they will automatically fill the new spots.",
+        ),
+        required=True,
+        default=1,
     )
 
     allowWaitingList = schema.Bool(
