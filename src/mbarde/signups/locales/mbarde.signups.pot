@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-19 07:20+0000\n"
+"POT-Creation-Date: 2026-10-20 06:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,11 +29,11 @@ msgstr ""
 msgid "A copy of the data usage declaration as it read when this person consented to it, so a later edit to the declaration doesn't retroactively change what this person is considered to have consented to."
 msgstr ""
 
-#: ../subscribers.py:154
+#: ../subscribers.py:155
 msgid "A new signup has been added to the waiting list for:"
 msgstr ""
 
-#: ../browser/view_submitselection.py:376
+#: ../browser/view_submitselection.py:398
 msgid "A new signup is waiting for confirmation"
 msgstr ""
 
@@ -50,8 +50,8 @@ msgid "Additional form to be filled in for registration."
 msgstr ""
 
 #: ../browser/view_cancelreservation.py:57
-#: ../browser/view_submitselection.py:387
-#: ../subscribers.py:85
+#: ../browser/view_submitselection.py:409
+#: ../subscribers.py:86
 msgid "Additional information"
 msgstr ""
 
@@ -76,7 +76,7 @@ msgid "Allow the user to signup for more than one slot."
 msgstr ""
 
 #: ../browser/templates/ut_day_view.pt:125
-#: ../content/ut_timeslot.py:30
+#: ../content/ut_timeslot.py:33
 msgid "Allow waiting list"
 msgstr ""
 
@@ -132,7 +132,7 @@ msgstr ""
 msgid "Cancellation email subject"
 msgstr ""
 
-#: ../content/ut_timeslot.py:31
+#: ../content/ut_timeslot.py:34
 msgid "Check if you want to allow signups to waiting list once max capacity is reached."
 msgstr ""
 
@@ -162,7 +162,7 @@ msgid "Contact information for the manager of the signup sheet."
 msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:197
-#: ../browser/view_submitselection.py:148
+#: ../browser/view_submitselection.py:149
 msgid "Contact:"
 msgstr ""
 
@@ -206,7 +206,7 @@ msgid "Do you want to cancel the following registration?"
 msgstr ""
 
 #: ../browser/view_cancelreservation.py:54
-#: ../browser/view_submitselection.py:383
+#: ../browser/view_submitselection.py:405
 #: ../browser/views.py:157
 msgid "E-Mail"
 msgstr ""
@@ -241,7 +241,7 @@ msgstr ""
 msgid "Email verification for external users"
 msgstr ""
 
-#: ../content/ut_timeslot.py:21
+#: ../content/ut_timeslot.py:24
 msgid "End Time"
 msgstr ""
 
@@ -276,8 +276,8 @@ msgid "Full"
 msgstr ""
 
 #: ../browser/view_cancelreservation.py:39
-#: ../browser/view_submitselection.py:124
-#: ../subscribers.py:72
+#: ../browser/view_submitselection.py:125
+#: ../subscribers.py:73
 msgid "Hello"
 msgstr ""
 
@@ -359,7 +359,7 @@ msgid "March"
 msgstr ""
 
 #: ../browser/templates/ut_day_view.pt:105
-#: ../content/ut_timeslot.py:26
+#: ../content/ut_timeslot.py:29
 msgid "Max capacity"
 msgstr ""
 
@@ -381,7 +381,7 @@ msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:294
 #: ../browser/view_cancelreservation.py:53
-#: ../browser/view_submitselection.py:382
+#: ../browser/view_submitselection.py:404
 msgid "Name"
 msgstr ""
 
@@ -413,7 +413,7 @@ msgstr ""
 msgid "October"
 msgstr ""
 
-#: ../content/ut_timeslot.py:23
+#: ../content/ut_timeslot.py:26
 msgid "Optional name"
 msgstr ""
 
@@ -437,7 +437,7 @@ msgstr ""
 msgid "Please provide a valid starting time, timeslot duration, number of timeslots and max capacity."
 msgstr ""
 
-#: ../browser/view_submitselection.py:133
+#: ../browser/view_submitselection.py:134
 msgid "Please use the following code to verify your email address and complete your signup:"
 msgstr ""
 
@@ -450,7 +450,7 @@ msgstr ""
 msgid "Prevents the prename, surname and email address from being changed - they are only pre-filled from the logged-in user's account. Only available if signup for external users is disabled."
 msgstr ""
 
-#: ../subscribers.py:69
+#: ../subscribers.py:70
 msgid "Registration Notification"
 msgstr ""
 
@@ -516,13 +516,13 @@ msgstr ""
 msgid "Sign up"
 msgstr ""
 
-#: ../utils.py:175
+#: ../utils.py:180
 msgid "Signed Off"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:118
 #: ../browser/views.py:252
-#: ../utils.py:174
+#: ../utils.py:179
 msgid "Signed Up"
 msgstr ""
 
@@ -567,7 +567,7 @@ msgstr ""
 msgid "Something went wrong. Please sign up again."
 msgstr ""
 
-#: ../content/ut_timeslot.py:19
+#: ../content/ut_timeslot.py:22
 msgid "Start Time"
 msgstr ""
 
@@ -609,11 +609,11 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
-#: ../content/ut_timeslot.py:26
+#: ../content/ut_timeslot.py:29
 msgid "The max number of people"
 msgstr ""
 
-#: ../browser/view_submitselection.py:265
+#: ../browser/view_submitselection.py:268
 msgid "The slot you selected is already full. Please select a different one."
 msgstr ""
 
@@ -633,7 +633,7 @@ msgstr ""
 msgid "This code has expired. Please sign up again."
 msgstr ""
 
-#: ../browser/view_submitselection.py:143
+#: ../browser/view_submitselection.py:144
 msgid "This code is valid for 15 minutes."
 msgstr ""
 
@@ -661,7 +661,7 @@ msgstr ""
 msgid "This link is invalid."
 msgstr ""
 
-#: ../subscribers.py:75
+#: ../subscribers.py:76
 msgid "This message is to notify you that someone signed up for:"
 msgstr ""
 
@@ -673,7 +673,7 @@ msgstr ""
 msgid "This registration has already been cancelled."
 msgstr ""
 
-#: ../browser/view_submitselection.py:230
+#: ../browser/view_submitselection.py:231
 msgid "This slot is not currently open for signups."
 msgstr ""
 
@@ -749,7 +749,7 @@ msgstr ""
 msgid "View timeslot"
 msgstr ""
 
-#: ../browser/view_submitselection.py:371
+#: ../browser/view_submitselection.py:393
 msgid "Wait For Confirmation"
 msgstr ""
 
@@ -767,13 +767,13 @@ msgstr ""
 msgid "Waiting List"
 msgstr ""
 
-#: ../subscribers.py:148
+#: ../subscribers.py:149
 msgid "Waiting List Notification"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:123
 #: ../browser/views.py:254
-#: ../utils.py:176
+#: ../utils.py:181
 msgid "Waiting for confirmation"
 msgstr ""
 
@@ -821,11 +821,11 @@ msgstr ""
 msgid "You are already signed up for a slot in this signup sheet and multiple signups are not allowed."
 msgstr ""
 
-#: ../browser/view_submitselection.py:240
+#: ../browser/view_submitselection.py:243
 msgid "You are already signed up for a slot in this signup sheet."
 msgstr ""
 
-#: ../browser/view_submitselection.py:243
+#: ../browser/view_submitselection.py:246
 msgid "You are already signed up for this slot."
 msgstr ""
 
@@ -886,7 +886,7 @@ msgstr ""
 msgid "Your surname"
 msgstr ""
 
-#: ../browser/view_submitselection.py:109
+#: ../browser/view_submitselection.py:110
 msgid "Your verification code"
 msgstr ""
 
@@ -955,7 +955,7 @@ msgstr ""
 msgid "email_suffix_authenticated_default"
 msgstr ""
 
-#. Default: "Hello $$name$$,\n\nYou signed up for following slot:\n$$slot$$\nYou will receive another email as soon as your registration has been confirmed (or rejected).\n\nYou provided following data:\n$$data$$\n\nTo cancel your sign-up follow this link:\n$$sign_off_url$$"
+#. Default: "Hello $$name$$,\n\nYou signed up for following slot:\n$$slot$$\n\nYou will receive another email as soon as your registration has been confirmed (or rejected).\n\nYou provided following data:\n$$data$$\n\nTo cancel your sign-up follow this link:\n$$sign_off_url$$"
 #: ../content/ut_signup_sheet.py:291
 msgid "email_wait_for_confirmation_content_default"
 msgstr ""
@@ -975,7 +975,17 @@ msgstr ""
 msgid "email_waitinglist_subject_default"
 msgstr ""
 
-#: ../browser/view_submitselection.py:199
+#. Default: "You can't reduce the capacity to ${newCapacity}, since there are already ${signedUp} signups on this slot. If you want to reduce it, first you need to sign off ${excess} people."
+#: ../content/ut_timeslot.py:72
+msgid "error_capacity_below_signups"
+msgstr ""
+
+#. Default: "You can't reduce the capacity to ${newCapacity}, since there are already ${signedUp} signups on this slot. If you want to reduce it, first you need to move ${excess} people to the waiting list or sign them off."
+#: ../content/ut_timeslot.py:60
+msgid "error_capacity_below_signups_waiting_list"
+msgstr ""
+
+#: ../browser/view_submitselection.py:200
 msgid "fieldName_agreeDataUsageDeclaration"
 msgstr ""
 

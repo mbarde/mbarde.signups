@@ -13,6 +13,8 @@ from plone.supermodel import model
 from zope import schema
 from zope.component import getUtility
 from zope.interface import implementer
+from zope.interface import Invalid
+from zope.interface import invariant
 
 
 class IUTTimeslot(model.Schema):
@@ -34,6 +36,46 @@ class IUTTimeslot(model.Schema):
         ),
         required=False,
     )
+
+    @invariant
+    def validateMaxCapacityNotBelowSignups(data):
+        timeSlot = getattr(data, "__context__", None)
+        # in the add form the context is the parent day, which has no signups yet
+        if not IUTTimeslot.providedBy(timeSlot) or data.maxCapacity is None:
+            return
+        signedUp = timeSlot.getNumberOfSignedUpPersons()
+        if data.maxCapacity >= signedUp:
+            return
+        mapping = {
+            "newCapacity": data.maxCapacity,
+            "signedUp": signedUp,
+            "excess": signedUp - data.maxCapacity,
+        }
+        if data.allowWaitingList:
+            raise Invalid(
+                _(
+                    "error_capacity_below_signups_waiting_list",
+                    default=(
+                        "You can't reduce the capacity to ${newCapacity}, since "
+                        "there are already ${signedUp} signups on this slot. If "
+                        "you want to reduce it, first you need to move "
+                        "${excess} people to the waiting list or sign them off."
+                    ),
+                    mapping=mapping,
+                )
+            )
+        raise Invalid(
+            _(
+                "error_capacity_below_signups",
+                default=(
+                    "You can't reduce the capacity to ${newCapacity}, since "
+                    "there are already ${signedUp} signups on this slot. If "
+                    "you want to reduce it, first you need to sign off "
+                    "${excess} people."
+                ),
+                mapping=mapping,
+            )
+        )
 
 
 @implementer(IUTTimeslot)
@@ -71,18 +113,6 @@ class UTTimeslot(Container):
             portal_type="UTPerson", review_state="signedup", path=self.getPath()
         )
         return len(brains)
-
-    def getMostRecentlySignedUpPersons(self, count):
-        if count <= 0:
-            return []
-        brains = self.portal_catalog.unrestrictedSearchResults(
-            portal_type="UTPerson",
-            review_state="signedup",
-            path=self.getPath(),
-            sort_on="created",
-            sort_order="descending",
-        )
-        return [brain._unrestrictedGetObject() for brain in brains[:count]]
 
     def getCurrentUserSignUpState(self):
         curUser = api.user.get_current()
