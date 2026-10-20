@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-20 06:41+0000\n"
+"POT-Creation-Date: 2026-10-20 07:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <de@li.org>\n"
@@ -138,6 +138,10 @@ msgstr "Aktivieren, um Anmeldungen zur Warteliste zu erlauben, sobald die maxima
 msgid "Comma (,)"
 msgstr "Komma (,)"
 
+#: ../browser/templates/ut_person_view.pt:30
+msgid "Confirm signup"
+msgstr "Anmeldung bestätigen"
+
 #: ../content/ut_signup_sheet.py:254
 msgid "Confirmation Email Content"
 msgstr "Inhalt der Bestätigungs-E-Mail"
@@ -146,7 +150,7 @@ msgstr "Inhalt der Bestätigungs-E-Mail"
 msgid "Confirmation email subject"
 msgstr "Betreff der Bestätigungs-E-Mail"
 
-#: ../browser/templates/ut_person_view.pt:48
+#: ../browser/templates/ut_person_view.pt:74
 #: ../content/ut_person.py:39
 msgid "Consent to data usage declaration given at"
 msgstr "Einwilligung zur Datennutzungserklärung gegeben am"
@@ -177,7 +181,7 @@ msgstr "Termine anlegen"
 msgid "Data usage declaration"
 msgstr "Datennutzungserklärung"
 
-#: ../browser/templates/ut_person_view.pt:54
+#: ../browser/templates/ut_person_view.pt:80
 #: ../content/ut_person.py:49
 msgid "Data usage declaration text (at time of consent)"
 msgstr "Text der Datennutzungserklärung (zum Zeitpunkt der Einwilligung)"
@@ -578,7 +582,7 @@ msgstr "Startzeit"
 msgid "Starting time"
 msgstr "Startzeit"
 
-#: ../browser/templates/ut_person_view.pt:27
+#: ../browser/templates/ut_person_view.pt:53
 #: ../browser/views.py:158
 msgid "State"
 msgstr "Status"
@@ -904,6 +908,11 @@ msgstr "Anzahl der Tage nach dem Datum eines Termins (siehe UTDay), nach denen d
 #: ../content/ut_signup_sheet.py:175
 msgid "auto_delete_personal_data_title"
 msgstr "Personenbezogene Daten automatisch löschen nach (Tagen)"
+
+#. Default: "This slot is already full. Increase its capacity or sign off someone else first."
+#: ../browser/templates/ut_person_view.pt:43
+msgid "confirm_signup_slot_full"
+msgstr "Dieser Termin ist bereits voll. Erhöhen Sie zuerst die Kapazität oder melden Sie eine andere Person ab."
 
 #. Default: "Whether consent is required can be derived from Art. 6 GDPR."
 #: ../content/ut_signup_sheet.py:166

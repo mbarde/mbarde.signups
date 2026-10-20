@@ -271,3 +271,17 @@ class UTPersonView(DefaultView):
             return (_("Signed off"), "bg-danger")
         elif state == "waiting":
             return (_("Waiting List"), "bg-info")
+
+    def canConfirmSignup(self):
+        if api.content.get_state(self.context) != "unconfirmed":
+            return False
+        workflowTool = api.portal.get_tool("portal_workflow")
+        transitionIds = [t["id"] for t in workflowTool.getTransitionsFor(self.context)]
+        return "signup" in transitionIds
+
+    def isTimeSlotFull(self):
+        return self.context.aq_parent.getNumberOfAvailableSlots() <= 0
+
+    def getConfirmSignupUrl(self):
+        url = self.context.absolute_url() + "/content_status_modify?workflow_action=signup"
+        return addTokenToUrl(url)

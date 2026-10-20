@@ -65,6 +65,33 @@
           </tbody>
         </table>
 
+        <div
+          class="mb-3"
+          id="confirm-signup"
+          tal:condition="view/canConfirmSignup"
+          tal:define="isFull view/isTimeSlotFull"
+        >
+          <a
+            class="btn btn-success"
+            tal:condition="not: isFull"
+            tal:attributes="href view/getConfirmSignupUrl"
+            i18n:translate=""
+          >Confirm signup</a>
+          <tal:full tal:condition="isFull">
+            <button
+              class="btn btn-success"
+              type="button"
+              disabled="disabled"
+              i18n:translate=""
+            >Confirm signup</button>
+            <span
+              class="form-text ms-2"
+              i18n:translate="confirm_signup_slot_full"
+            >This slot is already full. Increase its
+              capacity or sign off someone else first.</span>
+          </tal:full>
+        </div>
+
         <div tal:replace="structure provider:plone.belowcontentbody" />
       </tal:main-macro>
     </metal:main>

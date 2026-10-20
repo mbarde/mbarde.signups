@@ -1,0 +1,101 @@
+# -*- coding: utf-8 -*-
+from datetime import date
+from datetime import time
+from datetime import timedelta
+from mbarde.signups.testing import MBARDE_SIGNUPS_INTEGRATION_TESTING  # noqa
+from plone import api
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from urllib.parse import parse_qs
+from urllib.parse import urlparse
+from zExceptions import Forbidden
+
+import re
+import unittest
+
+
+class PersonViewConfirmSignupTest(unittest.TestCase):
+
+    layer = MBARDE_SIGNUPS_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+        sheet = api.content.create(
+            container=self.portal, type="UTSignupSheet", id="sheet1", contactInfo=""
+        )
+        day = api.content.create(
+            container=sheet, type="UTDay", id="d1", date=date.today() + timedelta(days=1)
+        )
+        self.timeslot = api.content.create(
+            container=day,
+            type="UTTimeslot",
+            id="t1",
+            startTime=time(10, 0),
+            endTime=time(12, 0),
+            maxCapacity=1,
+        )
+        self.person = self._createPerson("jane")
+
+    def _createPerson(self, personId):
+        # new persons start in the "unconfirmed" state
+        return api.content.create(
+            container=self.timeslot,
+            type="UTPerson",
+            id=personId,
+            email=personId + "@example.org",
+            prename="P",
+            surname=personId,
+        )
+
+    def _confirmSection(self):
+        """only the button container - the toolbar's state menu elsewhere
+        on the page links to content_status_modify as well"""
+        html = self.person.unrestrictedTraverse("@@view")()
+        match = re.search(r'<div[^>]*id="confirm-signup"[^>]*>(.*?)</div>', html, re.DOTALL)
+        return match.group(1) if match else None
+
+    def test_button_shown_for_unconfirmed_person(self):
+        self.assertEqual(api.content.get_state(self.person), "unconfirmed")
+        section = self._confirmSection()
+        self.assertIsNotNone(section)
+        self.assertIn("content_status_modify?workflow_action=signup", section)
+        self.assertIn("_authenticator=", section)
+
+    def test_button_not_shown_in_other_states(self):
+        api.content.transition(obj=self.person, transition="signup")
+        self.assertIsNone(self._confirmSection())
+
+        api.content.transition(obj=self.person, transition="signoff")
+        self.assertIsNone(self._confirmSection())
+
+    def test_button_disabled_when_slot_is_full(self):
+        other = self._createPerson("other")
+        api.content.transition(obj=other, transition="signup")
+
+        section = self._confirmSection()
+
+        self.assertIsNotNone(section)
+        self.assertIn("disabled", section)
+        self.assertNotIn("content_status_modify", section)
+        self.assertIn("already full", section)
+
+    def test_link_target_confirms_the_signup(self):
+        view = self.person.unrestrictedTraverse("@@view")
+        url = urlparse(view.getConfirmSignupUrl())
+        params = parse_qs(url.query)
+        self.assertEqual(
+            url.path, urlparse(self.person.absolute_url()).path + "/content_status_modify"
+        )
+        self.assertEqual(params["workflow_action"], ["signup"])
+
+        # without the CSRF token from the link the request is refused
+        with self.assertRaises(Forbidden):
+            self.person.restrictedTraverse("content_status_modify")(workflow_action="signup")
+        self.assertEqual(api.content.get_state(self.person), "unconfirmed")
+
+        self.request.form["_authenticator"] = params["_authenticator"][0]
+        self.person.restrictedTraverse("content_status_modify")(workflow_action="signup")
+
+        self.assertEqual(api.content.get_state(self.person), "signedup")
