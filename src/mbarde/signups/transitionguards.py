@@ -8,6 +8,7 @@ transition makes sense given the configuration of the containing time
 slot, independent of who triggers it (manager via the toolbar or a
 button, self-service signup or auto-promotion from the waiting list).
 """
+
 from mbarde.signups import _
 from zope.interface import implementer
 from zope.interface import Interface
