@@ -123,3 +123,33 @@ class TimeslotViewPersonGroupsTest(unittest.TestCase):
 
         self.assertIsNotNone(self._section(html, "signedup"))
         self.assertIsNone(self._section(html, "waiting"))
+
+    def _hint(self):
+        html = self._render()
+        match = re.search(r'id="free-places-while-waiting"[^>]*>(.*?)</div>', html, re.DOTALL)
+        return match.group(1).strip() if match else None
+
+    def test_hint_when_places_free_while_people_are_waiting(self):
+        # e.g. a manager moved a signed-up person to the waiting list (which
+        # promotes nobody) but didn't reduce the capacity afterwards
+        moved = self._createPerson("moved", ["signup"])
+        self._createPerson("waiting", ["putOnWaitingList"])
+        api.content.transition(obj=moved, transition="putOnWaitingList")
+
+        hint = self._hint()
+
+        self.assertIsNotNone(hint)
+        self.assertIn("free places (5)", hint)
+        self.assertIn("waiting list (2)", hint)
+
+    def test_no_hint_when_slot_is_full(self):
+        self.timeslot.maxCapacity = 1
+        self._createPerson("signedup", ["signup"])
+        self._createPerson("waiting", ["putOnWaitingList"])
+
+        self.assertIsNone(self._hint())
+
+    def test_no_hint_without_people_waiting(self):
+        self._createPerson("signedup", ["signup"])
+
+        self.assertIsNone(self._hint())

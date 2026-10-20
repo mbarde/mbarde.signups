@@ -41,6 +41,15 @@
         <div tal:content="structure view/w/allowWaitingList/render" />
         <br />
 
+        <div
+          class="alert alert-warning"
+          id="free-places-while-waiting"
+          role="alert"
+          tal:define="hint view/getFreePlacesWhileWaitingHint"
+          tal:condition="hint"
+          tal:content="hint"
+        />
+
         <tal:groups repeat="group view/getPersonGroups">
           <tal:group
             define="persons group/persons;

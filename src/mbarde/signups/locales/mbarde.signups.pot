@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-20 11:50+0000\n"
+"POT-Creation-Date: 2026-10-20 12:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -393,7 +393,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: ../browser/templates/ut_timeslot_view.pt:75
+#: ../browser/templates/ut_timeslot_view.pt:84
 msgid "No persons"
 msgstr ""
 
@@ -1030,6 +1030,11 @@ msgstr ""
 
 #: ../browser/view_submitselection.py:200
 msgid "fieldName_agreeDataUsageDeclaration"
+msgstr ""
+
+#. Default: "There are free places (${free}) while people are on the waiting list (${waiting}). Reduce the capacity or sign up someone from the waiting list."
+#: ../browser/views.py:273
+msgid "hint_free_places_while_waiting"
 msgstr ""
 
 #: ../configure.zcml:32

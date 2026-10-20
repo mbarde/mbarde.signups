@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-20 11:50+0000\n"
+"POT-Creation-Date: 2026-10-20 12:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <de@li.org>\n"
@@ -391,7 +391,7 @@ msgstr "Mitgliedseigenschaft für Nachname"
 msgid "Name"
 msgstr "Name"
 
-#: ../browser/templates/ut_timeslot_view.pt:75
+#: ../browser/templates/ut_timeslot_view.pt:84
 msgid "No persons"
 msgstr "Keine Personen"
 
@@ -1091,6 +1091,11 @@ msgstr "Für diesen Termin ist keine Warteliste erlaubt."
 #: ../browser/view_submitselection.py:200
 msgid "fieldName_agreeDataUsageDeclaration"
 msgstr "Einverständniserklärung zur Datennutzung"
+
+#. Default: "There are free places (${free}) while people are on the waiting list (${waiting}). Reduce the capacity or sign up someone from the waiting list."
+#: ../browser/views.py:273
+msgid "hint_free_places_while_waiting"
+msgstr "Es gibt freie Plätze (${free}), während Personen auf der Warteliste stehen (${waiting}). Reduzieren Sie die Kapazität oder melden Sie jemanden von der Warteliste an."
 
 #: ../configure.zcml:32
 msgid "mbarde.signups"

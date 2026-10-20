@@ -261,6 +261,23 @@ class UTTimeslotView(DefaultView):
             groups.append({"state": state, "title": title, "color": color, "persons": persons})
         return groups
 
+    def getFreePlacesWhileWaitingHint(self):
+        """Reminder for managers if the slot has free places while people
+        are waiting - e.g. after moving someone to the waiting list"""
+        free = self.context.getNumberOfAvailableSlots()
+        waiting = self.context.getNumberOfWaitingPersons()
+        if free == 0 or waiting == 0:
+            return None
+        return _(
+            "hint_free_places_while_waiting",
+            default=(
+                "There are free places (${free}) while people are on the "
+                "waiting list (${waiting}). Reduce the capacity or sign up "
+                "someone from the waiting list."
+            ),
+            mapping={"free": free, "waiting": waiting},
+        )
+
 
 class UTPersonView(DefaultView):
 
