@@ -95,12 +95,12 @@
           <div class="accordion" id="slots-accordion">
             <tal:block tal:repeat="day days">
               <tal:days
-                define="dayIndex repeat/day/index;
-                        isOpen python: len(days) &lt;= 1">
+                define="dayIndex repeat/day/index;">
                 <tal:slots repeat="timeSlot day/getTimeSlots">
                   <div class="accordion-item"
                     tal:define="slotIndex repeat/timeSlot/index;
                            peopleCount python: len(timeSlot.getPeople());
+                           isOpen python: peopleCount > 0;
                            bodyId python: str(dayIndex) + '-' + str(slotIndex) + '-body'">
                     <h4 class="accordion-header"
                       tal:define="countSignedUp python: len(timeSlot.getPeople(False, 'signedup'));
