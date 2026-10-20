@@ -536,6 +536,65 @@ class SameSlotResubmissionTest(unittest.TestCase):
         self.assertEqual(len(self.portal.MailHost.messages), 1)
         self.assertTrue(self._anyMailContains("Jane Doe"))
 
+    def _fillTimeslot(self):
+        self.timeslot.maxCapacity = 1
+        other = api.content.create(
+            container=self.timeslot,
+            type="UTPerson",
+            id="other-example-org",
+            email="other@example.org",
+            prename="Other",
+            surname="Person",
+        )
+        api.content.transition(obj=other, transition="signup")
+        return other
+
+    def test_signup_for_full_slot_with_waiting_list_still_requires_confirmation(self):
+        # regression: a full slot used to put the person on the waiting
+        # list directly, skipping the manager's confirmation entirely
+        self.timeslot.allowWaitingList = True
+        self._fillTimeslot()
+
+        view = self._submit("jane@example.org")
+
+        self.assertEqual(view.results[0]["status"], "unconfirmed")
+        person = self.timeslot["jane-example-org"]
+        self.assertEqual(api.content.get_state(person), "unconfirmed")
+
+    def test_signup_for_full_slot_without_waiting_list_is_rejected(self):
+        self.timeslot.allowWaitingList = False
+        self._fillTimeslot()
+
+        view = self._submit("jane@example.org")
+
+        self.assertEqual(view.results[0]["status"], "error")
+        self.assertNotIn("jane-example-org", self.timeslot)
+
+    def test_confirmed_onto_waiting_list_is_promoted_when_spot_frees_up(self):
+        # once the manager has moved an unconfirmed person to the waiting
+        # list, auto-promotion to "signedup" is fine: they were reviewed
+        self.sheet.enableAutoMovingUpFromWaitingList = True
+        self.timeslot.allowWaitingList = True
+        other = self._fillTimeslot()
+        self._submit("jane@example.org")
+        person = self.timeslot["jane-example-org"]
+        api.content.transition(obj=person, transition="putOnWaitingList")
+
+        api.content.transition(obj=other, transition="signoff")
+
+        self.assertEqual(api.content.get_state(person), "signedup")
+
+    def test_unconfirmed_person_is_not_auto_promoted(self):
+        self.sheet.enableAutoMovingUpFromWaitingList = True
+        self.timeslot.allowWaitingList = True
+        other = self._fillTimeslot()
+        self._submit("jane@example.org")
+
+        api.content.transition(obj=other, transition="signoff")
+
+        person = self.timeslot["jane-example-org"]
+        self.assertEqual(api.content.get_state(person), "unconfirmed")
+
     def test_reactivate_transition_rejects_anonymous_caller(self):
         # the guard-role makes DCWorkflow drop "reactivate" from the set
         # of transitions available to a non-Manager entirely (rather

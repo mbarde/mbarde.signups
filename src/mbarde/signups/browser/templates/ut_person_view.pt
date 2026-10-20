@@ -71,25 +71,48 @@
 
         <div
           class="mb-3"
-          id="confirm-signup"
-          tal:condition="view/canConfirmSignup"
-          tal:define="isFull view/isTimeSlotFull"
+          id="person-actions"
+          tal:define="
+            canConfirm view/canConfirmSignup;
+            canWait view/canPutOnWaitingList;
+            isFull view/isTimeSlotFull;
+          "
+          tal:condition="python: canConfirm or canWait"
         >
-          <a
-            class="btn btn-success"
-            tal:condition="not: isFull"
-            tal:attributes="href view/getConfirmSignupUrl"
-            i18n:translate=""
-          >Confirm signup</a>
-          <tal:full tal:condition="isFull">
+          <tal:confirm tal:condition="canConfirm">
+            <a
+              class="btn btn-success"
+              id="confirm-signup"
+              tal:condition="not: isFull"
+              tal:attributes="href view/getConfirmSignupUrl"
+              i18n:translate=""
+            >Confirm signup</a>
             <button
               class="btn btn-success"
+              id="confirm-signup"
               type="button"
               disabled="disabled"
+              tal:condition="isFull"
               i18n:translate=""
             >Confirm signup</button>
+          </tal:confirm>
+          <a
+            class="btn btn-info"
+            id="put-on-waiting-list"
+            tal:condition="canWait"
+            tal:attributes="href view/getPutOnWaitingListUrl"
+            i18n:translate=""
+          >Put on waiting list</a>
+          <tal:full tal:condition="python: canConfirm and isFull">
             <span
               class="form-text ms-2"
+              tal:condition="canWait"
+              i18n:translate="confirm_signup_slot_full_waiting_list"
+            >This slot is already full. Put them on the waiting list,
+              increase its capacity or sign off someone else first.</span>
+            <span
+              class="form-text ms-2"
+              tal:condition="not: canWait"
               i18n:translate="confirm_signup_slot_full"
             >This slot is already full. Increase its
               capacity or sign off someone else first.</span>

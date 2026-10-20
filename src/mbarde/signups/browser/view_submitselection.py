@@ -248,16 +248,20 @@ class SubmitSelection(BrowserView):
         elif allowWaitingList or numberOfAvailableSlots > 0:
             person = self.createPersonObject(timeSlot)
 
-            if numberOfAvailableSlots > 0:
-                if self.context.signupsRequireConfirmation:
-                    if self.isEmailValid():
-                        self.sendWaitForConfirmationEmail(self.context, slotTitleLabel, person)
-                        status = "unconfirmed"
-                else:
-                    # sign up user directly if there are available slots and
-                    # no confirmation by the manager is required
-                    self.signupPerson(person)
-                    status = "signedup"
+            if self.context.signupsRequireConfirmation:
+                # every signup has to be confirmed by the manager first - even
+                # if the slot is already full: the manager then decides
+                # whether to put them on the waiting list or sign them off.
+                # Otherwise people would get onto the waiting list (and get
+                # auto-promoted from there) without ever being confirmed.
+                if self.isEmailValid():
+                    self.sendWaitForConfirmationEmail(self.context, slotTitleLabel, person)
+                    status = "unconfirmed"
+            elif numberOfAvailableSlots > 0:
+                # sign up user directly if there are available slots and
+                # no confirmation by the manager is required
+                self.signupPerson(person)
+                status = "signedup"
             else:
                 self.putPersonOnWaitingList(person)
                 status = "waiting"

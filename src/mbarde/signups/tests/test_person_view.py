@@ -49,37 +49,68 @@ class PersonViewTest(unittest.TestCase):
             surname=personId,
         )
 
-    def _confirmSection(self):
+    def _actionsSection(self):
         """only the button container - the toolbar's state menu elsewhere
         on the page links to content_status_modify as well"""
         html = self.person.unrestrictedTraverse("@@view")()
-        match = re.search(r'<div[^>]*id="confirm-signup"[^>]*>(.*?)</div>', html, re.DOTALL)
+        match = re.search(r'<div[^>]*id="person-actions"[^>]*>(.*?)</div>', html, re.DOTALL)
         return match.group(1) if match else None
 
-    def test_button_shown_for_unconfirmed_person(self):
+    def test_buttons_shown_for_unconfirmed_person(self):
+        self.timeslot.allowWaitingList = True
         self.assertEqual(api.content.get_state(self.person), "unconfirmed")
-        section = self._confirmSection()
+
+        section = self._actionsSection()
+
         self.assertIsNotNone(section)
         self.assertIn("content_status_modify?workflow_action=signup", section)
+        self.assertIn("content_status_modify?workflow_action=putOnWaitingList", section)
         self.assertIn("_authenticator=", section)
+        self.assertNotIn("already full", section)
 
-    def test_button_not_shown_in_other_states(self):
+    def test_no_waiting_list_button_when_slot_has_no_waiting_list(self):
+        self.timeslot.allowWaitingList = False
+
+        section = self._actionsSection()
+
+        self.assertIn("workflow_action=signup", section)
+        self.assertNotIn("putOnWaitingList", section)
+
+    def test_buttons_not_shown_in_other_states(self):
+        self.timeslot.allowWaitingList = True
         api.content.transition(obj=self.person, transition="signup")
-        self.assertIsNone(self._confirmSection())
+        self.assertIsNone(self._actionsSection())
+
+        api.content.transition(obj=self.person, transition="putOnWaitingList")
+        self.assertIsNone(self._actionsSection())
 
         api.content.transition(obj=self.person, transition="signoff")
-        self.assertIsNone(self._confirmSection())
+        self.assertIsNone(self._actionsSection())
 
-    def test_button_disabled_when_slot_is_full(self):
+    def test_confirm_disabled_when_slot_is_full_and_waiting_list_suggested(self):
+        self.timeslot.allowWaitingList = True
         other = self._createPerson("other")
         api.content.transition(obj=other, transition="signup")
 
-        section = self._confirmSection()
+        section = self._actionsSection()
 
-        self.assertIsNotNone(section)
+        self.assertIn("disabled", section)
+        self.assertNotIn("workflow_action=signup", section)
+        self.assertIn("workflow_action=putOnWaitingList", section)
+        self.assertIn("already full", section)
+        self.assertIn("waiting list", section)
+
+    def test_confirm_disabled_when_slot_is_full_without_waiting_list(self):
+        self.timeslot.allowWaitingList = False
+        other = self._createPerson("other")
+        api.content.transition(obj=other, transition="signup")
+
+        section = self._actionsSection()
+
         self.assertIn("disabled", section)
         self.assertNotIn("content_status_modify", section)
         self.assertIn("already full", section)
+        self.assertNotIn("waiting list", section)
 
     def test_link_target_confirms_the_signup(self):
         view = self.person.unrestrictedTraverse("@@view")
@@ -99,6 +130,17 @@ class PersonViewTest(unittest.TestCase):
         self.person.restrictedTraverse("content_status_modify")(workflow_action="signup")
 
         self.assertEqual(api.content.get_state(self.person), "signedup")
+
+    def test_waiting_list_link_target_puts_person_on_waiting_list(self):
+        self.timeslot.allowWaitingList = True
+        view = self.person.unrestrictedTraverse("@@view")
+        params = parse_qs(urlparse(view.getPutOnWaitingListUrl()).query)
+        self.assertEqual(params["workflow_action"], ["putOnWaitingList"])
+
+        self.request.form["_authenticator"] = params["_authenticator"][0]
+        self.person.restrictedTraverse("content_status_modify")(workflow_action="putOnWaitingList")
+
+        self.assertEqual(api.content.get_state(self.person), "waiting")
 
     def _stateRowClass(self):
         html = self.person.unrestrictedTraverse("@@view")()

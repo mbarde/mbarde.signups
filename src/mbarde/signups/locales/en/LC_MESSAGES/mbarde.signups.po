@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-20 07:22+0000\n"
+"POT-Creation-Date: 2026-10-20 07:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr ""
 msgid "A new signup has been added to the waiting list for:"
 msgstr ""
 
-#: ../browser/view_submitselection.py:398
+#: ../browser/view_submitselection.py:402
 msgid "A new signup is waiting for confirmation"
 msgstr ""
 
@@ -47,7 +47,7 @@ msgid "Additional form to be filled in for registration."
 msgstr ""
 
 #: ../browser/view_cancelreservation.py:57
-#: ../browser/view_submitselection.py:409
+#: ../browser/view_submitselection.py:413
 #: ../subscribers.py:86
 msgid "Additional information"
 msgstr ""
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Comma (,)"
 msgstr ""
 
-#: ../browser/templates/ut_person_view.pt:30
+#: ../browser/templates/ut_person_view.pt:83
 msgid "Confirm signup"
 msgstr ""
 
@@ -149,7 +149,7 @@ msgstr ""
 msgid "Confirmation email subject"
 msgstr ""
 
-#: ../browser/templates/ut_person_view.pt:74
+#: ../browser/templates/ut_person_view.pt:52
 #: ../content/ut_person.py:39
 msgid "Consent to data usage declaration given at"
 msgstr ""
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Data usage declaration"
 msgstr ""
 
-#: ../browser/templates/ut_person_view.pt:80
+#: ../browser/templates/ut_person_view.pt:58
 #: ../content/ut_person.py:49
 msgid "Data usage declaration text (at time of consent)"
 msgstr ""
@@ -207,7 +207,7 @@ msgid "Do you want to cancel the following registration?"
 msgstr ""
 
 #: ../browser/view_cancelreservation.py:54
-#: ../browser/view_submitselection.py:405
+#: ../browser/view_submitselection.py:409
 #: ../browser/views.py:157
 msgid "E-Mail"
 msgstr ""
@@ -386,7 +386,7 @@ msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:294
 #: ../browser/view_cancelreservation.py:53
-#: ../browser/view_submitselection.py:404
+#: ../browser/view_submitselection.py:408
 msgid "Name"
 msgstr ""
 
@@ -454,6 +454,10 @@ msgstr ""
 
 #: ../content/ut_signup_sheet.py:90
 msgid "Prevents the prename, surname and email address from being changed - they are only pre-filled from the logged-in user's account. Only available if signup for external users is disabled."
+msgstr ""
+
+#: ../browser/templates/ut_person_view.pt:99
+msgid "Put on waiting list"
 msgstr ""
 
 #: ../subscribers.py:70
@@ -527,13 +531,13 @@ msgid "Signed Off"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:118
-#: ../browser/views.py:247
+#: ../browser/views.py:245
 #: ../utils.py:179
 msgid "Signed Up"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:47
-#: ../browser/views.py:250
+#: ../browser/views.py:248
 msgid "Signed off"
 msgstr ""
 
@@ -581,7 +585,7 @@ msgstr ""
 msgid "Starting time"
 msgstr ""
 
-#: ../browser/templates/ut_person_view.pt:53
+#: ../browser/templates/ut_person_view.pt:31
 #: ../browser/views.py:158
 msgid "State"
 msgstr ""
@@ -615,7 +619,7 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
-#: ../browser/view_submitselection.py:268
+#: ../browser/view_submitselection.py:272
 msgid "The slot you selected is already full. Please select a different one."
 msgstr ""
 
@@ -751,7 +755,7 @@ msgstr ""
 msgid "View timeslot"
 msgstr ""
 
-#: ../browser/view_submitselection.py:393
+#: ../browser/view_submitselection.py:397
 msgid "Wait For Confirmation"
 msgstr ""
 
@@ -765,7 +769,7 @@ msgstr ""
 
 #: ../browser/templates/ut_signup_sheet_view.pt:53
 #: ../browser/templates/view_summary.pt:128
-#: ../browser/views.py:248
+#: ../browser/views.py:246
 msgid "Waiting List"
 msgstr ""
 
@@ -774,7 +778,7 @@ msgid "Waiting List Notification"
 msgstr ""
 
 #: ../browser/templates/view_summary.pt:123
-#: ../browser/views.py:249
+#: ../browser/views.py:247
 #: ../utils.py:181
 msgid "Waiting for confirmation"
 msgstr ""
@@ -906,8 +910,13 @@ msgid "auto_delete_personal_data_title"
 msgstr ""
 
 #. Default: "This slot is already full. Increase its capacity or sign off someone else first."
-#: ../browser/templates/ut_person_view.pt:43
+#: ../browser/templates/ut_person_view.pt:113
 msgid "confirm_signup_slot_full"
+msgstr ""
+
+#. Default: "This slot is already full. Put them on the waiting list, increase its capacity or sign off someone else first."
+#: ../browser/templates/ut_person_view.pt:107
+msgid "confirm_signup_slot_full_waiting_list"
 msgstr ""
 
 #. Default: "Whether consent is required can be derived from Art. 6 GDPR."

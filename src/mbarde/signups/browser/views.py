@@ -265,23 +265,41 @@ class UTTimeslotView(DefaultView):
 class UTPersonView(DefaultView):
 
     def getCurrentState(self):
-        """(state title, row css class) of this person's review state"""
         state = api.content.get_state(self.context)
         for stateId, title, color in PERSON_STATES:
             if stateId == state:
                 return (title, "table-" + color)
         return (state, "")
 
-    def canConfirmSignup(self):
-        if api.content.get_state(self.context) != "unconfirmed":
-            return False
+    def isUnconfirmed(self):
+        return api.content.get_state(self.context) == "unconfirmed"
+
+    def canTransition(self, transitionId):
         workflowTool = api.portal.get_tool("portal_workflow")
         transitionIds = [t["id"] for t in workflowTool.getTransitionsFor(self.context)]
-        return "signup" in transitionIds
+        return transitionId in transitionIds
+
+    def canConfirmSignup(self):
+        return self.isUnconfirmed() and self.canTransition("signup")
+
+    def canPutOnWaitingList(self):
+        return (
+            self.isUnconfirmed()
+            and bool(self.context.aq_parent.allowWaitingList)
+            and self.canTransition("putOnWaitingList")
+        )
 
     def isTimeSlotFull(self):
         return self.context.aq_parent.getNumberOfAvailableSlots() <= 0
 
-    def getConfirmSignupUrl(self):
-        url = self.context.absolute_url() + "/content_status_modify?workflow_action=signup"
+    def getTransitionUrl(self, transitionId):
+        url = "{0}/content_status_modify?workflow_action={1}".format(
+            self.context.absolute_url(), transitionId
+        )
         return addTokenToUrl(url)
+
+    def getConfirmSignupUrl(self):
+        return self.getTransitionUrl("signup")
+
+    def getPutOnWaitingListUrl(self):
+        return self.getTransitionUrl("putOnWaitingList")
