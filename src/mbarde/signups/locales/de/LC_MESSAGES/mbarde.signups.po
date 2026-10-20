@@ -677,8 +677,8 @@ msgid "This registration could not be found. It may have already been removed."
 msgstr "Es konnte keine Anmeldung gefunden werden. Vielleicht wurde sie bereits gelöscht."
 
 #: ../browser/templates/view_directsignoff.pt:44
-msgid "This registration has already been cancelled."
-msgstr "Die Anmeldung wurde bereits storniert."
+msgid "This registration has been cancelled."
+msgstr "Die Anmeldung wurde storniert."
 
 #: ../browser/view_submitselection.py:231
 msgid "This slot is not currently open for signups."

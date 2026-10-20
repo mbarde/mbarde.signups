@@ -41,7 +41,7 @@
             />
             <strong i18n:translate="">Info</strong>
             <div class="content">
-              <p i18n:translate="">This registration has already been cancelled.</p>
+              <p i18n:translate="">This registration has been cancelled.</p>
             </div>
           </div>
         </tal:block>
