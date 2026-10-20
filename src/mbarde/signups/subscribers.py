@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from mbarde.signups import _
 from mbarde.signups import signoff
+from mbarde.signups.content.ut_person import IUTPerson
 from mbarde.signups.utils import appendAuthenticatedSuffix
 from mbarde.signups.utils import replaceCustomMailPlaceholders
 from plone import api
@@ -261,6 +262,17 @@ def promoteFromWaitingListOnTimeslotEdit(timeSlot, event):
 
     if signupSheet.enableAutoMovingUpFromWaitingList:
         _promoteFromWaitingList(timeSlot, timeSlot.getNumberOfAvailableSlots())
+
+
+# Copying a signup sheet (or a day / slot) - e.g. as a template for the next
+# event - must not copy the people signed up for it (see UTPerson._canCopy).
+# OFS dispatches IObjectCopiedEvent to every slot inside a copied sheet/day,
+# before the copy is added to the site - so the persons are dropped before
+# they are ever indexed or notified about.
+def dropPersonsFromCopiedTimeslot(timeSlot, event):
+    personIds = [obj.getId() for obj in timeSlot.objectValues() if IUTPerson.providedBy(obj)]
+    for personId in personIds:
+        timeSlot._delObject(personId, suppress_events=True)
 
 
 # send out a notification based on workflow transition event

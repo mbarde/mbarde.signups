@@ -90,6 +90,13 @@
     handler=".subscribers.sendNotification"
   />
 
+  <!-- copying a sheet / day / slot must not copy the people signed up -->
+  <subscriber
+    for=".content.ut_timeslot.IUTTimeslot
+         zope.lifecycleevent.interfaces.IObjectCopiedEvent"
+    handler=".subscribers.dropPersonsFromCopiedTimeslot"
+  />
+
   <!-- refuse transitions that conflict with the slot's configuration
        (e.g. signing someone up for a full slot) -->
   <subscriber
