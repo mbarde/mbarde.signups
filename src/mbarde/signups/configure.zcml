@@ -90,6 +90,14 @@
     handler=".subscribers.sendNotification"
   />
 
+  <!-- refuse transitions that conflict with the slot's configuration
+       (e.g. signing someone up for a full slot) -->
+  <subscriber
+    for=".content.ut_person.IUTPerson
+         Products.DCWorkflow.interfaces.IBeforeTransitionEvent"
+    handler=".transitionguards.guardTransition"
+  />
+
   <!-- if editing a timeslot frees up capacity (e.g. maxCapacity raised),
        promote as many waiting-list people as now fit -->
   <subscriber

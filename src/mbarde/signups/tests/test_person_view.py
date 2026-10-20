@@ -150,6 +150,7 @@ class PersonViewTest(unittest.TestCase):
 
     def test_state_row_is_colored_like_the_summary(self):
         # same colors as view_summary.pt / the timeslot view's person lists
+        self.timeslot.allowWaitingList = True
         self.assertEqual(self._stateRowClass(), "table-warning")
 
         api.content.transition(obj=self.person, transition="signup")

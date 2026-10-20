@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-20 07:38+0000\n"
+"POT-Creation-Date: 2026-10-20 07:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <de@li.org>\n"
@@ -1062,6 +1062,21 @@ msgstr "Die Kapazität kann nicht auf ${newCapacity} reduziert werden, da bereit
 #: ../content/ut_timeslot.py:62
 msgid "error_capacity_below_signups_waiting_list"
 msgstr "Die Kapazität kann nicht auf ${newCapacity} reduziert werden, da bereits ${signedUp} Personen für diesen Termin angemeldet sind. Um sie zu reduzieren, müssen zuerst ${excess} Personen auf die Warteliste verschoben oder abgemeldet werden."
+
+#. Default: "This slot is already full and does not allow a waiting list. Increase its capacity or sign off someone else first."
+#: ../transitionguards.py:65
+msgid "error_transition_reactivate_slot_full"
+msgstr "Dieser Termin ist bereits voll und erlaubt keine Warteliste. Erhöhen Sie zuerst die Kapazität oder melden Sie eine andere Person ab."
+
+#. Default: "This slot is already full (max capacity: ${maxCapacity}). Increase its capacity or sign off someone else first."
+#: ../transitionguards.py:39
+msgid "error_transition_signup_slot_full"
+msgstr "Dieser Termin ist bereits voll (maximale Kapazität: ${maxCapacity}). Erhöhen Sie zuerst die Kapazität oder melden Sie eine andere Person ab."
+
+#. Default: "This slot does not allow a waiting list."
+#: ../transitionguards.py:52
+msgid "error_transition_waiting_list_not_allowed"
+msgstr "Für diesen Termin ist keine Warteliste erlaubt."
 
 #: ../browser/view_submitselection.py:200
 msgid "fieldName_agreeDataUsageDeclaration"

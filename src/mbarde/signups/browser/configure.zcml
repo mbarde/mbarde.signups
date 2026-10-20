@@ -120,4 +120,13 @@
         permission="cmf.ManagePortal"
     />
 
+    <!-- shows why a UTPerson transition was refused (see
+         transitionguards.py) instead of Plone's generic error page -->
+    <browser:page
+        name="index.html"
+        for="mbarde.signups.transitionguards.ITransitionNotAllowed"
+        class=".view_transitionnotallowed.TransitionNotAllowedView"
+        permission="zope2.Public"
+    />
+
 </configure>

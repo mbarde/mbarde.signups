@@ -255,7 +255,9 @@ class UTPersonIntegrationTest(unittest.TestCase):
             newId = normalizer.normalize(title)
             day = getattr(signupsheet, newId)
 
-        timeslot = api.content.create(container=day, type="UTTimeslot", id="ut_timeslot")
+        timeslot = api.content.create(
+            container=day, type="UTTimeslot", id="ut_timeslot", allowWaitingList=True
+        )
         person = self.createPerson(timeslot, self.users[0])
         return (signupsheet, day, timeslot, person)
 

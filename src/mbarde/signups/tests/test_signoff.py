@@ -490,6 +490,7 @@ def createFullStack(portal, **sheetOverrides):
         startTime=time(10, 0),
         endTime=time(12, 0),
         maxCapacity=5,
+        allowWaitingList=True,
     )
     email = "person@example.org"
     person = api.content.create(

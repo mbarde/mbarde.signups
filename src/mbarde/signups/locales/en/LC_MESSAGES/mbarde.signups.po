@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-20 07:38+0000\n"
+"POT-Creation-Date: 2026-10-20 07:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1002,6 +1002,21 @@ msgstr ""
 #. Default: "You can't reduce the capacity to ${newCapacity}, since there are already ${signedUp} signups on this slot. If you want to reduce it, first you need to move ${excess} people to the waiting list or sign them off."
 #: ../content/ut_timeslot.py:62
 msgid "error_capacity_below_signups_waiting_list"
+msgstr ""
+
+#. Default: "This slot is already full and does not allow a waiting list. Increase its capacity or sign off someone else first."
+#: ../transitionguards.py:65
+msgid "error_transition_reactivate_slot_full"
+msgstr ""
+
+#. Default: "This slot is already full (max capacity: ${maxCapacity}). Increase its capacity or sign off someone else first."
+#: ../transitionguards.py:39
+msgid "error_transition_signup_slot_full"
+msgstr ""
+
+#. Default: "This slot does not allow a waiting list."
+#: ../transitionguards.py:52
+msgid "error_transition_waiting_list_not_allowed"
 msgstr ""
 
 #: ../browser/view_submitselection.py:200
