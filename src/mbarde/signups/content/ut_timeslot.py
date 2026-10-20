@@ -83,6 +83,31 @@ class IUTTimeslot(model.Schema):
             )
         )
 
+    @invariant
+    def validateWaitingListNotDisabledWhileInUse(data):
+        timeSlot = getattr(data, "__context__", None)
+        # in the add form the context is the parent day, which has no signups yet
+        if not IUTTimeslot.providedBy(timeSlot):
+            return
+        # only when actually switching it off - don't block editing a slot
+        # whose waiting list was already disabled before this check existed
+        if data.allowWaitingList or not timeSlot.allowWaitingList:
+            return
+        waiting = timeSlot.getNumberOfWaitingPersons()
+        if waiting == 0:
+            return
+        raise Invalid(
+            _(
+                "error_disable_waiting_list_while_in_use",
+                default=(
+                    "You can't disable the waiting list, since there are still "
+                    "${waiting} people on it. If you want to disable it, first "
+                    "you need to sign them up or sign them off."
+                ),
+                mapping={"waiting": waiting},
+            )
+        )
+
 
 @implementer(IUTTimeslot)
 class UTTimeslot(Container):
@@ -115,8 +140,14 @@ class UTTimeslot(Container):
         return max(0, self.maxCapacity - self.getNumberOfSignedUpPersons())
 
     def getNumberOfSignedUpPersons(self):
+        return self._countPersons("signedup")
+
+    def getNumberOfWaitingPersons(self):
+        return self._countPersons("waiting")
+
+    def _countPersons(self, reviewState):
         brains = self.portal_catalog.unrestrictedSearchResults(
-            portal_type="UTPerson", review_state="signedup", path=self.getPath()
+            portal_type="UTPerson", review_state=reviewState, path=self.getPath()
         )
         return len(brains)
 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-20 07:57+0000\n"
+"POT-Creation-Date: 2026-10-20 08:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1001,6 +1001,11 @@ msgstr ""
 #. Default: "You can't reduce the capacity to ${newCapacity}, since there are already ${signedUp} signups on this slot. If you want to reduce it, first you need to move ${excess} people to the waiting list or sign them off."
 #: ../content/ut_timeslot.py:62
 msgid "error_capacity_below_signups_waiting_list"
+msgstr ""
+
+#. Default: "You can't disable the waiting list, since there are still ${waiting} people on it. If you want to disable it, first you need to sign them up or sign them off."
+#: ../content/ut_timeslot.py:103
+msgid "error_disable_waiting_list_while_in_use"
 msgstr ""
 
 #. Default: "This slot is already full and does not allow a waiting list. Increase its capacity or sign off someone else first."

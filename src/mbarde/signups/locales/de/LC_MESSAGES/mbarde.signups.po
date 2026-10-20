@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-20 07:57+0000\n"
+"POT-Creation-Date: 2026-10-20 08:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <de@li.org>\n"
@@ -1062,6 +1062,11 @@ msgstr "Die Kapazität kann nicht auf ${newCapacity} reduziert werden, da bereit
 #: ../content/ut_timeslot.py:62
 msgid "error_capacity_below_signups_waiting_list"
 msgstr "Die Kapazität kann nicht auf ${newCapacity} reduziert werden, da bereits ${signedUp} Personen für diesen Termin angemeldet sind. Um sie zu reduzieren, müssen zuerst ${excess} Personen auf die Warteliste verschoben oder abgemeldet werden."
+
+#. Default: "You can't disable the waiting list, since there are still ${waiting} people on it. If you want to disable it, first you need to sign them up or sign them off."
+#: ../content/ut_timeslot.py:103
+msgid "error_disable_waiting_list_while_in_use"
+msgstr "Die Warteliste kann nicht deaktiviert werden, da noch ${waiting} Personen darauf stehen. Um sie zu deaktivieren, müssen diese zuerst angemeldet oder abgemeldet werden."
 
 #. Default: "This slot is already full and does not allow a waiting list. Increase its capacity or sign off someone else first."
 #: ../transitionguards.py:65
