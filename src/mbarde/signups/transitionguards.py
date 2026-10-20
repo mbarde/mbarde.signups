@@ -7,8 +7,12 @@ ut_person_workflow/definition.xml. These checks are about whether a
 transition makes sense given the configuration of the containing time
 slot, independent of who triggers it (manager via the toolbar or a
 button, self-service signup or auto-promotion from the waiting list).
+
+Moving a person into another slot (cut & paste) is refused here as well,
+since it would bypass all of these checks for the target slot.
 """
 
+from Acquisition import aq_base
 from mbarde.signups import _
 from zope.interface import implementer
 from zope.interface import Interface
@@ -90,3 +94,32 @@ def guardTransition(person, event):
     message = guard(person.aq_parent)
     if message is not None:
         raise TransitionNotAllowed(message, person)
+
+
+class MoveNotAllowed(TransitionNotAllowed):
+    """Raised before a UTPerson gets moved into another time slot - handled
+    by the same exception view as TransitionNotAllowed"""
+
+
+def refuseMoveToOtherSlot(person, event):
+    """IObjectWillBeMovedEvent subscriber for UTPerson"""
+    if event.object is not person:
+        # dispatched from a moved parent (a whole slot/day/sheet is moved):
+        # the person stays in its slot, so that's fine
+        return
+    if event.oldParent is None or event.newParent is None:
+        # being added or deleted
+        return
+    if aq_base(event.oldParent) is aq_base(event.newParent):
+        # renamed within its slot (e.g. autoSetID/deferRename)
+        return
+    raise MoveNotAllowed(
+        _(
+            "error_move_person_to_other_slot",
+            default=(
+                "People can't be moved to another slot. Sign them off "
+                "and sign them up in the other slot instead."
+            ),
+        ),
+        person,
+    )

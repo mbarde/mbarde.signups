@@ -90,6 +90,13 @@
     handler=".subscribers.sendNotification"
   />
 
+  <!-- refuse moving a person into another slot (bypasses the guards above) -->
+  <subscriber
+    for=".content.ut_person.IUTPerson
+         OFS.interfaces.IObjectWillBeMovedEvent"
+    handler=".transitionguards.refuseMoveToOtherSlot"
+  />
+
   <!-- copying a sheet / day / slot must not copy the people signed up -->
   <subscriber
     for=".content.ut_timeslot.IUTTimeslot

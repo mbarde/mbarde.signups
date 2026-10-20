@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-20 08:49+0000\n"
+"POT-Creation-Date: 2026-10-20 11:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "A copy of the data usage declaration as it read when this person consented to it, so a later edit to the declaration doesn't retroactively change what this person is considered to have consented to."
 msgstr ""
 
-#: ../subscribers.py:155
+#: ../subscribers.py:156
 msgid "A new signup has been added to the waiting list for:"
 msgstr ""
 
@@ -48,7 +48,7 @@ msgstr ""
 
 #: ../browser/view_cancelreservation.py:57
 #: ../browser/view_submitselection.py:413
-#: ../subscribers.py:86
+#: ../subscribers.py:87
 msgid "Additional information"
 msgstr ""
 
@@ -278,7 +278,7 @@ msgstr ""
 
 #: ../browser/view_cancelreservation.py:39
 #: ../browser/view_submitselection.py:125
-#: ../subscribers.py:73
+#: ../subscribers.py:74
 msgid "Hello"
 msgstr ""
 
@@ -460,7 +460,7 @@ msgstr ""
 msgid "Put on waiting list"
 msgstr ""
 
-#: ../subscribers.py:70
+#: ../subscribers.py:71
 msgid "Registration Notification"
 msgstr ""
 
@@ -667,7 +667,7 @@ msgstr ""
 msgid "This link is invalid."
 msgstr ""
 
-#: ../subscribers.py:76
+#: ../subscribers.py:77
 msgid "This message is to notify you that someone signed up for:"
 msgstr ""
 
@@ -773,7 +773,7 @@ msgstr ""
 msgid "Waiting List"
 msgstr ""
 
-#: ../subscribers.py:149
+#: ../subscribers.py:150
 msgid "Waiting List Notification"
 msgstr ""
 
@@ -1005,22 +1005,27 @@ msgid "error_capacity_below_signups_waiting_list"
 msgstr ""
 
 #. Default: "You can't disable the waiting list, since there are still ${waiting} people on it. If you want to disable it, first you need to sign them up or sign them off."
-#: ../content/ut_timeslot.py:103
+#: ../content/ut_timeslot.py:100
 msgid "error_disable_waiting_list_while_in_use"
 msgstr ""
 
+#. Default: "People can't be moved to another slot. Sign them off and sign them up in the other slot instead."
+#: ../transitionguards.py:117
+msgid "error_move_person_to_other_slot"
+msgstr ""
+
 #. Default: "This slot is already full and does not allow a waiting list. Increase its capacity or sign off someone else first."
-#: ../transitionguards.py:65
+#: ../transitionguards.py:70
 msgid "error_transition_reactivate_slot_full"
 msgstr ""
 
 #. Default: "This slot is already full (max capacity: ${maxCapacity}). Increase its capacity or sign off someone else first."
-#: ../transitionguards.py:39
+#: ../transitionguards.py:44
 msgid "error_transition_signup_slot_full"
 msgstr ""
 
 #. Default: "This slot does not allow a waiting list."
-#: ../transitionguards.py:52
+#: ../transitionguards.py:57
 msgid "error_transition_waiting_list_not_allowed"
 msgstr ""
 
