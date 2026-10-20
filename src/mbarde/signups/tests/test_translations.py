@@ -53,3 +53,21 @@ class TranslationCatalogTest(unittest.TestCase):
         translations = _parsePo(packageDir / "locales/de/LC_MESSAGES/plone.po")
         for title in sorted(titles):
             self.assertTrue(translations.get(title), "no German translation for " + title)
+
+    def test_workflow_state_ids_are_translated_in_plone_domain(self):
+        # folder_contents translates the raw review_state *id* (e.g.
+        # "signedup") rather than the state title - so the ids need
+        # entries too, in every language (otherwise even English would
+        # show the bare id)
+        packageDir = Path(mbarde.signups.__file__).parent
+        definition = packageDir / "profiles/default/workflows/ut_person_workflow/definition.xml"
+        root = ElementTree.parse(definition).getroot()
+        stateIds = sorted(state.get("state_id") for state in root.iter("state"))
+
+        for poFile in (packageDir / "locales").glob("*/LC_MESSAGES/plone.po"):
+            translations = _parsePo(poFile)
+            for stateId in stateIds:
+                self.assertTrue(
+                    translations.get(stateId),
+                    "no translation for state id {0} in {1}".format(stateId, poFile),
+                )

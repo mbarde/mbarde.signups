@@ -1,0 +1,27 @@
+# Workflow state *ids* of ut_person_workflow. Plone's folder contents view
+# translates the raw review_state id (not the state title) in the "plone"
+# domain, like Plone itself does for e.g. "private" or "published".
+# i18ndude can't extract these from definition.xml, so they live here and
+# get merged into plone.pot by update.sh.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Domain: plone\n"
+
+#. workflow state defined in ut_person_workflow - title Signed Up
+msgid "signedup"
+msgstr ""
+
+#. workflow state defined in ut_person_workflow - title Signed off
+msgid "signedoff"
+msgstr ""
+
+#. workflow state defined in ut_person_workflow - title Waiting for confirmation
+msgid "unconfirmed"
+msgstr ""
+
+#. workflow state defined in ut_person_workflow - title Waiting List
+msgid "waiting"
+msgstr ""

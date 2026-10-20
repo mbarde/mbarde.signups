@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-10-20 06:49+0000\n"
+"POT-Creation-Date: 2026-10-20 07:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,3 +49,19 @@ msgstr ""
 #: ../profiles/default/workflows/ut_person_workflow/definition.xml
 msgid "Waiting for confirmation"
 msgstr ""
+
+#. workflow state defined in ut_person_workflow - title Signed off
+msgid "signedoff"
+msgstr "Signed off"
+
+#. workflow state defined in ut_person_workflow - title Signed Up
+msgid "signedup"
+msgstr "Signed Up"
+
+#. workflow state defined in ut_person_workflow - title Waiting for confirmation
+msgid "unconfirmed"
+msgstr "Waiting for confirmation"
+
+#. workflow state defined in ut_person_workflow - title Waiting List
+msgid "waiting"
+msgstr "Waiting List"

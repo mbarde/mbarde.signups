@@ -21,7 +21,7 @@ sed -i '/^#, fuzzy$/d' */LC_MESSAGES/$domain.po
 # Workflow state/transition titles are translated by Plone in the "plone"
 # domain (toolbar state menu, folder contents, ...), not in our own domain.
 # Ship them in a separate plone.po, merged by Zope with Plone's own catalog.
-i18ndude rebuild-pot --pot plone.pot --create plone ../profiles/default/workflows
+i18ndude rebuild-pot --pot plone.pot --merge plone-manual.pot --create plone ../profiles/default/workflows
 for lang in */; do
     lang=${lang%/}
     [ -f $lang/LC_MESSAGES/plone.po ] || touch $lang/LC_MESSAGES/plone.po
