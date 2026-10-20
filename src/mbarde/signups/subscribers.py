@@ -282,7 +282,10 @@ def sendNotification(obj, event):
 
     if event.transition and event.transition.id == "putOnWaitingList":
         sendWaitingListConfirmationEmail(obj)
-
+        # Deliberately no attemptToFillEmptySpot here, even if the person
+        # was signed up before and therefore frees a place: moving people to
+        # the waiting list is how managers can reduce a slot's capacity
+        # (see the capacity invariant on IUTTimeslot).
     if event.transition and event.transition.id == "signoff":
         sendSignOffNotification(obj)
         if event.old_state.id == "signedup":

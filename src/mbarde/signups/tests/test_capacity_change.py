@@ -223,3 +223,85 @@ class AttemptToFillEmptySpotOrderingTest(unittest.TestCase):
 
         self.assertEqual(api.content.get_state(older), "signedup")
         self.assertEqual(api.content.get_state(newer), "waiting")
+
+
+class NoPromotionWhenMovedToWaitingListTest(unittest.TestCase):
+    """Moving a signed-up person to the waiting list frees a place, but
+    deliberately promotes nobody (see subscribers.sendNotification): it's
+    how managers reduce a slot's capacity, which promoting someone right
+    away would make impossible while anyone is waiting.
+    """
+
+    layer = MBARDE_SIGNUPS_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer["portal"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+
+        self.sheet = api.content.create(
+            container=self.portal, type="UTSignupSheet", id="sheet1", contactInfo=""
+        )
+        self.assertTrue(self.sheet.enableAutoMovingUpFromWaitingList)
+        day = api.content.create(
+            container=self.sheet, type="UTDay", id="d1", date=date.today() + timedelta(days=1)
+        )
+        self.timeslot = api.content.create(
+            container=day,
+            type="UTTimeslot",
+            id="t1",
+            startTime=time(10, 0),
+            endTime=time(12, 0),
+            maxCapacity=2,
+            allowWaitingList=True,
+        )
+
+    def _createPerson(self, personId, transition, createdDelta):
+        person = api.content.create(
+            container=self.timeslot,
+            type="UTPerson",
+            id=personId,
+            email=personId + "@example.org",
+            prename="P",
+            surname=personId,
+        )
+        api.content.transition(obj=person, transition=transition)
+        person.creation_date = DateTime() + createdDelta
+        person.reindexObject()
+        return person
+
+    def test_moved_person_is_not_promoted_back_although_oldest(self):
+        # "moved" was created first, so it's the oldest on the waiting list
+        # right after the move - and would be the first to be promoted
+        moved = self._createPerson("moved", "signup", -3)
+        self._createPerson("other", "signup", -2)
+
+        api.content.transition(obj=moved, transition="putOnWaitingList")
+
+        self.assertEqual(api.content.get_state(moved), "waiting")
+        self.assertEqual(self.timeslot.getNumberOfAvailableSlots(), 1)
+
+    def test_nobody_else_is_promoted_either(self):
+        moved = self._createPerson("moved", "signup", -2)
+        self._createPerson("other", "signup", -1)
+        waitingLongest = self._createPerson("waitingLongest", "putOnWaitingList", -3)
+
+        api.content.transition(obj=moved, transition="putOnWaitingList")
+
+        self.assertEqual(api.content.get_state(waitingLongest), "waiting")
+        self.assertEqual(api.content.get_state(moved), "waiting")
+        self.assertEqual(self.timeslot.getNumberOfSignedUpPersons(), 1)
+
+    def test_capacity_can_be_reduced_after_moving_someone_to_waiting_list(self):
+        # the flow the capacity invariant's error message asks managers for
+        moved = self._createPerson("moved", "signup", -2)
+        stays = self._createPerson("stays", "signup", -1)
+        waiting = self._createPerson("waiting", "putOnWaitingList", -3)
+
+        api.content.transition(obj=moved, transition="putOnWaitingList")
+        self.timeslot.maxCapacity = 1
+        modified(self.timeslot)
+
+        self.assertEqual(api.content.get_state(stays), "signedup")
+        self.assertEqual(api.content.get_state(moved), "waiting")
+        self.assertEqual(api.content.get_state(waiting), "waiting")
+        self.assertEqual(self.timeslot.getNumberOfAvailableSlots(), 0)
