@@ -19,10 +19,14 @@ Originally inspired by https://github.com/collective/uwosh.timeslot (content-typ
 
 User states:
 
-1. `unconfirmed`: Manager hast to confirm signup
+1. `unconfirmed`: Manager has to confirm signup
 2. `signedup`: User is signed up
 3. `signedoff`: User is not signed up
 4. `waiting`: User is on waiting list (moves up when another signup is cancelled)
+
+### Signups are locked
+
+It is prohibited to copy or move signups (aka. `UTPerson` objects) to make sure the intended workflow always takes place to inform users about their booked slots and makes sure that limitations (like the capacity of a slot) are not bypassed.
 
 ## Dependecies
 
