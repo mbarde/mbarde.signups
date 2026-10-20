@@ -61,6 +61,14 @@ class IUTPerson(model.Schema):
 @implementer(IUTPerson)
 class UTPerson(Item):
 
+    # Persons can't be copied: a copy would duplicate personal data
+    # including the consent record, start as "unconfirmed" without any
+    # email and slip past the email-based duplicate checks (its id is
+    # "copy_of_..."). op 0 = copy, 1 = move - moves stay possible here
+    # because OFS checks renames (e.g. autoSetID/deferRename) the same way.
+    def _canCopy(self, op=0):
+        return op != 0
+
     # extra infos depend on additional form specified in SignupSheet (`extraFieldsForm`)
     # and get stored as attributes of UTPerson object
     def getExtraInfo(self):
