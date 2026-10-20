@@ -92,7 +92,12 @@
             i18n:translate="timeslot_label_noUpcomingDays">There are no upcoming days for this
             signup sheet.</h3>
 
-          <div class="accordion" id="slots-accordion">
+          <!--! open items look like closed ones (Bootstrap colors them in
+                the primary color by default, too colorful here) -->
+          <div class="accordion" id="slots-accordion"
+            style="--bs-accordion-active-bg: var(--bs-accordion-btn-bg);
+                   --bs-accordion-active-color: var(--bs-accordion-btn-color);
+                   --bs-accordion-btn-active-icon: var(--bs-accordion-btn-icon);">
             <tal:block tal:repeat="day days">
               <tal:days
                 define="dayIndex repeat/day/index;">
@@ -137,7 +142,9 @@
                         />
                       </button>
                     </h4>
-                    <div data-bs-parent="#slots-accordion"
+                    <!--! no data-bs-parent: managers can keep several
+                          slots open at once -->
+                    <div
                       tal:attributes="id bodyId;
                                  class python: 'accordion-collapse collapse show' if isOpen else 'accordion-collapse collapse'">
                       <div class="accordion-body">
