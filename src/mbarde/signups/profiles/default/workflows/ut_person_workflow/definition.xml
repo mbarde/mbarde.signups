@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<dc-workflow workflow_id="ut_person_workflow"
+<dc-workflow xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="plone"
+  workflow_id="ut_person_workflow"
   title="UTPerson Workflow"
   description=""
   state_variable="review_state"
@@ -8,7 +10,7 @@
   <permission>Modify portal content</permission>
   <permission>View</permission>
 
-  <state state_id="signedup" title="Signed Up">
+  <state state_id="signedup" title="Signed Up" i18n:attributes="title">
     <description>This person is signed up for the time slot</description>
     <exit-transition transition_id="signoff" />
     <exit-transition transition_id="putOnWaitingList" />
@@ -33,7 +35,7 @@
     </permission-map>
   </state>
 
-  <state state_id="unconfirmed" title="Waiting for confirmation">
+  <state state_id="unconfirmed" title="Waiting for confirmation" i18n:attributes="title">
     <description>This person has not been confirmed yet</description>
     <exit-transition transition_id="signup" />
     <exit-transition transition_id="signoff" />
@@ -60,7 +62,7 @@
     </permission-map>
   </state>
 
-  <state state_id="signedoff" title="Signed off">
+  <state state_id="signedoff" title="Signed off" i18n:attributes="title">
     <description>This person has been signed off</description>
     <exit-transition transition_id="signup" />
     <exit-transition transition_id="putOnWaitingList" />
@@ -87,7 +89,7 @@
     </permission-map>
   </state>
 
-  <state state_id="waiting" title="Waiting List">
+  <state state_id="waiting" title="Waiting List" i18n:attributes="title">
     <description>This person has been added to the waiting list</description>
     <exit-transition transition_id="signup" />
     <exit-transition transition_id="signoff" />
@@ -155,36 +157,40 @@
 
   <transition transition_id="signup"
     title="Signup"
+    i18n:attributes="title"
     new_state="signedup" trigger="USER"
     before_script="" after_script="">
     <description>This signs the person up for a day</description>
     <action url="%(content_url)s/content_status_modify?workflow_action=signup"
-      category="workflow">Signup</action>
+      category="workflow" i18n:translate="">Signup</action>
     <guard></guard>
   </transition>
 
   <transition transition_id="signoff"
     title="Cancel signup"
+    i18n:attributes="title"
     new_state="signedoff" trigger="USER"
     before_script="" after_script="">
     <description>This cancels a signup</description>
     <action url="%(content_url)s/content_status_modify?workflow_action=signoff"
-      category="workflow">Cancel signup</action>
+      category="workflow" i18n:translate="">Cancel signup</action>
     <guard></guard>
   </transition>
 
   <transition transition_id="putOnWaitingList"
     title="Put on waiting list"
+    i18n:attributes="title"
     new_state="waiting" trigger="USER"
     before_script="" after_script="">
     <description>This puts the person on the waiting list</description>
     <action url="%(content_url)s/content_status_modify?workflow_action=putOnWaitingList"
-      category="workflow">Put on waiting list</action>
+      category="workflow" i18n:translate="">Put on waiting list</action>
     <guard></guard>
   </transition>
 
   <transition transition_id="reactivate"
     title="Reactivate after sign-off"
+    i18n:attributes="title"
     new_state="unconfirmed" trigger="USER"
     before_script="" after_script="">
     <description>
@@ -194,7 +200,7 @@
       purpose - see the comment above the "signup" transition.
     </description>
     <action url="%(content_url)s/content_status_modify?workflow_action=reactivate"
-      category="workflow">Reactivate</action>
+      category="workflow" i18n:translate="">Reactivate</action>
     <guard>
       <guard-role>Manager</guard-role>
     </guard>

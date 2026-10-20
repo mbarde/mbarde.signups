@@ -17,3 +17,14 @@ i18ndude sync --pot $domain.pot */LC_MESSAGES/$domain.po
 # untranslated). This project doesn't use fuzzy translations on purpose, so
 # drop the flag.
 sed -i '/^#, fuzzy$/d' */LC_MESSAGES/$domain.po
+
+# Workflow state/transition titles are translated by Plone in the "plone"
+# domain (toolbar state menu, folder contents, ...), not in our own domain.
+# Ship them in a separate plone.po, merged by Zope with Plone's own catalog.
+i18ndude rebuild-pot --pot plone.pot --create plone ../profiles/default/workflows
+for lang in */; do
+    lang=${lang%/}
+    [ -f $lang/LC_MESSAGES/plone.po ] || touch $lang/LC_MESSAGES/plone.po
+done
+i18ndude sync --pot plone.pot */LC_MESSAGES/plone.po
+sed -i '/^#, fuzzy$/d' */LC_MESSAGES/plone.po

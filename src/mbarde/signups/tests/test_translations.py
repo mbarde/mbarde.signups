@@ -1,8 +1,21 @@
 # -*- coding: utf-8 -*-
 from pathlib import Path
+from xml.etree import ElementTree
 
 import mbarde.signups
+import re
 import unittest
+
+
+def _parsePo(poFile):
+    """msgid -> msgstr for single-line entries"""
+    return dict(
+        re.findall(
+            r'^msgid "(.+)"\nmsgstr "(.*)"$',
+            poFile.read_text(encoding="utf-8"),
+            re.MULTILINE,
+        )
+    )
 
 
 class TranslationCatalogTest(unittest.TestCase):
@@ -21,3 +34,22 @@ class TranslationCatalogTest(unittest.TestCase):
                 if line == "#, fuzzy"
             ]
             self.assertEqual(fuzzy, [], "fuzzy entries in {0}".format(poFile))
+
+    def test_workflow_titles_are_translated_in_plone_domain(self):
+        # Plone translates workflow state and transition titles (toolbar
+        # state menu, folder contents, ...) in the "plone" domain - not in
+        # mbarde.signups - so they have to be in our plone.po catalogs
+        packageDir = Path(mbarde.signups.__file__).parent
+        definition = packageDir / "profiles/default/workflows/ut_person_workflow/definition.xml"
+        root = ElementTree.parse(definition).getroot()
+        titles = {state.get("title") for state in root.iter("state")}
+        titles |= {transition.get("title") for transition in root.iter("transition")}
+        titles |= {
+            action.text.strip()
+            for action in root.iter("action")
+            if action.get("category") == "workflow"
+        }
+
+        translations = _parsePo(packageDir / "locales/de/LC_MESSAGES/plone.po")
+        for title in sorted(titles):
+            self.assertTrue(translations.get(title), "no German translation for " + title)

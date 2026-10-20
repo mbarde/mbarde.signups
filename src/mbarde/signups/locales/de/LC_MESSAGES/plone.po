@@ -1,0 +1,51 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2026-10-20 06:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language-Code: de\n"
+"Language-Name: Deutsch\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: ../profiles/default/workflows/ut_person_workflow/definition.xml
+msgid "Cancel signup"
+msgstr "Anmeldung stornieren"
+
+#: ../profiles/default/workflows/ut_person_workflow/definition.xml
+msgid "Put on waiting list"
+msgstr "Auf Warteliste setzen"
+
+#: ../profiles/default/workflows/ut_person_workflow/definition.xml
+msgid "Reactivate"
+msgstr "Reaktivieren"
+
+#: ../profiles/default/workflows/ut_person_workflow/definition.xml
+msgid "Reactivate after sign-off"
+msgstr "Nach Abmeldung reaktivieren"
+
+#: ../profiles/default/workflows/ut_person_workflow/definition.xml
+msgid "Signed Up"
+msgstr "Angemeldet"
+
+#: ../profiles/default/workflows/ut_person_workflow/definition.xml
+msgid "Signed off"
+msgstr "Abgemeldet"
+
+#: ../profiles/default/workflows/ut_person_workflow/definition.xml
+msgid "Signup"
+msgstr "Anmelden"
+
+#: ../profiles/default/workflows/ut_person_workflow/definition.xml
+msgid "Waiting List"
+msgstr "Warteliste"
+
+#: ../profiles/default/workflows/ut_person_workflow/definition.xml
+msgid "Waiting for confirmation"
+msgstr "Wartet auf Bestätigung"
