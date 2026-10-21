@@ -3,7 +3,6 @@
 
 project = "mbarde.signups"
 author = "Matthias Barde"
-copyright = "Matthias Barde"
 
 extensions = [
     "myst_parser",
@@ -22,11 +21,12 @@ exclude_patterns = ["_build"]
 
 html_theme = "plone_sphinx_theme"
 html_title = "mbarde.signups"
+html_show_copyright = False
 html_theme_options = {
     "repository_url": "https://github.com/mbarde/mbarde.signups",
     "repository_branch": "main",
     "path_to_docs": "docs",
     "use_repository_button": True,
     "use_issues_button": True,
-    "use_edit_page_button": True,
+    "use_edit_page_button": True
 }
