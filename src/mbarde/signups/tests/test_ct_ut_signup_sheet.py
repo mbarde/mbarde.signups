@@ -112,6 +112,36 @@ class UTSignupSheetIntegrationTest(unittest.TestCase):
         # should not raise
         IUTSignupSheet.validateInvariants(obj)
 
+    def _createSheetWithUnsortedDays(self):
+        sheet = api.content.create(
+            container=self.portal,
+            type="UTSignupSheet",
+            id="ut_signup_sheet",
+            contactInfo="",
+        )
+        year = date.today().year + 1
+        # created (and therefore cataloged) in neither date nor id order
+        for dayId, day in (("d1", 20), ("d2", 5), ("d3", 12)):
+            api.content.create(container=sheet, type="UTDay", id=dayId, date=date(year, 3, day))
+        api.content.create(container=sheet, type="UTDay", id="d4", date=date(year, 2, 28))
+        return sheet, year
+
+    def test_getDays_sorted_by_date(self):
+        sheet, year = self._createSheetWithUnsortedDays()
+        self.assertEqual(
+            [day.date for day in sheet.getDays()],
+            [date(year, 2, 28), date(year, 3, 5), date(year, 3, 12), date(year, 3, 20)],
+        )
+
+    def test_getDaysGroupedByMonth_days_sorted_within_month(self):
+        sheet, year = self._createSheetWithUnsortedDays()
+        days, keys, _monthNames = sheet.getDaysGroupedByMonth()
+        self.assertEqual(keys, ["{0}02".format(year), "{0}03".format(year)])
+        self.assertEqual(
+            [day.date for day in days["{0}03".format(year)]],
+            [date(year, 3, 5), date(year, 3, 12), date(year, 3, 20)],
+        )
+
     def test_getDaysGroupedByMonth_month_name_is_translatable(self):
         # a real translation (e.g. into German) needs a compiled .mo
         # catalog, which - unlike the site's own runtime, where

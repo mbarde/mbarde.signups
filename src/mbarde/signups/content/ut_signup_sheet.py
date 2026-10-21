@@ -466,6 +466,8 @@ class UTSignupSheet(Container):
             if not onlyIncludeUpcomingDays or day.date >= today:
                 results.append(day)
 
+        results = sorted(results, key=lambda day: day.date)
+
         return results
 
     # Returns tuple with three elements:
