@@ -30,7 +30,9 @@ class UTSignupSheetView(DefaultView):
         return super(UTSignupSheetView, self).__call__()
 
     def showEditLinks(self):
-        return api.user.has_permission("mbarde.signups: Manage Schedule")
+        # check on the signup sheet, not on the portal (plone.api's default),
+        # so local roles (e.g. "Manager" granted via sharing) are respected
+        return api.user.has_permission("mbarde.signups: Manage Schedule", obj=self.context)
 
     def getCurrentUserEmail(self):
         if api.user.is_anonymous():
