@@ -1,0 +1,4 @@
+plone-sphinx-theme
+myst-parser
+sphinx-copybutton
+sphinx-autobuild

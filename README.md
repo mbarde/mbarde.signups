@@ -10,7 +10,7 @@ Originally inspired by https://github.com/collective/uwosh.timeslot (content-typ
 ## Features
 
 - Define date based timeslots users can sign up to
-- Logged in users can watch and manage their signups
+- Logged-in users can watch and manage their signups
 - Timeslots can have capacities (waiting list and automatically moving up included)
 - Timeslots can have effective and expires date (for example to realize registration periods)
 - Customizable notification emails
@@ -26,9 +26,9 @@ User states:
 
 ### Signups are locked
 
-It is prohibited to copy or move signups (aka. `UTPerson` objects) to make sure the intended workflow always takes place to inform users about their booked slots and makes sure that limitations (like the capacity of a slot) are not bypassed.
+It is prohibited to copy or move signups (aka `UTPerson` objects) to make sure the intended workflow always takes place to inform users about their booked slots and to make sure that limitations (like the capacity of a slot) are not bypassed.
 
-## Dependecies
+## Dependencies
 
 - [https://github.com/collective/collective.easyform](https://github.com/collective/collective.easyform)
 
@@ -57,11 +57,11 @@ If you want pre-filling of personal data you have to specify corresponding membe
 
 Optional: Create `EasyForm` and set as additional form in `UTSignupSheet` settings
 
-**Important**: Ensure MailHost is configured properly (https://docs.plone.org/adapt-and-extend/config/mail.html).
+**Important**: Ensure MailHost is configured properly.
 
 ## Automatic deletion of personal data
 
-Managers can set "Automatically delete personal data after (days)" for each signup sheet. To have any effect a cronjob needs to be deployed to run `purge_expired_persons.py` regulary.
+Managers can set "Automatically delete personal data after (days)" for each signup sheet. To have any effect a cronjob needs to be deployed to run `purge_expired_persons.py` regularly.
 
 For example like this:
 
@@ -125,6 +125,19 @@ without a configured SMTP server (`ConnectionRefusedError`). With
 `requirements-dev.txt`), outgoing mail is printed to the instance log
 (`instance/var/log/event.log`) instead of actually being sent - no local
 mail server needed.
+
+### Documentation
+
+The documentation in `docs/` is built with Sphinx (MyST Markdown,
+`plone-sphinx-theme`) and deployed to GitHub Pages by
+`.github/workflows/docs.yml` on every push to `main`.
+
+Live preview while editing (rebuilds and reloads on save):
+
+```
+uv pip install -r requirements-docs.txt
+venv/bin/sphinx-autobuild docs docs/_build/html
+```
 
 ### Update translations
 
