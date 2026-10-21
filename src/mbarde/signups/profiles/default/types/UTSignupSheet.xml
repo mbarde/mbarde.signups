@@ -114,7 +114,8 @@
     title="Manager Summary"
     url_expr="string:${object_url}/manager-summary"
     visible="True">
-    <permission value="Modify portal content" />
+    <!-- same permission as the @@manager-summary view itself -->
+    <permission value="mbarde.signups: Manage Schedule" />
   </action>
 
 </object>

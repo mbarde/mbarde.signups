@@ -50,3 +50,32 @@ class ManagerSummaryViewTest(unittest.TestCase):
         self.assertIn("--bs-accordion-active-bg: var(--bs-accordion-btn-bg);", html)
         self.assertIn("--bs-accordion-active-color: var(--bs-accordion-btn-color);", html)
         self.assertIn("--bs-accordion-btn-active-icon: var(--bs-accordion-btn-icon);", html)
+
+
+class ManagerSummaryActionTest(unittest.TestCase):
+
+    layer = MBARDE_SIGNUPS_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer["portal"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+        self.sheet = api.content.create(
+            container=self.portal, type="UTSignupSheet", id="sheet1", contactInfo=""
+        )
+        setRoles(self.portal, TEST_USER_ID, ["Member"])
+        # creating the sheet made the test user its Owner, which also grants
+        # the permission
+        self.sheet.manage_delLocalRoles([TEST_USER_ID])
+
+    def _actionIds(self):
+        actions = api.portal.get_tool("portal_actions").listFilteredActionsFor(self.sheet)
+        return [action["id"] for action in actions.get("object_buttons", [])]
+
+    def test_action_shown_for_local_manager(self):
+        self.sheet.manage_setLocalRoles(TEST_USER_ID, ["Manager"])
+        self.assertIn("manager-summary", self._actionIds())
+
+    def test_action_hidden_for_editor(self):
+        # editors can modify the sheet, but can't open the manager summary
+        self.sheet.manage_setLocalRoles(TEST_USER_ID, ["Editor"])
+        self.assertNotIn("manager-summary", self._actionIds())
