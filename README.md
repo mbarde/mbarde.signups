@@ -7,6 +7,10 @@ Originally inspired by https://github.com/collective/uwosh.timeslot (content-typ
 > uwosh.timeslot offers a simple way to allow users of a Plone site to
 > register for events (for example: training sessions or office hours).
 
+## Documentation
+
+[https://mbarde.github.io/mbarde.signups/](https://mbarde.github.io/mbarde.signups/)
+
 ## Features
 
 - Define date based timeslots users can sign up to
